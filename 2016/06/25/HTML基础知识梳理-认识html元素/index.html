@@ -1,0 +1,1735 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+  
+    <link href='//fonts.lug.ustc.edu.cn/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+  
+
+
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+
+
+    <meta name="description" content="技术改变生活" />
+
+
+
+  <meta name="keywords" content="XHTML," />
+
+
+
+  <link rel="alternate" href="http://poetries.github.io/atom.xml" title="Poetry's Blog" type="application/atom+xml" />
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+<meta name="description" content="认识一个html文档的基本结构：
+12345678910&amp;lt;!DOCTYPE html&amp;gt;&amp;lt;html lang=&quot;en&quot;&amp;gt;&amp;lt;head&amp;gt;    &amp;lt;meta charset=&quot;UTF-8&quot;&amp;gt;    &amp;lt;title&amp;gt;Here is title&amp;lt;/title&amp;gt;&amp;lt;/head&amp;gt;&amp;lt;body&amp;gt;    Here is cont">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTML基础知识梳理-认识html元素">
+<meta property="og:url" content="http://www.poetries.top/2016/06/25/HTML基础知识梳理-认识html元素/index.html">
+<meta property="og:site_name" content="Poetry's Blog">
+<meta property="og:description" content="认识一个html文档的基本结构：
+12345678910&amp;lt;!DOCTYPE html&amp;gt;&amp;lt;html lang=&quot;en&quot;&amp;gt;&amp;lt;head&amp;gt;    &amp;lt;meta charset=&quot;UTF-8&quot;&amp;gt;    &amp;lt;title&amp;gt;Here is title&amp;lt;/title&amp;gt;&amp;lt;/head&amp;gt;&amp;lt;body&amp;gt;    Here is cont">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/712523-36e772d7c9db4fe1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/712523-41aac667827ef04c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/712523-6ffe8311971c2361.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/712523-ae3949d9d4043e10.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/712523-1e87a670229cb326.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/712523-1e5e35cf2861dd16.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/712523-7097ba4c2b4dcdcd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/712523-1c58c399783b0396.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/712523-96071bd21321b02e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/712523-99a6518b38b9b57a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/712523-b59b79d93ad2623a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/712523-0ae24d958cfa9219.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/712523-2ca56a9ba293220b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2016-09-27T15:41:22.575Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HTML基础知识梳理-认识html元素">
+<meta name="twitter:description" content="认识一个html文档的基本结构：
+12345678910&amp;lt;!DOCTYPE html&amp;gt;&amp;lt;html lang=&quot;en&quot;&amp;gt;&amp;lt;head&amp;gt;    &amp;lt;meta charset=&quot;UTF-8&quot;&amp;gt;    &amp;lt;title&amp;gt;Here is title&amp;lt;/title&amp;gt;&amp;lt;/head&amp;gt;&amp;lt;body&amp;gt;    Here is cont">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/712523-36e772d7c9db4fe1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+
+
+  <title> HTML基础知识梳理-认识html元素 | Poetry's Blog </title>
+  <style type="text/css">
+    .main {
+      padding-bottom: 190px;
+    }
+    .circle {
+        width: 40px;
+        height: 40px;
+        background: rgba(98, 187, 77, 0.68) no-repeat;
+        cursor: move;
+	    	opacity: 0.7;
+    }
+
+    .assist-btn {
+        position: fixed;
+        top: 50％;
+        left: 10px;
+        -moz-border-radius: 50px;
+        -webkit-border-radius: 50px;
+        border-radius: 50px;
+        outline: none;
+        border: none;
+        color: rgb(214, 10, 10);
+    }
+  p.top51la{
+      font-size: 12px;
+      position:fixed;
+      top:5px;
+      right:5px;
+  }
+   p.top51la a span img{
+      display:inline-block;
+      width: 10px;
+   }
+    p.top51la a + img{
+        display: none;
+   }
+  p.topUV {
+      font-size: 12px;
+      position:fixed;
+      top:5px;
+      right:20px;
+   }
+  p.topUV a img{
+      display: inline-block; 
+      width: 11px;
+    }
+  p.topUV a{
+      border-bottom: none;
+    }
+</style>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?40b1f89aa80f2527b3db779c6898c879";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=58036087";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta custom-logo">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Poetry's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">聆听、感受、成长</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+
+        
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+
+        
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+
+        
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+
+        
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle"></i> <br />
+            
+            留言
+          </a>
+        </li>
+
+        
+      
+
+      <li class="menu-item" style="opacity: 1; transform: translateY(0px);"> <a title="把这个链接拖到你的工具栏中,任何网页都可以High" href='javascript:(function() {
+          function c() {
+              var e = document.createElement("link");
+              e.setAttribute("type", "text/css");
+              e.setAttribute("rel", "stylesheet");
+              e.setAttribute("href", f);
+              e.setAttribute("class", l);
+              document.body.appendChild(e)
+          }
+
+          function h() {
+              var e = document.getElementsByClassName(l);
+              for (var t = 0; t < e.length; t++) {
+                  document.body.removeChild(e[t])
+              }
+          }
+
+          function p() {
+              var e = document.createElement("div");
+              e.setAttribute("class", a);
+              document.body.appendChild(e);
+              setTimeout(function() {
+                  document.body.removeChild(e)
+              }, 100)
+          }
+
+          function d(e) {
+              return {
+                  height : e.offsetHeight,
+                  width : e.offsetWidth
+              }
+          }
+
+          function v(i) {
+              var s = d(i);
+              return s.height > e &amp;&amp; s.height < n &amp;&amp; s.width > t &amp;&amp; s.width < r
+          }
+
+          function m(e) {
+              var t = e;
+              var n = 0;
+              while (!!t) {
+                  n += t.offsetTop;
+                  t = t.offsetParent
+              }
+              return n
+          }
+
+          function g() {
+              var e = document.documentElement;
+              if (!!window.innerWidth) {
+                  return window.innerHeight
+              } else if (e &amp;&amp; !isNaN(e.clientHeight)) {
+                  return e.clientHeight
+              }
+              return 0
+          }
+
+          function y() {
+              if (window.pageYOffset) {
+                  return window.pageYOffset
+              }
+              return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+          }
+
+          function E(e) {
+              var t = m(e);
+              return t >= w &amp;&amp; t <= b + w
+          }
+
+          function S() {
+              var e = document.createElement("audio");
+              e.setAttribute("class", l);
+              e.src = i;
+              e.loop = false;
+              e.addEventListener("canplay", function() {
+                  setTimeout(function() {
+                      x(k)
+                  }, 500);
+                  setTimeout(function() {
+                      N();
+                      p();
+                      for (var e = 0; e < O.length; e++) {
+                          T(O[e])
+                      }
+                  }, 15500)
+              }, true);
+              e.addEventListener("ended", function() {
+                  N();
+                  h()
+              }, true);
+              e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+              document.body.appendChild(e);
+              e.play()
+          }
+
+          function x(e) {
+              e.className += " " + s + " " + o
+          }
+
+          function T(e) {
+              e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+          }
+
+          function N() {
+              var e = document.getElementsByClassName(s);
+              var t = new RegExp("\\b" + s + "\\b");
+              for (var n = 0; n < e.length; ) {
+                  e[n].className = e[n].className.replace(t, "")
+              }
+          }
+
+          var e = 30;
+          var t = 30;
+          var n = 350;
+          var r = 350;
+          var i = "https://ss0.bdstatic.com/y0s1hSulBw92lNKgpU_Z2jR7b2w6buu/data2/music/8b77e748d030862ea6ed5ef0fcf7832d/242078559/242078559.mp3?xcode=0683c9c47ce11a94766f476e85847328";
+          var s = "mw-harlem_shake_me";
+          var o = "im_first";
+          var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+          var a = "mw-strobe_light";
+          var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+          var l = "mw_added_css";
+          var b = g();
+          var w = y();
+          var C = document.getElementsByTagName("*");
+          var k = null;
+          for (var L = 0; L < C.length; L++) {
+              var A = C[L];
+              if (v(A)) {
+                  if (E(A)) {
+                      k = A;
+                      break
+                  }
+              }
+          }
+          if (A === null) {
+              console.warn("Could not find a node of the right size. Please try a different page.");
+              return
+          }
+          c();
+          S();
+          var O = [];
+          for (var L = 0; L < C.length; L++) {
+              var A = C[L];
+              if (v(A)) {
+                  O.push(A)
+              }
+          }
+          })()' class="okmemo-tmp-unselect"><i class="menu-item-icon fa fa-music fa-fw"></i>High一下</a> </li>
+
+      
+      
+    </ul>
+  
+    
+
+  
+    <div class="site-search">
+      
+  
+  <form class="site-search-form">
+    <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  </form>
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'v9qj9piTH6n2pV9s23zR','2.0.0');
+</script>
+
+
+
+    </div>
+
+  
+</nav>
+
+
+ </div>
+    </header>
+	
+	
+	
+	<a href="https://github.com/poetries" target="_blank">
+	<img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/c6625ac1f3ee0a12250227cf83ce904423abf351/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_gray_6d6d6d.png">
+	</a>
+<p class="topUV"><span style="color:#0e0e0e;position:relative;top:-2px;">本站热度&nbsp;</span>
+  <script src='http://www.xiaoniu168.com/counts3110.html' language='JavaScript' charset='utf-8'></script>
+  <script>
+      var oP = document.getElementsByClassName("topUV")[0];
+      oP.getElementsByTagName("a")[0].setAttribute("href","javascript:void(0);");
+  </script>
+  <span style="color:#0e0e0e;position: relative;top: -2px;">&nbsp;&nbsp;℃</span>
+</p>
+      
+	
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                HTML基础知识梳理-认识html元素
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+        
+          <!-- <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-06-25T10:21:43+00:00" content="2016-06-25">
+              2016-06-25
+            </time>
+          </span>-->
+
+          
+            <span class="post-category" >
+              &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Front-End/" itemprop="url" rel="index">
+                    <span itemprop="name">Front-End</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/25/HTML基础知识梳理-认识html元素/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/25/HTML基础知识梳理-认识html元素/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+         
+         
+            &nbsp; | &nbsp;<span>热度</span>&nbsp;<span style="color:red;" id="/2016/06/25/HTML基础知识梳理-认识html元素/"class="leancloud_visitors"  data-flag-title="HTML基础知识梳理-认识html元素"></span><span style="color:red;">&nbsp;℃</span>
+            
+            <!-- <span id="/2016/06/25/HTML基础知识梳理-认识html元素/"class="leancloud_visitors"  data-flag-title="HTML基础知识梳理-认识html元素">
+              &nbsp; | &nbsp;热度&nbsp;
+               </span> -->
+            
+      
+           
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>认识一个html文档的基本结构：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Here is title<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    Here is content.</div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<a id="more"></a>
+<blockquote>
+<p>HTML 文档是由 HTML 元素 定义的，而HTML 元素指的是从开始标签（start tag）到结束标签（end tag）的所有代码。</p>
+</blockquote>
+<p><strong>首先，HTML元素从闭合属性上可分为2类：</strong></p>
+<ul>
+<li>自闭和标签</li>
+</ul>
+<p>自闭和标签在html元素中的比例不大，常用的就以下几个：</p>
+<pre><code>&lt;img /&gt; &lt;br /&gt; &lt;input /&gt; &lt;hr /&gt;
+</code></pre><ul>
+<li>手动闭合标签</li>
+</ul>
+<h2 id="常用的标签："><a href="#常用的标签：" class="headerlink" title="常用的标签："></a><strong>常用的标签：</strong></h2><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span><span class="tag">&lt;/<span class="name">h1</span>&gt;</span>....</div><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">label</span>&gt;</span><span class="tag">&lt;/<span class="name">label</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">textarea</span>&gt;</span><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">table</span>&gt;</span><span class="tag">&lt;/<span class="name">table</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">thead</span>&gt;</span><span class="tag">&lt;/<span class="name">thead</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">tbody</span>&gt;</span><span class="tag">&lt;/<span class="name">tbody</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">tr</span>&gt;</span><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">th</span>&gt;</span><span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">dl</span>&gt;</span><span class="tag">&lt;/<span class="name">dl</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">dt</span>&gt;</span><span class="tag">&lt;/<span class="name">dt</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">dd</span>&gt;</span><span class="tag">&lt;/<span class="name">dd</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">form</span>&gt;</span><span class="tag">&lt;/<span class="name">form</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="一、块级元素"><a href="#一、块级元素" class="headerlink" title="一、块级元素"></a>一、块级元素</h3><hr>
+<p><strong>div</strong></p>
+<p>含义：页面内容的一个独立组成部分。</p>
+<p>常见的用途有三种：</p>
+<ul>
+<li>划分页首、页尾、页边栏或导航栏等等；</li>
+<li>表示页面的分栏；</li>
+<li>将文章进一步分成几个部分，比如正文、评论、文章的元数据等等。</li>
+</ul>
+<p>示例：</p>
+<pre><code>&lt;div&gt;这里面可以只放文本，也可以放其他任何标签，当然可以放自己&lt;/div&gt;
+</code></pre><p><img src="http://upload-images.jianshu.io/upload_images/712523-36e772d7c9db4fe1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="此处输入图片的描述"></p>
+<p><strong>h1, h2, h3, h4, h5, h6</strong></p>
+<p>含义：内容的标题。</p>
+<p>h1是最高一级的标题，下一层标题使用h2，依次类推。除了h1以外，其他5个级别标题在一个页面中都可以出现多次，h1只能出现一次。</p>
+<p>示例：</p>
+<pre><code>&lt;h1&gt;一级标题&lt;/h1&gt;
+&lt;h2&gt;二级标题&lt;/h2&gt;
+</code></pre><p><strong>p</strong></p>
+<p>含义：表示段落。</p>
+<p>它是文章内容的基本组成部分，也可以用来表示诗歌中的一节。p与div的主要区别是，前者表示文本段落，后者表示更广义的段落</p>
+<p>在P标签中，不应该再包含其他块级元素。此外，也不应该使用空的p标签。标签具有确切的语义，用于定义段落</p>
+<p>示例：</p>
+<pre><code>&lt;p&gt;这是一个段落。&lt;/p&gt;
+</code></pre><p><strong>blockquote</strong></p>
+<p>含义：表示一段引用自其他来源的独立文本。</p>
+<p>它引用的文本通常有一定的长度，以块级元素的形式出现。<br>blockquote应该总是与cite标签配合使用，cite用来指明引用材料的来源。</p>
+<p>示例：</p>
+<pre><code>&lt;blockquote&gt;
+不是在沉默中爆发，就是在沉默中灭亡。
+&lt;cite&gt;鲁迅《为了忘却的纪念》&lt;/cite&gt;
+&lt;/blockquote&gt;
+</code></pre><p>在浏览器的默认样式中，blockquote有文本缩进的效果，但是不要单单因为这个原因，而使用它。</p>
+<p>blockquote有两个属性，第一个是cite属性，用来指明引用材料的URI地址；第二个是title属性，用于提供引用材料的相关信息。<br>示例：</p>
+<pre><code>&lt;blockquote cite=&quot;http://w3c.org/&quot; title=&quot;文章的标题，作者，发表日期&quot;&gt;&quot;我正在此处引用W3C的标准。&quot;&lt;/blockquote&gt;
+</code></pre><h3 id="二、行内元素"><a href="#二、行内元素" class="headerlink" title="二、行内元素"></a>二、行内元素</h3><hr>
+<p><strong>a</strong></p>
+<p>含义：与href属性搭配使用时，链接至外部链接，或者同一页的某个锚点。</p>
+<p>示例：</p>
+<pre><code>&lt;a href=&quot;chapter2.html&quot;&gt;第二章&lt;/a&gt;
+</code></pre><p><strong>abbr</strong><br>含义：表示内容是某个术语或短语的缩写形式，它有一个title属性，用来指明缩写所代表的原始词组。<br>示例：</p>
+<pre><code>&lt;abbr title=&quot;Europe&quot;&gt;Eur&lt;/abbr&gt;
+</code></pre><p><strong>acronym</strong></p>
+<p>含义：表示内容是一个词组的首字母简称，比如BBC、WTO。</p>
+<p>它有一个title属性，用来指明属性所代表的原始词组。<br>acronym与abbr的主要区别是，前者往往是一个可以独立使用的词，而后者不是。这意味着acronym肯定是abbr，但是abbr不一定是acronym。<br>示例：</p>
+<pre><code>&lt;acronym title=&quot;World Wide Web&quot;&gt;WWW&lt;/acronym&gt;
+</code></pre><p><strong>em</strong></p>
+<p>含义：表示强调。</p>
+<p>em所指明的内容，应该比其周围的内容更重要。<br>注意，如果你只是想表示斜体或者引用书名，那就不要使用em标签，而是用CSS命令（font-style:italic）。</p>
+<p>示例：</p>
+<pre><code>&lt;em&gt;我正在强调这句话。&lt;/em&gt;
+</code></pre><p><strong>strong</strong></p>
+<p>含义：表示比em更强的强调。</p>
+<p>示例：</p>
+<pre><code>&lt;strong&gt;我正在以更大的强度，强调这句话。&lt;/strong&gt;
+</code></pre><p><strong>address</strong></p>
+<p>含义：表示某个特定文档或文档的某个部分的联系信息或联络方式。<br><strong>注意：</strong></p>
+<ul>
+<li>所有的联络方式都可以用这个标签表示，而不仅仅是地址。</li>
+<li>它是一个块级元素，不要用它来单独标识某个Email地址或电话号码。</li>
+</ul>
+<p>示例：</p>
+<pre><code>&lt;address&gt;
+&lt;a href=&quot;../People/张三/&quot;&gt;张三&lt;/a&gt;, 
+&lt;a href=&quot;../People/李四/&quot;&gt;李四&lt;/a&gt;, 
+$ 日期：1999/12/24 23:37:50 $
+&lt;/address&gt;
+</code></pre><p><strong>cite</strong></p>
+<p>含义：表示引述的来源。</p>
+<p>它用来指明书目信息、个人引语、或者参考文献中的外部资源。<br>示例：</p>
+<p><code>&lt;cite&gt;《哈利波特系列小说》&lt;/cite&gt;</code>的作者是J.K.罗琳。</p>
+<p><strong>dfn</strong></p>
+<p>含义：用来表示一个定义。<br>示例：</p>
+<pre><code>&lt;dfn&gt;Internet Explorer&lt;/dfn&gt;是最常见的浏览器。
+</code></pre><p><strong>del</strong></p>
+<p>含义：表示该信息已被删除。<br>通常用于日期和时间，表示文档已经发生了变化。</p>
+<p><strong>ins</strong></p>
+<p>含义：与del的作用正好相反，表示修订后插入的内容。</p>
+<p><strong>code</strong></p>
+<p>含义：表示程序代码。</p>
+<p><strong>samp</strong></p>
+<p>含义：表示程序代码的输出结果。</p>
+<p><strong>kbd</strong><br>含义：表示由用户键入的文本。</p>
+<p>它很少使用，但是在某些场合，你想演示如何使用一个程序，它就会有用。它通常与code和samp结合使用。</p>
+<p><strong>var</strong></p>
+<p>含义：表示程序中的变量或参数，与code, samp, kbd结合使用。</p>
+<p><strong>q</strong><br>含义：表示一个较短的引语。<br>注意：浏览器对这个标签的支持很不好，因此不推荐使用</p>
+<p><strong>sub/sup</strong></p>
+<p>含义：表示下标/上标。</p>
+<p><strong>span</strong></p>
+<p>含义：用来标识其他标签不适合表示的内容，是一个通用型的行内标签。</p>
+<h3 id="三、列表元素"><a href="#三、列表元素" class="headerlink" title="三、列表元素"></a>三、列表元素</h3><hr>
+<pre><code>ul, ol, li
+</code></pre><p>含义：表示一组相同格式的信息。<br>当你有一张清单的时候，就应该使用列表元素。ul是无序列表，通常前面有一个强调符号；ol是有序列表，前面通常采用数字编号。</p>
+<p><strong>ul标签</strong></p>
+<pre><code>&lt;ul&gt;
+&lt;li&gt;Coffee&lt;/li&gt;
+&lt;li&gt;Tea&lt;/li&gt;
+&lt;li&gt;Milk&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;&lt;/ul&gt; 标签定义无序列表。
+</code></pre><p><img src="http://upload-images.jianshu.io/upload_images/712523-41aac667827ef04c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="此处输入图片的描述"></p>
+<p><strong>ol标签</strong><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ol</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>Coffee<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>Tea<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>Milk<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ol</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">ol</span> <span class="attr">start</span>=<span class="string">"50"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>咖啡<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>牛奶<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>茶<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ol</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">ol</span> <span class="attr">type</span>=<span class="string">"A"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>Coffee<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>Tea<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>Milk<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ol</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<ul>
+<li><ol> </ol>标签定义有序列表。</li>
+<li>ol上有以下几个常用属性：</li>
+<li>start规定有序列表的起始值，默认为1。</li>
+<li>type规定在列表中使用的标记类型。</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/712523-6ffe8311971c2361.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="此处输入图片的描述"></p>
+<p>dl, dd, dt<br>含义：表示一个术语列表。<br>dt表示术语，dd表示该术语的定义，可以为单个术语提供多个定义。<br>示例：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">dl</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">dt</span>&gt;</span>各个学院<span class="tag">&lt;/<span class="name">dt</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">dd</span>&gt;</span>风景园林学院<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">dd</span>&gt;</span>家具设计学院<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">dd</span>&gt;</span>林学院<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">dd</span>&gt;</span>艺术设计学院<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">dd</span>&gt;</span>信息科学与技术学院<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dl</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<ul>
+<li><code>&lt;dl&gt;</code> 标签定义了定义列表（definition list）。</li>
+<li><code>&lt;dl&gt;</code> 标签用于结合dt（定义列表中的项目）和 dd (描述列表中的项目）。</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/712523-ae3949d9d4043e10.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="此处输入图片的描述"></p>
+<h3 id="四、表单元素"><a href="#四、表单元素" class="headerlink" title="四、表单元素"></a>四、表单元素</h3><hr>
+<p><strong>form标签</strong></p>
+<p><form> 标签用于为用户输入创建 HTML 表单，在页面中用户看不到form元素的显示效果。<br>表单能够包含 input 、label、button、select等等元素。</form></p>
+<p><strong>input</strong></p>
+<p><code>&lt;input /&gt;</code> 标签用于搜集用户信息。<br>根据不同的 type 属性值，输入字段拥有很多种形式:<br>输入字段可以是文本字段、复选框、掩码后的文本控件、单选按钮、按钮等等。</p>
+<p><strong>文本框</strong></p>
+<pre><code>&lt;input type=&quot;text&quot; value=&quot;&quot;  placeholder=&quot;&quot; /&gt;
+&lt;input type=&quot;text&quot; value=&quot;这是value&quot;  placeholder=&quot;&quot; /&gt;
+&lt;input type=&quot;text&quot; value=&quot;&quot;  placeholder=&quot;这里是提示文字&quot; /&gt;
+value代表此文本框中显示的值,placeholder设置的值表示当value为空时，给用户的提示文字。
+</code></pre><p><strong>密码框</strong></p>
+<pre><code>&lt;input type=&quot;password&quot; value=&quot;&quot; /&gt;
+&lt;input type=&quot;password&quot; value=&quot;123456&quot; /&gt;
+&lt;input type=&quot;password&quot; value=&quot;&quot; placeholder=&quot;请输入密码&quot; /&gt;
+</code></pre><p><img src="http://upload-images.jianshu.io/upload_images/712523-1e87a670229cb326.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="此处输入图片的描述"></p>
+<p><strong>单选框</strong></p>
+<pre><code>&lt;input type=&quot;radio&quot; value=&quot;male&quot; checked name=&quot;gender&quot; /&gt; 男
+&lt;input type=&quot;radio&quot; value=&quot;female&quot; name=&quot;gender&quot; /&gt; 女
+value:在界面上不会显示出来；
+checked:如果存在，则表示默认选中；
+name： 当多个&lt;input type=&quot;radio&quot; /&gt;的name属性值相同时，表示这多个单选框，同时只能有一个选中；
+</code></pre><p><img src="http://upload-images.jianshu.io/upload_images/712523-1e5e35cf2861dd16.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="此处输入图片的描述"></p>
+<p><strong>复选框</strong></p>
+<pre><code>&lt;input type=&quot;checkbox&quot; value=&quot;footballl&quot; checked name=&quot;hobbies&quot; /&gt; 足球
+</code></pre><p><input type="checkbox" value="basketball" name="hobbies"> 篮球<br>多个复选框的name即使相同，也可以同时选中；<br><img src="http://upload-images.jianshu.io/upload_images/712523-7097ba4c2b4dcdcd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="此处输入图片的描述"></p>
+<p><strong>textarea元素</strong></p>
+<pre><code>&lt;textarea rows=&quot;10&quot; cols=&quot;30&quot;&gt;
+在这篇文章中，你可以对html元素有基本的了解。
+&lt;/textarea&gt;
+&lt;textarea&gt; 标签定义多行的文本输入控件,上面介绍的&lt;input type=&quot;text&quot;&gt;是单行文本框。
+可以通过 cols 和 rows 属性来规定 textarea 的尺寸，不过更好的办法是使用 CSS 的 height 和 width 属性。
+</code></pre><p><img src="http://upload-images.jianshu.io/upload_images/712523-1c58c399783b0396.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="此处输入图片的描述"></p>
+<p><strong>select标签</strong></p>
+<pre><code>&lt;select&gt;
+  &lt;option value=&quot;&quot;&gt;请选择学院名称&lt;/option&gt;
+  &lt;option value=&quot;1&quot;&gt;风景园林学院&lt;/option&gt;
+  &lt;option value=&quot;2&quot;&gt;家具设计学院&lt;/option&gt;
+  &lt;option value=&quot;3&quot;&gt;林学院&lt;/option&gt;
+  &lt;option value=&quot;4&quot;&gt;艺术设计学院&lt;/option&gt;
+  &lt;option value=&quot;5&quot;&gt;信息科学与技术学院&lt;/option&gt;
+&lt;/select&gt;
+&lt;select&gt;&lt;/select&gt; 元素可创建单选或多选菜单；
+select元素中的&lt;option&gt;&lt;/option&gt;标签用于定义列表中的可用选项。
+</code></pre><p><img src="http://upload-images.jianshu.io/upload_images/712523-96071bd21321b02e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="此处输入图片的描述"></p>
+<p><strong>表格元素</strong></p>
+<pre><code>&lt;table border=&quot;1&quot;&gt;
+&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th&gt;姓名&lt;/th&gt;
+    &lt;th&gt;性别&lt;/th&gt;
+  &lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt; 
+  &lt;tr&gt;
+    &lt;td&gt;abcdefg&lt;/td&gt;
+    &lt;td&gt;男&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;殷晓飞&lt;/td&gt;
+    &lt;td&gt;男&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+表格一般由多个子元素构成：
+&lt;table&gt;&lt;/table&gt;：最外层容器（可以通过设置border属性来控制表格边框）；
+&lt;thead&gt;&lt;/thead&gt;：表格头——用于包裹表格的顶部信息;
+&lt;tbody&gt;&lt;/tbody&gt;: 表格主题内容;
+&lt;tr&gt;&lt;/tr&gt;表示一行记录；
+&lt;td&gt;&lt;/td&gt;表示一列，但嵌套在tbody标签的tr标签内；
+&lt;th&gt;&lt;/th&gt;也表示一列，但嵌套在thead标签的tr标签内；
+注意：
+一个表格只有一个table标签；
+一个table标签内只有一个thead和一个tbody;
+一个thead内只有一个tr,thead中的tr中可以有多个th（可以有多列）;
+一个tbody中可以有多个tr（可以有多行记录）,每个tr中可以有多个td（可以有多列）；
+</code></pre><p><img src="http://upload-images.jianshu.io/upload_images/712523-99a6518b38b9b57a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="此处输入图片的描述"></p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><img src="http://upload-images.jianshu.io/upload_images/712523-b59b79d93ad2623a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="此处输入图片的描述"></h2><p><strong>button元素</strong></p>
+<pre><code>&lt;button type=&quot;button&quot;&gt;提交按钮&lt;/button&gt;
+</code></pre><p><img src="http://upload-images.jianshu.io/upload_images/712523-0ae24d958cfa9219.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="此处输入图片的描述"></p>
+<p><strong>label元素</strong></p>
+<pre><code>&lt;label for=&quot;male&quot;&gt;Male&lt;/label&gt;
+&lt;input type=&quot;radio&quot; name=&quot;sex&quot; id=&quot;male&quot; /&gt;
+&lt;br /&gt;
+&lt;label for=&quot;female&quot;&gt;Female&lt;/label&gt;
+&lt;input type=&quot;radio&quot; name=&quot;sex&quot; id=&quot;female&quot; /&gt;
+&lt;label&gt; 标签为 input 元素定义标注（标记）。
+label 元素不会向用户呈现任何特殊效果。不过，它为鼠标用户改进了可用性。
+如果您在 label 元素内点击文本，就会触发此控件。
+就是说，当用户选择该标签时，浏览器就会自动将焦点转到和标签相关的表单控件上。
+&lt;label&gt; 标签的 for 属性应当与相关元素的 id 属性相同。
+</code></pre><p><img src="http://upload-images.jianshu.io/upload_images/712523-2ca56a9ba293220b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="此处输入图片的描述"></p>
+<h3 id="五、分割元素"><a href="#五、分割元素" class="headerlink" title="五、分割元素"></a>五、分割元素</h3><hr>
+<p><strong>br</strong></p>
+<p>含义：表示换行。</p>
+<p>注意，除了少数场合（比如诗歌中的分行），应该尽量避免使用这个标签，因为它并没有特别的语义含义，而且分行的视觉效果完全可以通过p标签、列表标签和CSS命令达到。</p>
+<p><strong>hr</strong></p>
+<p>含义：表示两个部分之间用一根水平直线分割。<br>事实上，不用这个标签，也有办法显示水平直线。这个标签的唯一优势，也许就是在没有CSS的场合，它可以产生视觉分割的效果。</p>
+<h3 id="六、不建议使用的元素"><a href="#六、不建议使用的元素" class="headerlink" title="六、不建议使用的元素"></a>六、不建议使用的元素</h3><hr>
+<p>以下的标签都没有明确的语义，只涉及到视觉效果，很可能在以后版本的HTML语言中被废除。建议不要使用。</p>
+<ul>
+<li>big</li>
+<li>small</li>
+<li>b</li>
+<li>i</li>
+<li>tt</li>
+<li>pre</li>
+</ul>
+<h3 id="七、已经被废除的标签"><a href="#七、已经被废除的标签" class="headerlink" title="七、已经被废除的标签"></a>七、已经被废除的标签</h3><hr>
+<p><strong>下面的标签已经被废除，不应该继续使用了。</strong></p>
+<ul>
+<li><code>applet</code></li>
+<li><code>center</code></li>
+<li><code>font</code></li>
+<li><code>dir</code></li>
+<li><code>isindex</code></li>
+<li><code>menu</code></li>
+<li><code>s</code></li>
+<li><code>strike</code></li>
+<li><code>u</code></li>
+</ul>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/XHTML/" rel="tag">#XHTML</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/06/25/HTML编码规范-网易/" rel="next" title="HTML编码规范-网易">
+                <i class="fa fa-chevron-left"></i> HTML编码规范-网易
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/06/25/初学者必懂的30条HTML代码编写指南/" rel="prev" title="初学者必懂的30条HTML代码编写指南">
+                初学者必懂的30条HTML代码编写指南 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+    
+    <div class="mod-category_article-time">
+      <span>
+          <time itemprop="dateCreated" datetime="2016-06-25T18:21:43+08:00" content="2016-06-25">
+                  2016-06-25
+          </time>
+      </span>
+    </div>
+  </article>
+
+
+
+	 <div>
+      
+        <style type="text/css">
+
+    .donate_bar {
+        text-align: center;
+        margin-top : 5%;
+    }
+
+    .donate_bar.hidden {
+        display:none;
+    }
+
+    .donate_bar a.btn_donate {
+        display: inline-block;
+        width: 82px;
+        height: 82px;
+        margin-left:auto;
+        margin-right:auto;
+
+        background: url("http://img.t.sinajs.cn/t5/style/images/apps_PRF/e_media/btn_reward.gif") no-repeat;
+        _background: url("http://img.t.sinajs.cn/t5/style/images/apps_PRF/e_media/btn_reward.gif") no-repeat; 
+
+        -webkit-transition: background 0s;
+        -moz-transition: background 0s;
+        -o-transition: background 0s;
+        -ms-transition: background 0s;
+        transition: background 0s;
+    }
+
+    .donate_bar a.btn_donate:hover { 
+        background-position: 0px -82px;
+        color: #87daff;
+    }
+
+    .donate_bar .donate_txt {
+        display: block;
+        color: #9d9d9d;
+        font: 14px/2 "Microsoft Yahei";
+    }
+
+    .bold { 
+        font-weight: bold; 
+    }
+
+    .post-donate a {
+        border-bottom: 0px;
+		
+    }
+
+    #donate_guide table {
+        border: none;
+    }
+	
+    #donate_guide td {
+        border-bottom: none;
+        border-right: none;
+        // background: #333333;
+        valign: top;
+    }
+
+</style>
+
+
+
+    
+
+    <div class ="post-donate">
+        <div id="donate_board" class="donate_bar center">
+              <a id="btn_donate" class="btn_donate" href="javascript:;" title="Donate me"></a>
+              <span id="donate_txt" class="donate_txt">
+                   
+                        Enjoy it ? Donate me !  欣赏此文？求鼓励，求支持！
+                   
+              </span>
+            <br>
+        </div>  
+  
+        <div id="donate_guide" class="donate_bar center hidden">
+            <!--
+            
+                <a href="http://7xq6al.com1.z0.glb.clouddn.com/alipay2.jpg" title="支付宝打赏" class="fancybox" rel="article0" 
+                    style="float:left;margin-left:25%;margin-right:10px;">
+                    <img src="http://7xq6al.com1.z0.glb.clouddn.com/alipay2.jpg" title="" height="164px" width="164px">
+                </a> 
+              
+
+            
+                <a href="http://7xq6al.com1.z0.glb.clouddn.com/weixin.jpg" title="微信打赏" class="fancybox" rel="article0"
+                    style="margin-right:30%">
+                    <img src="http://7xq6al.com1.z0.glb.clouddn.com/weixin.jpg" title="" height="164px" width="164px">
+                </a>
+            
+            -->
+            <table>
+                <tr>
+                    <td>
+                        
+                            <a href="http://7xq6al.com1.z0.glb.clouddn.com/alipay2.jpg" title="alipay" class="fancybox" rel="article0" 
+                                style="float:left;margin-left:25%;margin-right:10px;">
+                                <img src="http://7xq6al.com1.z0.glb.clouddn.com/alipay2.jpg" title="" height="164px" width="164px">
+                            </a> 
+                         
+                    </td>
+                    <td>
+                        
+                            <a href="http://7xq6al.com1.z0.glb.clouddn.com/weixin.jpg" title="weixin" class="fancybox" rel="article0"
+                                style="margin-right:30%">
+                                <img src="http://7xq6al.com1.z0.glb.clouddn.com/weixin.jpg" title="" height="164px" width="164px">
+                            </a>
+                        
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+
+        <script type="text/javascript">
+            document.getElementById('btn_donate').onclick = function() {
+                $('#donate_board').addClass('hidden');
+                // $('#donate_guide').removeClass('hidden');
+                $('#donate_guide').show(2000);
+            }
+
+        </script>
+    </div>
+
+    
+
+
+
+      
+    </div>
+	
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+            <!-- 多说热评文章-->
+            <p class="hot-commit">热评文章</p>
+            <div class="ds-top-threads" data-range="monthly" data-num-items="5"></div>
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2016/06/25/HTML基础知识梳理-认识html元素/"
+                   data-title="HTML基础知识梳理-认识html元素" data-url="http://www.poetries.top/2016/06/25/HTML基础知识梳理-认识html元素/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/avatar.jpg" alt="Poetry" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Poetry</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">技术改变生活</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">132</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">40</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="http://poetries.github.io/atom.xml" rel="alternate">
+              <i class="menu-item-icon icon-next-feed"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/poetries" target="_blank">
+                  <i class="fa fa-github"></i> GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/poetries1" target="_blank">
+                  <i class="fa fa-weibo"></i> Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/94077fcddfc0/latest_articles" target="_blank">
+                  <i class="fa fa-jianshu"></i> Jianshu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">常用链接</p>
+            
+              <span class="links-of-author-item">
+                <a href="http://jsdig.com/" target="_blank">前端搜索</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://cssvalues.com/" target="_blank">css检索</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://f2er.club/" target="_blank">醉牛前端</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://caibaojian.com/links" target="_blank">前端网址</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://jsdig.com/" target="_blank">前端导航</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.css88.com/nav/" target="_blank">前端css88</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://codecloud.net/" target="_blank">程序资料</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://frontenddev.org/" target="_blank">FED社区</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.awesomes.cn/" target="_blank">构建工具</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://overapi.com/" target="_blank">OverAPI</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://devdocs.io/" target="_blank">DevDocs</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://yisibl.github.io/css-vocabulary/" target="_blank">CSS词汇</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jb51.net/onlineread/JavaScript-Garden-CN/#intro" target="_blank">JS花园</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://tool.oschina.net/" target="_blank">工具索引</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://hao.shejidaren.com/" target="_blank">设计导航</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://admire.so/" target="_blank">设计相关</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.uedh.cn/" target="_blank">用户体验</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://jsbin.com/" target="_blank">JSbin</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://codepen.io/pen" target="_blank">Codepen</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://runjs.cn/" target="_blank">RunJs</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://app.gistboxapp.com/" target="_blank">GitBox</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://tool.lu/" target="_blank">ToolBox</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#常用的标签："><span class="nav-number">1.</span> <span class="nav-text">常用的标签：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、块级元素"><span class="nav-number">1.1.</span> <span class="nav-text">一、块级元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、行内元素"><span class="nav-number">1.2.</span> <span class="nav-text">二、行内元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、列表元素"><span class="nav-number">1.3.</span> <span class="nav-text">三、列表元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、表单元素"><span class="nav-number">1.4.</span> <span class="nav-text">四、表单元素</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">2.</span> <span class="nav-text"></span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#五、分割元素"><span class="nav-number">2.1.</span> <span class="nav-text">五、分割元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、不建议使用的元素"><span class="nav-number">2.2.</span> <span class="nav-text">六、不建议使用的元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#七、已经被废除的标签"><span class="nav-number">2.3.</span> <span class="nav-text">七、已经被废除的标签</span></a></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Poetry</span>
+  
+  <p style="margin-left:13px; position:relative;top:29px;display:inline-block;">
+     <a target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=9cTCxMzDw8fFwsa1hITblpqY" style="text-decoration:none;">
+         <img src="http://rescdn.qqmail.com/zh_CN/htmledition/images/function/qm_open/ico_mailme_01.png"/>
+      </a>
+  </p>
+  
+</div>
+
+<p style="margin-left:10px;width:60px;height:30px;display:inline-block;margin-top:10px;">
+	<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1260404165'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1260404165%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+</p>
+<p style="position:relative;top:-4px;width:24px;height:30px;margin-left:10px;margin-right:10px;color:red;display:inline-block;"><a href="http://ta.qq.com" target="_blank"><img class="fenxi" src="http://tcss.qq.com/icon/toss_21.gif" alt="腾讯分析"></a></p>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"poetry"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
+
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+
+  
+    <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/MathJax.js"></script>
+    <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/config/TeX-AMS-MML_HTMLorMML.js"></script>
+  
+
+
+  
+  
+
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"slide":{"type":"slide","bdImg":"3","bdPos":"left","bdTop":"250"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+  
+     <!-- custom analytics part create by xiamo -->
+<script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("tIIXiDlAWApnLSnalOqcrADh-gzGzoHsz", "N6UqlI5OjE9dGhd1ISBLU7e6");</script>
+<script>
+function showTime(Counter) {
+	var query = new AV.Query(Counter);
+	$(".leancloud_visitors").each(function() {
+		var url = $(this).attr("id").trim();
+		query.equalTo("url", url);
+		query.find({
+			success: function(results) {
+				if (results.length == 0) {
+					var content = $(document.getElementById(url)).text() + ': 0';
+					$(document.getElementById(url)).text(content);
+					return;
+				}
+				for (var i = 0; i < results.length; i++) {
+					var object = results[i];
+					var content = $(document.getElementById(url)).text() + ': ' + object.get('time');
+					$(document.getElementById(url)).text(content);
+				}
+			},
+			error: function(object, error) {
+				console.log("Error: " + error.code + " " + error.message);
+			}
+		});
+
+	});
+}
+
+function addCount(Counter) {
+	var Counter = AV.Object.extend("Counter");
+	url = $(".leancloud_visitors").attr('id').trim();
+	title = $(".leancloud_visitors").attr('data-flag-title').trim();
+	var query = new AV.Query(Counter);
+	query.equalTo("url", url);
+	query.find({
+		success: function(results) {
+			if (results.length > 0) {
+				var counter = results[0];
+				counter.fetchWhenSave(true);
+				counter.increment("time");
+				counter.save(null, {
+					success: function(counter) {
+						var content = $(document.getElementById(url)).text() + ': ' + counter.get('time');
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(counter, error) {
+						console.log('Failed to save Visitor num, with error message: ' + error.message);
+					}
+				});
+			} else {
+				var newcounter = new Counter();
+				newcounter.set("title", title);
+				newcounter.set("url", url);
+				newcounter.set("time", 1);
+				newcounter.save(null, {
+					success: function(newcounter) {
+					    console.log("newcounter.get('time')="+newcounter.get('time'));
+						var content = $(document.getElementById(url)).text() + ': ' + newcounter.get('time');
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(newcounter, error) {
+						console.log('Failed to create');
+					}
+				});
+			}
+		},
+		error: function(error) {
+			console.log('Error:' + error.code + " " + error.message);
+		}
+	});
+}
+$(function() {
+	var Counter = AV.Object.extend("Counter");
+	if ($('.leancloud_visitors').length == 1) {
+		addCount(Counter);
+	} else if ($('.post-title-link').length > 1) {
+		showTime(Counter);
+	}
+}); 
+</script>
+  
+  
+  
+  <div>
+    <button class="assist-btn circle" id="assist_btn" title="双击亮屏" style="left: 73px; top: 169px;">
+         开灯
+    </button>
+ </div>
+<script type="text/javascript">
+    // 浮动圆点展开与收缩
+
+    $(function () {
+        var assist_box = $('.assist-box');
+        $('#assist_btn').hover(function () {
+            assist_box.stop().show(300);
+        }, function () {
+            assist_box.stop().hide(150);
+        })
+    });
+
+    //浮动圆点拖动
+    $(function () {
+        var box = document.getElementById('assist_btn');
+        box.onmousedown = function (event) {
+            var e = event || window.event,
+                t = e.target || e.srcElement,
+                // 鼠标按下时的坐标x1,y1
+                x1 = e.clientX,
+                y1 = e.clientY,
+                //鼠标按下时的左右偏移量
+                dragLeft = this.offsetLeft,
+                dragTop = this.offsetTop;
+
+            document.onmousemove = function (event) {
+                var e = event || window.event,
+                    t = e.target || e.srcElement,
+                    // 鼠标移动时的动态坐标
+                    x2 = e.clientX,
+                    y2 = e.clientY,
+                    // 鼠标移动时的坐标的变化量
+                    x = x2 - x1,
+                    y = y2 - y1;
+                box.style.left = (dragLeft + x) + 'px';
+                box.style.top = (dragTop + y) + 'px';
+            }
+
+            document.onmouseup = function () {
+                this.onmousemove = null;
+            }
+        }
+    });
+
+/*
+    $whitesmoke   = #f5f5f5
+    $gainsboro    = #eee
+    $gray-lighter = #ddd
+    $grey-light   = #ccc
+    $grey         = #bbb
+    $grey-dark    = #999
+    $grey-dim     = #666
+    $black-light  = #555
+    $black-deep   = #222
+    $red          = #ff2a2a
+    $blue-bright  = #87daff
+    $blue         = #0684bd
+    $blue-deep    = #262a30
+*/
+    // white theme
+    var body = {color: "#555", background: "white"};
+    var a_tag = {color: "#222"};
+    var header = { background: "#f5f5f5"};
+    var logo_line_i = {background: "#222"};
+    // var post_code = {background: "#eee", color: "#222"};
+
+    function switch_theme() {
+        $("body").css(body);
+        $("a:not('.links-of-author-item a, .site-state-item a, .site-state-posts a, .feed-link a, .motion-element a, .post-tags a, .show-commit-cls a, #donate_board a')").css(a_tag);
+        $(".header, .footer").css(header);
+        $(".logo-line-before i, .logo-line-after i").css(logo_line_i);
+        //$(".post code").css(post_code);
+        $("#idhyt-surprise-ball #idhyt-surprise-ball-animation .drag").css(a_tag);
+        $(".post-title-link, .posts-expand .post-meta, .post-comments-count, .disqus-comment-count, .post-category a, .post-nav-next a, .post-nav-item a").css(a_tag);
+        
+        // $("code").css({color: '#c5c8c6', background: '#1d1f21'});
+        $("#assist_btn").hide(1500);
+    }
+
+    $(function () {
+        $("#assist_btn").dblclick(function() {
+            switch_theme();
+        });
+    });
+
+</script>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"poetry"};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+
+</body>
+</html>

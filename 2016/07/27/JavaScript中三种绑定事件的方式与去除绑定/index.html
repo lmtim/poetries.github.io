@@ -1,0 +1,1524 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+  
+    <link href='//fonts.lug.ustc.edu.cn/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+  
+
+
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+
+
+    <meta name="description" content="技术改变生活" />
+
+
+
+  <meta name="keywords" content="JavaScript," />
+
+
+
+  <link rel="alternate" href="http://poetries.github.io/atom.xml" title="Poetry's Blog" type="application/atom+xml" />
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+<meta name="description" content="绑定事件的第1种办法：
+函数写在结构层里面
+非常不好，使页面很混乱，行为与结构得不到分离
+
+
+
+1&amp;lt;input type=&quot;button&quot; onclick=&quot;func();&quot;&amp;gt;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript中三种绑定事件的方式与去除绑定">
+<meta property="og:url" content="http://www.poetries.top/2016/07/27/JavaScript中三种绑定事件的方式与去除绑定/index.html">
+<meta property="og:site_name" content="Poetry's Blog">
+<meta property="og:description" content="绑定事件的第1种办法：
+函数写在结构层里面
+非常不好，使页面很混乱，行为与结构得不到分离
+
+
+
+1&amp;lt;input type=&quot;button&quot; onclick=&quot;func();&quot;&amp;gt;">
+<meta property="og:updated_time" content="2016-09-27T15:41:22.575Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript中三种绑定事件的方式与去除绑定">
+<meta name="twitter:description" content="绑定事件的第1种办法：
+函数写在结构层里面
+非常不好，使页面很混乱，行为与结构得不到分离
+
+
+
+1&amp;lt;input type=&quot;button&quot; onclick=&quot;func();&quot;&amp;gt;">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+
+
+  <title> JavaScript中三种绑定事件的方式与去除绑定 | Poetry's Blog </title>
+  <style type="text/css">
+    .main {
+      padding-bottom: 190px;
+    }
+    .circle {
+        width: 40px;
+        height: 40px;
+        background: rgba(98, 187, 77, 0.68) no-repeat;
+        cursor: move;
+	    	opacity: 0.7;
+    }
+
+    .assist-btn {
+        position: fixed;
+        top: 50％;
+        left: 10px;
+        -moz-border-radius: 50px;
+        -webkit-border-radius: 50px;
+        border-radius: 50px;
+        outline: none;
+        border: none;
+        color: rgb(214, 10, 10);
+    }
+  p.top51la{
+      font-size: 12px;
+      position:fixed;
+      top:5px;
+      right:5px;
+  }
+   p.top51la a span img{
+      display:inline-block;
+      width: 10px;
+   }
+    p.top51la a + img{
+        display: none;
+   }
+  p.topUV {
+      font-size: 12px;
+      position:fixed;
+      top:5px;
+      right:20px;
+   }
+  p.topUV a img{
+      display: inline-block; 
+      width: 11px;
+    }
+  p.topUV a{
+      border-bottom: none;
+    }
+</style>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?40b1f89aa80f2527b3db779c6898c879";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=58036087";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta custom-logo">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Poetry's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">聆听、感受、成长</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+
+        
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+
+        
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+
+        
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+
+        
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle"></i> <br />
+            
+            留言
+          </a>
+        </li>
+
+        
+      
+
+      <li class="menu-item" style="opacity: 1; transform: translateY(0px);"> <a title="把这个链接拖到你的工具栏中,任何网页都可以High" href='javascript:(function() {
+          function c() {
+              var e = document.createElement("link");
+              e.setAttribute("type", "text/css");
+              e.setAttribute("rel", "stylesheet");
+              e.setAttribute("href", f);
+              e.setAttribute("class", l);
+              document.body.appendChild(e)
+          }
+
+          function h() {
+              var e = document.getElementsByClassName(l);
+              for (var t = 0; t < e.length; t++) {
+                  document.body.removeChild(e[t])
+              }
+          }
+
+          function p() {
+              var e = document.createElement("div");
+              e.setAttribute("class", a);
+              document.body.appendChild(e);
+              setTimeout(function() {
+                  document.body.removeChild(e)
+              }, 100)
+          }
+
+          function d(e) {
+              return {
+                  height : e.offsetHeight,
+                  width : e.offsetWidth
+              }
+          }
+
+          function v(i) {
+              var s = d(i);
+              return s.height > e &amp;&amp; s.height < n &amp;&amp; s.width > t &amp;&amp; s.width < r
+          }
+
+          function m(e) {
+              var t = e;
+              var n = 0;
+              while (!!t) {
+                  n += t.offsetTop;
+                  t = t.offsetParent
+              }
+              return n
+          }
+
+          function g() {
+              var e = document.documentElement;
+              if (!!window.innerWidth) {
+                  return window.innerHeight
+              } else if (e &amp;&amp; !isNaN(e.clientHeight)) {
+                  return e.clientHeight
+              }
+              return 0
+          }
+
+          function y() {
+              if (window.pageYOffset) {
+                  return window.pageYOffset
+              }
+              return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+          }
+
+          function E(e) {
+              var t = m(e);
+              return t >= w &amp;&amp; t <= b + w
+          }
+
+          function S() {
+              var e = document.createElement("audio");
+              e.setAttribute("class", l);
+              e.src = i;
+              e.loop = false;
+              e.addEventListener("canplay", function() {
+                  setTimeout(function() {
+                      x(k)
+                  }, 500);
+                  setTimeout(function() {
+                      N();
+                      p();
+                      for (var e = 0; e < O.length; e++) {
+                          T(O[e])
+                      }
+                  }, 15500)
+              }, true);
+              e.addEventListener("ended", function() {
+                  N();
+                  h()
+              }, true);
+              e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+              document.body.appendChild(e);
+              e.play()
+          }
+
+          function x(e) {
+              e.className += " " + s + " " + o
+          }
+
+          function T(e) {
+              e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+          }
+
+          function N() {
+              var e = document.getElementsByClassName(s);
+              var t = new RegExp("\\b" + s + "\\b");
+              for (var n = 0; n < e.length; ) {
+                  e[n].className = e[n].className.replace(t, "")
+              }
+          }
+
+          var e = 30;
+          var t = 30;
+          var n = 350;
+          var r = 350;
+          var i = "https://ss0.bdstatic.com/y0s1hSulBw92lNKgpU_Z2jR7b2w6buu/data2/music/8b77e748d030862ea6ed5ef0fcf7832d/242078559/242078559.mp3?xcode=0683c9c47ce11a94766f476e85847328";
+          var s = "mw-harlem_shake_me";
+          var o = "im_first";
+          var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+          var a = "mw-strobe_light";
+          var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+          var l = "mw_added_css";
+          var b = g();
+          var w = y();
+          var C = document.getElementsByTagName("*");
+          var k = null;
+          for (var L = 0; L < C.length; L++) {
+              var A = C[L];
+              if (v(A)) {
+                  if (E(A)) {
+                      k = A;
+                      break
+                  }
+              }
+          }
+          if (A === null) {
+              console.warn("Could not find a node of the right size. Please try a different page.");
+              return
+          }
+          c();
+          S();
+          var O = [];
+          for (var L = 0; L < C.length; L++) {
+              var A = C[L];
+              if (v(A)) {
+                  O.push(A)
+              }
+          }
+          })()' class="okmemo-tmp-unselect"><i class="menu-item-icon fa fa-music fa-fw"></i>High一下</a> </li>
+
+      
+      
+    </ul>
+  
+    
+
+  
+    <div class="site-search">
+      
+  
+  <form class="site-search-form">
+    <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  </form>
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'v9qj9piTH6n2pV9s23zR','2.0.0');
+</script>
+
+
+
+    </div>
+
+  
+</nav>
+
+
+ </div>
+    </header>
+	
+	
+	
+	<a href="https://github.com/poetries" target="_blank">
+	<img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/c6625ac1f3ee0a12250227cf83ce904423abf351/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_gray_6d6d6d.png">
+	</a>
+<p class="topUV"><span style="color:#0e0e0e;position:relative;top:-2px;">本站热度&nbsp;</span>
+  <script src='http://www.xiaoniu168.com/counts3110.html' language='JavaScript' charset='utf-8'></script>
+  <script>
+      var oP = document.getElementsByClassName("topUV")[0];
+      oP.getElementsByTagName("a")[0].setAttribute("href","javascript:void(0);");
+  </script>
+  <span style="color:#0e0e0e;position: relative;top: -2px;">&nbsp;&nbsp;℃</span>
+</p>
+      
+	
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                JavaScript中三种绑定事件的方式与去除绑定
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+        
+          <!-- <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-07-27T03:40:43+00:00" content="2016-07-27">
+              2016-07-27
+            </time>
+          </span>-->
+
+          
+            <span class="post-category" >
+              &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Front-End/" itemprop="url" rel="index">
+                    <span itemprop="name">Front-End</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/27/JavaScript中三种绑定事件的方式与去除绑定/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/27/JavaScript中三种绑定事件的方式与去除绑定/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+         
+         
+            &nbsp; | &nbsp;<span>热度</span>&nbsp;<span style="color:red;" id="/2016/07/27/JavaScript中三种绑定事件的方式与去除绑定/"class="leancloud_visitors"  data-flag-title="JavaScript中三种绑定事件的方式与去除绑定"></span><span style="color:red;">&nbsp;℃</span>
+            
+            <!-- <span id="/2016/07/27/JavaScript中三种绑定事件的方式与去除绑定/"class="leancloud_visitors"  data-flag-title="JavaScript中三种绑定事件的方式与去除绑定">
+              &nbsp; | &nbsp;热度&nbsp;
+               </span> -->
+            
+      
+           
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><ul>
+<li>绑定事件的第1种办法：<ul>
+<li>函数写在结构层里面</li>
+<li>非常不好，使页面很混乱，行为与结构得不到分离</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">onclick</span>=<span class="string">"func();"</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><ul>
+<li><p>绑定事件的第2种办法</p>
+<ul>
+<li>好处：行为与结构开始分离</li>
+<li><p>缺点：</p>
+<ul>
+<li>第二种绑定方式中 </li>
+<li>只能给一个时间绑定一个处理函数 </li>
+<li>即.<code>onclick = fn1</code>;.<code>onclick = fn2</code>  最终的效果是<code>onclick = fn2</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">name</span>=<span class="string">"xueli"</span> &gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">""</span>&gt;</span>请选择学历<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"大学"</span> &gt;</span>大学<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"中学"</span>&gt;</span>中学<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"初中"</span>&gt;</span>初中<span class="tag">&lt;/<span class="name">option</span>&gt;</span>	</div><div class="line">	<span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"小学"</span>&gt;</span>小学<span class="tag">&lt;/<span class="name">option</span>&gt;</span>	</div><div class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">""</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">p</span>&gt;</span>Email:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"email"</span>&gt;</span></div><div class="line">	  姓名：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"ming"</span> &gt;</span></div><div class="line"></div><div class="line">	 <span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="built_in">document</span>.getElementsByTagName(<span class="string">'select'</span>)[<span class="number">0</span>].onclick= <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</div><div class="line"> 	 alert(<span class="string">'嘻嘻'</span>);</div><div class="line"></div><div class="line"> &#125;</div><div class="line"></div><div class="line"><span class="built_in">document</span>.getElementsByName(<span class="string">'email'</span>)[<span class="number">0</span>].onblur=<span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</div><div class="line">	alert(<span class="string">'哈哈哈'</span>);</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="keyword">var</span> d = <span class="built_in">document</span>.getElementById(<span class="string">'school'</span>);</div><div class="line">		<span class="function"><span class="keyword">function</span> <span class="title">fn1</span>(<span class="params"></span>)</span>&#123;</div><div class="line">			alert(<span class="string">'hello'</span>);</div><div class="line">		&#125;</div><div class="line">		<span class="function"><span class="keyword">function</span> <span class="title">fn2</span>(<span class="params"></span>)</span>&#123;</div><div class="line">			alert(<span class="string">'world'</span>);</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		d.onclick = fn1;<span class="comment">//赋值操作 最终显示fn2</span></div><div class="line">		d.onclick = fn2;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<ul>
+<li>绑定事件的第3种办法</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//错误写法1</span></div><div class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="keyword">var</span> d = <span class="built_in">document</span>.getElementById(<span class="string">'school'</span>);</div><div class="line">		<span class="function"><span class="keyword">function</span> <span class="title">fn1</span>(<span class="params"></span>)</span>&#123;<span class="comment">//this此时指向window</span></div><div class="line">			<span class="keyword">this</span>.style.background = <span class="string">'blue'</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="function"><span class="keyword">function</span> <span class="title">fn2</span>(<span class="params"></span>)</span>&#123;<span class="comment">//this此时指向window</span></div><div class="line">			<span class="keyword">this</span>.style.background = <span class="string">'red'</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="comment">//写一个匿名函数</span></div><div class="line">		<span class="comment">//最终的出现错误</span></div><div class="line">		d.onclick = <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</div><div class="line">			fn1();</div><div class="line">			fn2();</div><div class="line">			<span class="comment">//fn1 fn2是属性window的 实际上是这样 window.fn1() window.fn2()</span></div><div class="line">			</div><div class="line">			</div><div class="line">		&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p> 下面这种写法没有问题 但是给DOM树额外增加了两个变量<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="keyword">var</span> d = <span class="built_in">document</span>.getElementById(<span class="string">'school'</span>);</div><div class="line">		d.fn1 = <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;<span class="comment">//fn1是d的属性 最终this此时指向DOM对象</span></div><div class="line">			<span class="keyword">this</span>.style.background = <span class="string">'blue'</span>;</div><div class="line">		&#125;</div><div class="line">		d.fn2 = <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;<span class="comment">//this此时指向DOM对象</span></div><div class="line">			<span class="keyword">this</span>.style.background = <span class="string">'red'</span>;</div><div class="line">		&#125;</div><div class="line">		</div><div class="line">		<span class="comment">//匿名函数 调用上面两个函数</span></div><div class="line">		d.onclick = <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</div><div class="line">			<span class="keyword">this</span>.fn1();</div><div class="line">			<span class="keyword">this</span>.fn2();</div><div class="line"></div><div class="line">		&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>不在使用<code>onclick</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="keyword">var</span> d = <span class="built_in">document</span>.getElementById(<span class="string">'school'</span>);</div><div class="line">		<span class="comment">//达到了一次绑定两个函数</span></div><div class="line">		d.addEventListener(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;alert(<span class="string">'blue'</span>);<span class="keyword">this</span>.style.background =<span class="string">'blue'</span>&#125;);</div><div class="line">		d.addEventListener(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;alert(<span class="string">'red'</span>);<span class="keyword">this</span>.style.background =<span class="string">'red'</span>&#125;);</div><div class="line">		</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>去除绑定 不能用匿名函数 匿名函数 当时产生 当时消失</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> fn1 = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;alert(<span class="string">'blue'</span>);<span class="keyword">this</span>.style.background =<span class="string">'blue'</span>&#125;;</div><div class="line"><span class="keyword">var</span> fn2 = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;alert(<span class="string">'red'</span>);<span class="keyword">this</span>.style.background =<span class="string">'red'</span>&#125;;</div><div class="line"></div><div class="line">		</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">adde</span>(<span class="params"></span>)</span>&#123;</div><div class="line">			<span class="keyword">var</span> d = <span class="built_in">document</span>.getElementById(<span class="string">'school'</span>);</div><div class="line"></div><div class="line">			d.addEventListener(<span class="string">'click'</span>,fn1);</div><div class="line">			d.addEventListener(<span class="string">'click'</span>,fn2);</div><div class="line"></div><div class="line">		&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">reme</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> d = <span class="built_in">document</span>.getElementById(<span class="string">'school'</span>);</div><div class="line"></div><div class="line">	<span class="comment">//d.removeEventListener('click',fn1);//只剩fn1</span></div><div class="line">	d.removeEventListener(<span class="string">'click'</span>,fn2);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><strong>在IE下第三种绑定事件的方法</strong></li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"school"</span>&gt;</span></div><div class="line">		</div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"加事件"</span> <span class="attr">onclick</span>=<span class="string">"adde();"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"减事件"</span> <span class="attr">onclick</span>=<span class="string">"reme();"</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> fn1 = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;alert(<span class="string">'blue'</span>);<span class="keyword">this</span>.style.background =<span class="string">'blue'</span>&#125;;</div><div class="line"><span class="keyword">var</span> fn2 = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;alert(<span class="string">'red'</span>);<span class="keyword">this</span>.style.background =<span class="string">'red'</span>&#125;;</div><div class="line"></div><div class="line">		</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">adde</span>(<span class="params"></span>)</span>&#123;</div><div class="line">			<span class="keyword">var</span> d = <span class="built_in">document</span>.getElementById(<span class="string">'school'</span>);</div><div class="line"></div><div class="line">			<span class="comment">// IE6,7是后绑定的事件先发生</span></div><div class="line">			d.attachEvent(<span class="string">'onclick'</span>,fn1);</div><div class="line">			d.attachEvent(<span class="string">'onclick'</span>,fn2); <span class="comment">//fn2先发生</span></div><div class="line"></div><div class="line">		&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">reme</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> d = <span class="built_in">document</span>.getElementById(<span class="string">'school'</span>);</div><div class="line"></div><div class="line">	<span class="comment">//d.deltachEvent('click',fn1);//只剩fn1</span></div><div class="line">	d.deltachEvent(<span class="string">'click'</span>,fn2);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag">#JavaScript</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/27/JavaScript之IE,火狐兼容事件对象/" rel="next" title="JavaScript之IE,火狐兼容事件对象">
+                <i class="fa fa-chevron-left"></i> JavaScript之IE,火狐兼容事件对象
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/27/JavaScript-DOM事件/" rel="prev" title="JavaScript-DOM事件">
+                JavaScript-DOM事件 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+    
+    <div class="mod-category_article-time">
+      <span>
+          <time itemprop="dateCreated" datetime="2016-07-27T11:40:43+08:00" content="2016-07-27">
+                  2016-07-27
+          </time>
+      </span>
+    </div>
+  </article>
+
+
+
+	 <div>
+      
+        <style type="text/css">
+
+    .donate_bar {
+        text-align: center;
+        margin-top : 5%;
+    }
+
+    .donate_bar.hidden {
+        display:none;
+    }
+
+    .donate_bar a.btn_donate {
+        display: inline-block;
+        width: 82px;
+        height: 82px;
+        margin-left:auto;
+        margin-right:auto;
+
+        background: url("http://img.t.sinajs.cn/t5/style/images/apps_PRF/e_media/btn_reward.gif") no-repeat;
+        _background: url("http://img.t.sinajs.cn/t5/style/images/apps_PRF/e_media/btn_reward.gif") no-repeat; 
+
+        -webkit-transition: background 0s;
+        -moz-transition: background 0s;
+        -o-transition: background 0s;
+        -ms-transition: background 0s;
+        transition: background 0s;
+    }
+
+    .donate_bar a.btn_donate:hover { 
+        background-position: 0px -82px;
+        color: #87daff;
+    }
+
+    .donate_bar .donate_txt {
+        display: block;
+        color: #9d9d9d;
+        font: 14px/2 "Microsoft Yahei";
+    }
+
+    .bold { 
+        font-weight: bold; 
+    }
+
+    .post-donate a {
+        border-bottom: 0px;
+		
+    }
+
+    #donate_guide table {
+        border: none;
+    }
+	
+    #donate_guide td {
+        border-bottom: none;
+        border-right: none;
+        // background: #333333;
+        valign: top;
+    }
+
+</style>
+
+
+
+    
+
+    <div class ="post-donate">
+        <div id="donate_board" class="donate_bar center">
+              <a id="btn_donate" class="btn_donate" href="javascript:;" title="Donate me"></a>
+              <span id="donate_txt" class="donate_txt">
+                   
+                        Enjoy it ? Donate me !  欣赏此文？求鼓励，求支持！
+                   
+              </span>
+            <br>
+        </div>  
+  
+        <div id="donate_guide" class="donate_bar center hidden">
+            <!--
+            
+                <a href="http://7xq6al.com1.z0.glb.clouddn.com/alipay2.jpg" title="支付宝打赏" class="fancybox" rel="article0" 
+                    style="float:left;margin-left:25%;margin-right:10px;">
+                    <img src="http://7xq6al.com1.z0.glb.clouddn.com/alipay2.jpg" title="" height="164px" width="164px">
+                </a> 
+              
+
+            
+                <a href="http://7xq6al.com1.z0.glb.clouddn.com/weixin.jpg" title="微信打赏" class="fancybox" rel="article0"
+                    style="margin-right:30%">
+                    <img src="http://7xq6al.com1.z0.glb.clouddn.com/weixin.jpg" title="" height="164px" width="164px">
+                </a>
+            
+            -->
+            <table>
+                <tr>
+                    <td>
+                        
+                            <a href="http://7xq6al.com1.z0.glb.clouddn.com/alipay2.jpg" title="alipay" class="fancybox" rel="article0" 
+                                style="float:left;margin-left:25%;margin-right:10px;">
+                                <img src="http://7xq6al.com1.z0.glb.clouddn.com/alipay2.jpg" title="" height="164px" width="164px">
+                            </a> 
+                         
+                    </td>
+                    <td>
+                        
+                            <a href="http://7xq6al.com1.z0.glb.clouddn.com/weixin.jpg" title="weixin" class="fancybox" rel="article0"
+                                style="margin-right:30%">
+                                <img src="http://7xq6al.com1.z0.glb.clouddn.com/weixin.jpg" title="" height="164px" width="164px">
+                            </a>
+                        
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+
+        <script type="text/javascript">
+            document.getElementById('btn_donate').onclick = function() {
+                $('#donate_board').addClass('hidden');
+                // $('#donate_guide').removeClass('hidden');
+                $('#donate_guide').show(2000);
+            }
+
+        </script>
+    </div>
+
+    
+
+
+
+      
+    </div>
+	
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+            <!-- 多说热评文章-->
+            <p class="hot-commit">热评文章</p>
+            <div class="ds-top-threads" data-range="monthly" data-num-items="5"></div>
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2016/07/27/JavaScript中三种绑定事件的方式与去除绑定/"
+                   data-title="JavaScript中三种绑定事件的方式与去除绑定" data-url="http://www.poetries.top/2016/07/27/JavaScript中三种绑定事件的方式与去除绑定/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/avatar.jpg" alt="Poetry" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Poetry</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">技术改变生活</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">132</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">40</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="http://poetries.github.io/atom.xml" rel="alternate">
+              <i class="menu-item-icon icon-next-feed"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/poetries" target="_blank">
+                  <i class="fa fa-github"></i> GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/poetries1" target="_blank">
+                  <i class="fa fa-weibo"></i> Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/94077fcddfc0/latest_articles" target="_blank">
+                  <i class="fa fa-jianshu"></i> Jianshu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">常用链接</p>
+            
+              <span class="links-of-author-item">
+                <a href="http://jsdig.com/" target="_blank">前端搜索</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://cssvalues.com/" target="_blank">css检索</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://f2er.club/" target="_blank">醉牛前端</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://caibaojian.com/links" target="_blank">前端网址</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://jsdig.com/" target="_blank">前端导航</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.css88.com/nav/" target="_blank">前端css88</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://codecloud.net/" target="_blank">程序资料</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://frontenddev.org/" target="_blank">FED社区</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.awesomes.cn/" target="_blank">构建工具</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://overapi.com/" target="_blank">OverAPI</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://devdocs.io/" target="_blank">DevDocs</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://yisibl.github.io/css-vocabulary/" target="_blank">CSS词汇</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jb51.net/onlineread/JavaScript-Garden-CN/#intro" target="_blank">JS花园</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://tool.oschina.net/" target="_blank">工具索引</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://hao.shejidaren.com/" target="_blank">设计导航</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://admire.so/" target="_blank">设计相关</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.uedh.cn/" target="_blank">用户体验</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://jsbin.com/" target="_blank">JSbin</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://codepen.io/pen" target="_blank">Codepen</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://runjs.cn/" target="_blank">RunJs</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://app.gistboxapp.com/" target="_blank">GitBox</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://tool.lu/" target="_blank">ToolBox</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text"></span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Poetry</span>
+  
+  <p style="margin-left:13px; position:relative;top:29px;display:inline-block;">
+     <a target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=9cTCxMzDw8fFwsa1hITblpqY" style="text-decoration:none;">
+         <img src="http://rescdn.qqmail.com/zh_CN/htmledition/images/function/qm_open/ico_mailme_01.png"/>
+      </a>
+  </p>
+  
+</div>
+
+<p style="margin-left:10px;width:60px;height:30px;display:inline-block;margin-top:10px;">
+	<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1260404165'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1260404165%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+</p>
+<p style="position:relative;top:-4px;width:24px;height:30px;margin-left:10px;margin-right:10px;color:red;display:inline-block;"><a href="http://ta.qq.com" target="_blank"><img class="fenxi" src="http://tcss.qq.com/icon/toss_21.gif" alt="腾讯分析"></a></p>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"poetry"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
+
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+
+  
+    <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/MathJax.js"></script>
+    <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/config/TeX-AMS-MML_HTMLorMML.js"></script>
+  
+
+
+  
+  
+
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"slide":{"type":"slide","bdImg":"3","bdPos":"left","bdTop":"250"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+  
+     <!-- custom analytics part create by xiamo -->
+<script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("tIIXiDlAWApnLSnalOqcrADh-gzGzoHsz", "N6UqlI5OjE9dGhd1ISBLU7e6");</script>
+<script>
+function showTime(Counter) {
+	var query = new AV.Query(Counter);
+	$(".leancloud_visitors").each(function() {
+		var url = $(this).attr("id").trim();
+		query.equalTo("url", url);
+		query.find({
+			success: function(results) {
+				if (results.length == 0) {
+					var content = $(document.getElementById(url)).text() + ': 0';
+					$(document.getElementById(url)).text(content);
+					return;
+				}
+				for (var i = 0; i < results.length; i++) {
+					var object = results[i];
+					var content = $(document.getElementById(url)).text() + ': ' + object.get('time');
+					$(document.getElementById(url)).text(content);
+				}
+			},
+			error: function(object, error) {
+				console.log("Error: " + error.code + " " + error.message);
+			}
+		});
+
+	});
+}
+
+function addCount(Counter) {
+	var Counter = AV.Object.extend("Counter");
+	url = $(".leancloud_visitors").attr('id').trim();
+	title = $(".leancloud_visitors").attr('data-flag-title').trim();
+	var query = new AV.Query(Counter);
+	query.equalTo("url", url);
+	query.find({
+		success: function(results) {
+			if (results.length > 0) {
+				var counter = results[0];
+				counter.fetchWhenSave(true);
+				counter.increment("time");
+				counter.save(null, {
+					success: function(counter) {
+						var content = $(document.getElementById(url)).text() + ': ' + counter.get('time');
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(counter, error) {
+						console.log('Failed to save Visitor num, with error message: ' + error.message);
+					}
+				});
+			} else {
+				var newcounter = new Counter();
+				newcounter.set("title", title);
+				newcounter.set("url", url);
+				newcounter.set("time", 1);
+				newcounter.save(null, {
+					success: function(newcounter) {
+					    console.log("newcounter.get('time')="+newcounter.get('time'));
+						var content = $(document.getElementById(url)).text() + ': ' + newcounter.get('time');
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(newcounter, error) {
+						console.log('Failed to create');
+					}
+				});
+			}
+		},
+		error: function(error) {
+			console.log('Error:' + error.code + " " + error.message);
+		}
+	});
+}
+$(function() {
+	var Counter = AV.Object.extend("Counter");
+	if ($('.leancloud_visitors').length == 1) {
+		addCount(Counter);
+	} else if ($('.post-title-link').length > 1) {
+		showTime(Counter);
+	}
+}); 
+</script>
+  
+  
+  
+  <div>
+    <button class="assist-btn circle" id="assist_btn" title="双击亮屏" style="left: 73px; top: 169px;">
+         开灯
+    </button>
+ </div>
+<script type="text/javascript">
+    // 浮动圆点展开与收缩
+
+    $(function () {
+        var assist_box = $('.assist-box');
+        $('#assist_btn').hover(function () {
+            assist_box.stop().show(300);
+        }, function () {
+            assist_box.stop().hide(150);
+        })
+    });
+
+    //浮动圆点拖动
+    $(function () {
+        var box = document.getElementById('assist_btn');
+        box.onmousedown = function (event) {
+            var e = event || window.event,
+                t = e.target || e.srcElement,
+                // 鼠标按下时的坐标x1,y1
+                x1 = e.clientX,
+                y1 = e.clientY,
+                //鼠标按下时的左右偏移量
+                dragLeft = this.offsetLeft,
+                dragTop = this.offsetTop;
+
+            document.onmousemove = function (event) {
+                var e = event || window.event,
+                    t = e.target || e.srcElement,
+                    // 鼠标移动时的动态坐标
+                    x2 = e.clientX,
+                    y2 = e.clientY,
+                    // 鼠标移动时的坐标的变化量
+                    x = x2 - x1,
+                    y = y2 - y1;
+                box.style.left = (dragLeft + x) + 'px';
+                box.style.top = (dragTop + y) + 'px';
+            }
+
+            document.onmouseup = function () {
+                this.onmousemove = null;
+            }
+        }
+    });
+
+/*
+    $whitesmoke   = #f5f5f5
+    $gainsboro    = #eee
+    $gray-lighter = #ddd
+    $grey-light   = #ccc
+    $grey         = #bbb
+    $grey-dark    = #999
+    $grey-dim     = #666
+    $black-light  = #555
+    $black-deep   = #222
+    $red          = #ff2a2a
+    $blue-bright  = #87daff
+    $blue         = #0684bd
+    $blue-deep    = #262a30
+*/
+    // white theme
+    var body = {color: "#555", background: "white"};
+    var a_tag = {color: "#222"};
+    var header = { background: "#f5f5f5"};
+    var logo_line_i = {background: "#222"};
+    // var post_code = {background: "#eee", color: "#222"};
+
+    function switch_theme() {
+        $("body").css(body);
+        $("a:not('.links-of-author-item a, .site-state-item a, .site-state-posts a, .feed-link a, .motion-element a, .post-tags a, .show-commit-cls a, #donate_board a')").css(a_tag);
+        $(".header, .footer").css(header);
+        $(".logo-line-before i, .logo-line-after i").css(logo_line_i);
+        //$(".post code").css(post_code);
+        $("#idhyt-surprise-ball #idhyt-surprise-ball-animation .drag").css(a_tag);
+        $(".post-title-link, .posts-expand .post-meta, .post-comments-count, .disqus-comment-count, .post-category a, .post-nav-next a, .post-nav-item a").css(a_tag);
+        
+        // $("code").css({color: '#c5c8c6', background: '#1d1f21'});
+        $("#assist_btn").hide(1500);
+    }
+
+    $(function () {
+        $("#assist_btn").dblclick(function() {
+            switch_theme();
+        });
+    });
+
+</script>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"poetry"};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+
+</body>
+</html>

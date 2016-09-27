@@ -1,0 +1,1550 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+  
+    <link href='//fonts.lug.ustc.edu.cn/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+  
+
+
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+
+
+    <meta name="description" content="技术改变生活" />
+
+
+
+  <meta name="keywords" content="Linux," />
+
+
+
+  <link rel="alternate" href="http://poetries.github.io/atom.xml" title="Poetry's Blog" type="application/atom+xml" />
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+<meta name="description" content="检查远程端口是否对bash开放：echo &amp;gt;/dev/tcp/8.8.8.8/53 &amp;amp;&amp;amp; echo &amp;quot;open&amp;quot;
+让进程转入后台：Ctrl + z
+将进程转到前台：fg">
+<meta property="og:type" content="article">
+<meta property="og:title" content="73条日常Linux shell命令汇总">
+<meta property="og:url" content="http://www.poetries.top/2016/04/17/73条日常Linux-shell命令汇总/index.html">
+<meta property="og:site_name" content="Poetry's Blog">
+<meta property="og:description" content="检查远程端口是否对bash开放：echo &amp;gt;/dev/tcp/8.8.8.8/53 &amp;amp;&amp;amp; echo &amp;quot;open&amp;quot;
+让进程转入后台：Ctrl + z
+将进程转到前台：fg">
+<meta property="og:updated_time" content="2016-09-27T15:41:22.575Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="73条日常Linux shell命令汇总">
+<meta name="twitter:description" content="检查远程端口是否对bash开放：echo &amp;gt;/dev/tcp/8.8.8.8/53 &amp;amp;&amp;amp; echo &amp;quot;open&amp;quot;
+让进程转入后台：Ctrl + z
+将进程转到前台：fg">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+
+
+  <title> 73条日常Linux shell命令汇总 | Poetry's Blog </title>
+  <style type="text/css">
+    .main {
+      padding-bottom: 190px;
+    }
+    .circle {
+        width: 40px;
+        height: 40px;
+        background: rgba(98, 187, 77, 0.68) no-repeat;
+        cursor: move;
+	    	opacity: 0.7;
+    }
+
+    .assist-btn {
+        position: fixed;
+        top: 50％;
+        left: 10px;
+        -moz-border-radius: 50px;
+        -webkit-border-radius: 50px;
+        border-radius: 50px;
+        outline: none;
+        border: none;
+        color: rgb(214, 10, 10);
+    }
+  p.top51la{
+      font-size: 12px;
+      position:fixed;
+      top:5px;
+      right:5px;
+  }
+   p.top51la a span img{
+      display:inline-block;
+      width: 10px;
+   }
+    p.top51la a + img{
+        display: none;
+   }
+  p.topUV {
+      font-size: 12px;
+      position:fixed;
+      top:5px;
+      right:20px;
+   }
+  p.topUV a img{
+      display: inline-block; 
+      width: 11px;
+    }
+  p.topUV a{
+      border-bottom: none;
+    }
+</style>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?40b1f89aa80f2527b3db779c6898c879";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=58036087";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta custom-logo">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Poetry's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">聆听、感受、成长</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+
+        
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+
+        
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+
+        
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+
+        
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle"></i> <br />
+            
+            留言
+          </a>
+        </li>
+
+        
+      
+
+      <li class="menu-item" style="opacity: 1; transform: translateY(0px);"> <a title="把这个链接拖到你的工具栏中,任何网页都可以High" href='javascript:(function() {
+          function c() {
+              var e = document.createElement("link");
+              e.setAttribute("type", "text/css");
+              e.setAttribute("rel", "stylesheet");
+              e.setAttribute("href", f);
+              e.setAttribute("class", l);
+              document.body.appendChild(e)
+          }
+
+          function h() {
+              var e = document.getElementsByClassName(l);
+              for (var t = 0; t < e.length; t++) {
+                  document.body.removeChild(e[t])
+              }
+          }
+
+          function p() {
+              var e = document.createElement("div");
+              e.setAttribute("class", a);
+              document.body.appendChild(e);
+              setTimeout(function() {
+                  document.body.removeChild(e)
+              }, 100)
+          }
+
+          function d(e) {
+              return {
+                  height : e.offsetHeight,
+                  width : e.offsetWidth
+              }
+          }
+
+          function v(i) {
+              var s = d(i);
+              return s.height > e &amp;&amp; s.height < n &amp;&amp; s.width > t &amp;&amp; s.width < r
+          }
+
+          function m(e) {
+              var t = e;
+              var n = 0;
+              while (!!t) {
+                  n += t.offsetTop;
+                  t = t.offsetParent
+              }
+              return n
+          }
+
+          function g() {
+              var e = document.documentElement;
+              if (!!window.innerWidth) {
+                  return window.innerHeight
+              } else if (e &amp;&amp; !isNaN(e.clientHeight)) {
+                  return e.clientHeight
+              }
+              return 0
+          }
+
+          function y() {
+              if (window.pageYOffset) {
+                  return window.pageYOffset
+              }
+              return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+          }
+
+          function E(e) {
+              var t = m(e);
+              return t >= w &amp;&amp; t <= b + w
+          }
+
+          function S() {
+              var e = document.createElement("audio");
+              e.setAttribute("class", l);
+              e.src = i;
+              e.loop = false;
+              e.addEventListener("canplay", function() {
+                  setTimeout(function() {
+                      x(k)
+                  }, 500);
+                  setTimeout(function() {
+                      N();
+                      p();
+                      for (var e = 0; e < O.length; e++) {
+                          T(O[e])
+                      }
+                  }, 15500)
+              }, true);
+              e.addEventListener("ended", function() {
+                  N();
+                  h()
+              }, true);
+              e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+              document.body.appendChild(e);
+              e.play()
+          }
+
+          function x(e) {
+              e.className += " " + s + " " + o
+          }
+
+          function T(e) {
+              e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+          }
+
+          function N() {
+              var e = document.getElementsByClassName(s);
+              var t = new RegExp("\\b" + s + "\\b");
+              for (var n = 0; n < e.length; ) {
+                  e[n].className = e[n].className.replace(t, "")
+              }
+          }
+
+          var e = 30;
+          var t = 30;
+          var n = 350;
+          var r = 350;
+          var i = "https://ss0.bdstatic.com/y0s1hSulBw92lNKgpU_Z2jR7b2w6buu/data2/music/8b77e748d030862ea6ed5ef0fcf7832d/242078559/242078559.mp3?xcode=0683c9c47ce11a94766f476e85847328";
+          var s = "mw-harlem_shake_me";
+          var o = "im_first";
+          var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+          var a = "mw-strobe_light";
+          var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+          var l = "mw_added_css";
+          var b = g();
+          var w = y();
+          var C = document.getElementsByTagName("*");
+          var k = null;
+          for (var L = 0; L < C.length; L++) {
+              var A = C[L];
+              if (v(A)) {
+                  if (E(A)) {
+                      k = A;
+                      break
+                  }
+              }
+          }
+          if (A === null) {
+              console.warn("Could not find a node of the right size. Please try a different page.");
+              return
+          }
+          c();
+          S();
+          var O = [];
+          for (var L = 0; L < C.length; L++) {
+              var A = C[L];
+              if (v(A)) {
+                  O.push(A)
+              }
+          }
+          })()' class="okmemo-tmp-unselect"><i class="menu-item-icon fa fa-music fa-fw"></i>High一下</a> </li>
+
+      
+      
+    </ul>
+  
+    
+
+  
+    <div class="site-search">
+      
+  
+  <form class="site-search-form">
+    <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  </form>
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'v9qj9piTH6n2pV9s23zR','2.0.0');
+</script>
+
+
+
+    </div>
+
+  
+</nav>
+
+
+ </div>
+    </header>
+	
+	
+	
+	<a href="https://github.com/poetries" target="_blank">
+	<img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/c6625ac1f3ee0a12250227cf83ce904423abf351/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_gray_6d6d6d.png">
+	</a>
+<p class="topUV"><span style="color:#0e0e0e;position:relative;top:-2px;">本站热度&nbsp;</span>
+  <script src='http://www.xiaoniu168.com/counts3110.html' language='JavaScript' charset='utf-8'></script>
+  <script>
+      var oP = document.getElementsByClassName("topUV")[0];
+      oP.getElementsByTagName("a")[0].setAttribute("href","javascript:void(0);");
+  </script>
+  <span style="color:#0e0e0e;position: relative;top: -2px;">&nbsp;&nbsp;℃</span>
+</p>
+      
+	
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                73条日常Linux shell命令汇总
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+        
+          <!-- <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-04-17T01:32:41+00:00" content="2016-04-17">
+              2016-04-17
+            </time>
+          </span>-->
+
+          
+            <span class="post-category" >
+              &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Back-end/" itemprop="url" rel="index">
+                    <span itemprop="name">Back-end</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/17/73条日常Linux-shell命令汇总/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/17/73条日常Linux-shell命令汇总/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+         
+         
+            &nbsp; | &nbsp;<span>热度</span>&nbsp;<span style="color:red;" id="/2016/04/17/73条日常Linux-shell命令汇总/"class="leancloud_visitors"  data-flag-title="73条日常Linux shell命令汇总"></span><span style="color:red;">&nbsp;℃</span>
+            
+            <!-- <span id="/2016/04/17/73条日常Linux-shell命令汇总/"class="leancloud_visitors"  data-flag-title="73条日常Linux shell命令汇总">
+              &nbsp; | &nbsp;热度&nbsp;
+               </span> -->
+            
+      
+           
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h4 id="检查远程端口是否对bash开放："><a href="#检查远程端口是否对bash开放：" class="headerlink" title="检查远程端口是否对bash开放："></a>检查远程端口是否对bash开放：</h4><pre><code>echo &gt;/dev/tcp/8.8.8.8/53 &amp;&amp; echo &quot;open&quot;
+</code></pre><h4 id="让进程转入后台："><a href="#让进程转入后台：" class="headerlink" title="让进程转入后台："></a>让进程转入后台：</h4><pre><code>Ctrl + z
+</code></pre><h4 id="将进程转到前台："><a href="#将进程转到前台：" class="headerlink" title="将进程转到前台："></a>将进程转到前台：</h4><pre><code>fg
+</code></pre><a id="more"></a>
+<h4 id="产生随机的十六进制数，其中n是字符数："><a href="#产生随机的十六进制数，其中n是字符数：" class="headerlink" title="产生随机的十六进制数，其中n是字符数："></a>产生随机的十六进制数，其中n是字符数：</h4><pre><code>openssl rand -hex n
+</code></pre><h4 id="在当前shell里执行一个文件里的命令："><a href="#在当前shell里执行一个文件里的命令：" class="headerlink" title="在当前shell里执行一个文件里的命令："></a>在当前shell里执行一个文件里的命令：</h4><pre><code>source /home/user/file.name
+</code></pre><h4 id="截取前5个字符："><a href="#截取前5个字符：" class="headerlink" title="截取前5个字符："></a>截取前5个字符：</h4><pre><code>${variable:0:5}
+</code></pre><h4 id="SSH-debug-模式"><a href="#SSH-debug-模式" class="headerlink" title="SSH debug 模式:"></a>SSH debug 模式:</h4><pre><code>ssh -vvv user@ip_address
+</code></pre><h4 id="SSH-with-pem-key"><a href="#SSH-with-pem-key" class="headerlink" title="SSH with pem key:"></a>SSH with pem key:</h4><pre><code>ssh user@ip_address -i key.pem
+</code></pre><h4 id="用wget抓取完整的网站目录结构，存放到本地目录中："><a href="#用wget抓取完整的网站目录结构，存放到本地目录中：" class="headerlink" title="用wget抓取完整的网站目录结构，存放到本地目录中："></a>用wget抓取完整的网站目录结构，存放到本地目录中：</h4><pre><code>wget -r --no-parent --reject &quot;index.html*&quot; http://hostname/ -P /home/user/dirs
+</code></pre><h4 id="一次创建多个目录："><a href="#一次创建多个目录：" class="headerlink" title="一次创建多个目录："></a>一次创建多个目录：</h4><pre><code>mkdir -p /home/user/{test,test1,test2}
+</code></pre><h4 id="列出包括子进程的进程树："><a href="#列出包括子进程的进程树：" class="headerlink" title="列出包括子进程的进程树："></a>列出包括子进程的进程树：</h4><pre><code>ps axwef
+</code></pre><h4 id="创建-war-文件"><a href="#创建-war-文件" class="headerlink" title="创建 war 文件:"></a>创建 war 文件:</h4><pre><code>jar -cvf name.war file
+</code></pre><h4 id="测试硬盘写入速度："><a href="#测试硬盘写入速度：" class="headerlink" title="测试硬盘写入速度："></a>测试硬盘写入速度：</h4><pre><code>dd if=/dev/zero of=/tmp/output.img bs=8k count=256k; rm -rf /tmp/output.img
+</code></pre><h4 id="测试硬盘读取速度："><a href="#测试硬盘读取速度：" class="headerlink" title="测试硬盘读取速度："></a>测试硬盘读取速度：</h4><pre><code>hdparm -Tt /dev/sda
+</code></pre><h4 id="获取文本的md5-hash："><a href="#获取文本的md5-hash：" class="headerlink" title="获取文本的md5 hash："></a>获取文本的md5 hash：</h4><pre><code>echo -n &quot;text&quot; | md5sum
+</code></pre><h4 id="检查xml格式："><a href="#检查xml格式：" class="headerlink" title="检查xml格式："></a>检查xml格式：</h4><pre><code>xmllint --noout file.xml
+</code></pre><h4 id="将tar-gz提取到新目录里："><a href="#将tar-gz提取到新目录里：" class="headerlink" title="将tar.gz提取到新目录里："></a>将tar.gz提取到新目录里：</h4><pre><code>tar zxvf package.tar.gz -C new_dir
+</code></pre><h4 id="使用curl获取HTTP头信息："><a href="#使用curl获取HTTP头信息：" class="headerlink" title="使用curl获取HTTP头信息："></a>使用curl获取HTTP头信息：</h4><pre><code>curl -I http://www.example.com
+</code></pre><h4 id="修改文件或目录的时间戳-YYMMDDhhmm"><a href="#修改文件或目录的时间戳-YYMMDDhhmm" class="headerlink" title="修改文件或目录的时间戳(YYMMDDhhmm):"></a>修改文件或目录的时间戳(YYMMDDhhmm):</h4><pre><code>touch -t 0712250000 file
+</code></pre><h4 id="用wget命令执行ftp下载："><a href="#用wget命令执行ftp下载：" class="headerlink" title="用wget命令执行ftp下载："></a>用wget命令执行ftp下载：</h4><pre><code>wget -m ftp://username:password@hostname
+</code></pre><h4 id="生成随机密码-例子里是16个字符长"><a href="#生成随机密码-例子里是16个字符长" class="headerlink" title="生成随机密码(例子里是16个字符长):"></a>生成随机密码(例子里是16个字符长):</h4><pre><code>LANG=c &lt; /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-16};echo;
+</code></pre><h4 id="快速备份一个文件："><a href="#快速备份一个文件：" class="headerlink" title="快速备份一个文件："></a>快速备份一个文件：</h4><pre><code>cp some_file_name{,.bkp}
+</code></pre><h4 id="访问Windows共享目录："><a href="#访问Windows共享目录：" class="headerlink" title="访问Windows共享目录："></a>访问Windows共享目录：</h4><pre><code>smbclient -U &quot;DOMAIN\user&quot; //dc.domain.com/share/test/dir
+</code></pre><h4 id="执行历史记录里的命令-这里是第100行"><a href="#执行历史记录里的命令-这里是第100行" class="headerlink" title="执行历史记录里的命令(这里是第100行):"></a>执行历史记录里的命令(这里是第100行):</h4><pre><code>!100
+</code></pre><h4 id="解压"><a href="#解压" class="headerlink" title="解压:"></a>解压:</h4><pre><code>unzip package_name.zip -d dir_name
+</code></pre><h4 id="输入多行文字-CTRL-d-退出"><a href="#输入多行文字-CTRL-d-退出" class="headerlink" title="输入多行文字(CTRL + d 退出):"></a>输入多行文字(CTRL + d 退出):</h4><pre><code>cat &gt; test.txt
+</code></pre><h4 id="创建空文件或清空一个现有文件："><a href="#创建空文件或清空一个现有文件：" class="headerlink" title="创建空文件或清空一个现有文件："></a>创建空文件或清空一个现有文件：</h4><pre><code>\&gt; test.txt
+</code></pre><h4 id="与Ubuntu-NTP-server同步时间："><a href="#与Ubuntu-NTP-server同步时间：" class="headerlink" title="与Ubuntu NTP server同步时间："></a>与Ubuntu NTP server同步时间：</h4><pre><code>ntpdate ntp.ubuntu.com
+</code></pre><h4 id="用netstat显示所有tcp4监听端口："><a href="#用netstat显示所有tcp4监听端口：" class="headerlink" title="用netstat显示所有tcp4监听端口："></a>用netstat显示所有tcp4监听端口：</h4><pre><code>netstat -lnt4 | awk &apos;{print $4}&apos; | cut -f2 -d: | grep -o &apos;[0-9]*&apos;
+</code></pre><h4 id="qcow2镜像文件转换："><a href="#qcow2镜像文件转换：" class="headerlink" title="qcow2镜像文件转换："></a>qcow2镜像文件转换：</h4><pre><code>qemu-img convert -f qcow2 -O raw precise-server-cloudimg-amd64-disk1.img \precise-server-cloudimg-amd64-disk1.raw
+</code></pre><h4 id="重复运行文件，显示其输出（缺省是2秒一次）："><a href="#重复运行文件，显示其输出（缺省是2秒一次）：" class="headerlink" title="重复运行文件，显示其输出（缺省是2秒一次）："></a>重复运行文件，显示其输出（缺省是2秒一次）：</h4><pre><code>watch ps -ef
+</code></pre><h4 id="所有用户列表："><a href="#所有用户列表：" class="headerlink" title="所有用户列表："></a>所有用户列表：</h4><pre><code>getent passwd
+</code></pre><h4 id="Mount-root-in-read-write-mode"><a href="#Mount-root-in-read-write-mode" class="headerlink" title="Mount root in read/write mode:"></a>Mount root in read/write mode:</h4><pre><code>mount -o remount,rw /
+</code></pre><h4 id="挂载一个目录（这是不能使用链接的情况）"><a href="#挂载一个目录（这是不能使用链接的情况）" class="headerlink" title="挂载一个目录（这是不能使用链接的情况）:"></a>挂载一个目录（这是不能使用链接的情况）:</h4><pre><code>mount --bind /source /destination
+</code></pre><h4 id="动态更新DNS-server"><a href="#动态更新DNS-server" class="headerlink" title="动态更新DNS server:"></a>动态更新DNS server:</h4><pre><code>nsupdate &lt; &lt;EOF
+update add $HOST 86400 A $IP
+send
+EOF
+</code></pre><h4 id="递归grep所有目录："><a href="#递归grep所有目录：" class="headerlink" title="递归grep所有目录："></a>递归grep所有目录：</h4><pre><code>grep -r &quot;some_text&quot; /path/to/dir
+</code></pre><h4 id="列出前10个最大的文件："><a href="#列出前10个最大的文件：" class="headerlink" title="列出前10个最大的文件："></a>列出前10个最大的文件：</h4><pre><code>lsof / | awk &apos;{ if($7 &gt; 1048576) print $7/1048576 &quot;MB &quot;$9 }&apos; | sort -n -u | tail
+</code></pre><h4 id="显示剩余内存-MB"><a href="#显示剩余内存-MB" class="headerlink" title="显示剩余内存(MB):"></a>显示剩余内存(MB):</h4><pre><code>free -m | grep cache | awk &apos;/[0-9]/{ print $4&quot; MB&quot; }&apos;
+</code></pre><h4 id="打开Vim并跳到文件末："><a href="#打开Vim并跳到文件末：" class="headerlink" title="打开Vim并跳到文件末："></a>打开Vim并跳到文件末：</h4><pre><code>vim + some_file_name
+</code></pre><h4 id="Git-克隆指定分支-master"><a href="#Git-克隆指定分支-master" class="headerlink" title="Git 克隆指定分支(master):"></a>Git 克隆指定分支(master):</h4><pre><code>git clone git@github.com:name/app.git -b master
+</code></pre><h4 id="Git-切换到其它分支-develop"><a href="#Git-切换到其它分支-develop" class="headerlink" title="Git 切换到其它分支(develop):"></a>Git 切换到其它分支(develop):</h4><pre><code>git checkout develop
+</code></pre><h4 id="Git-删除分支-myfeature"><a href="#Git-删除分支-myfeature" class="headerlink" title="Git 删除分支(myfeature):"></a>Git 删除分支(myfeature):</h4><pre><code>git branch -d myfeature
+</code></pre><h4 id="Git-删除远程分支"><a href="#Git-删除远程分支" class="headerlink" title="Git 删除远程分支"></a>Git 删除远程分支</h4><pre><code>git push origin :branchName
+</code></pre><h4 id="Git-将新分支推送到远程服务器："><a href="#Git-将新分支推送到远程服务器：" class="headerlink" title="Git 将新分支推送到远程服务器："></a>Git 将新分支推送到远程服务器：</h4><pre><code>git push -u origin mynewfeature
+</code></pre><h4 id="打印历史记录中最后一次cat命令："><a href="#打印历史记录中最后一次cat命令：" class="headerlink" title="打印历史记录中最后一次cat命令："></a>打印历史记录中最后一次cat命令：</h4><pre><code>!cat:p
+</code></pre><h4 id="运行历史记录里最后一次cat命令："><a href="#运行历史记录里最后一次cat命令：" class="headerlink" title="运行历史记录里最后一次cat命令："></a>运行历史记录里最后一次cat命令：</h4><pre><code>!cat
+</code></pre><h4 id="找出-home-user下所有空子目录"><a href="#找出-home-user下所有空子目录" class="headerlink" title="找出/home/user下所有空子目录:"></a>找出/home/user下所有空子目录:</h4><pre><code>find /home/user -maxdepth 1 -type d -empty
+</code></pre><h4 id="获取test-txt文件中第50-60行内容："><a href="#获取test-txt文件中第50-60行内容：" class="headerlink" title="获取test.txt文件中第50-60行内容："></a>获取test.txt文件中第50-60行内容：</h4><pre><code>&lt; test.txt sed -n &apos;50,60p&apos;
+</code></pre><h4 id="运行最后一个命令-如果最后一个命令是mkdir-root-test-下面将会运行-sudo-mkdir-root-test-："><a href="#运行最后一个命令-如果最后一个命令是mkdir-root-test-下面将会运行-sudo-mkdir-root-test-：" class="headerlink" title="运行最后一个命令(如果最后一个命令是mkdir /root/test, 下面将会运行: sudo mkdir /root/test)："></a>运行最后一个命令(如果最后一个命令是mkdir /root/test, 下面将会运行: <code>sudo mkdir /root/test)：</code></h4><pre><code>sudo !!
+</code></pre><h4 id="创建临时RAM文件系统-–-ramdisk-先创建-tmpram目录"><a href="#创建临时RAM文件系统-–-ramdisk-先创建-tmpram目录" class="headerlink" title="创建临时RAM文件系统 – ramdisk (先创建/tmpram目录):"></a>创建临时RAM文件系统 – ramdisk (先创建/tmpram目录):</h4><pre><code>mount -t tmpfs tmpfs /tmpram -o size=512m
+</code></pre><h4 id="Grep-whole-words"><a href="#Grep-whole-words" class="headerlink" title="Grep whole words:"></a>Grep whole words:</h4><pre><code>grep -w &quot;name&quot; test.txt
+</code></pre><h4 id="在需要提升权限的情况下往一个文件里追加文本："><a href="#在需要提升权限的情况下往一个文件里追加文本：" class="headerlink" title="在需要提升权限的情况下往一个文件里追加文本："></a>在需要提升权限的情况下往一个文件里追加文本：</h4><pre><code>echo &quot;some text&quot; | sudo tee -a /path/file
+</code></pre><h4 id="列出所有kill-signal参数"><a href="#列出所有kill-signal参数" class="headerlink" title="列出所有kill signal参数:"></a>列出所有kill signal参数:</h4><pre><code>kill -l
+</code></pre><h4 id="在bash历史记录里禁止记录最后一次会话："><a href="#在bash历史记录里禁止记录最后一次会话：" class="headerlink" title="在bash历史记录里禁止记录最后一次会话："></a>在bash历史记录里禁止记录最后一次会话：</h4><pre><code>kill -9 $$
+</code></pre><h4 id="扫描网络寻找开放的端口："><a href="#扫描网络寻找开放的端口：" class="headerlink" title="扫描网络寻找开放的端口："></a>扫描网络寻找开放的端口：</h4><pre><code>nmap -p 8081 172.20.0.0/16
+</code></pre><h4 id="设置git-email"><a href="#设置git-email" class="headerlink" title="设置git email:"></a>设置git email:</h4><pre><code>git config --global user.email &quot;me@example.com&quot;
+</code></pre><h4 id="To-sync-with-master-if-you-have-unpublished-commits"><a href="#To-sync-with-master-if-you-have-unpublished-commits" class="headerlink" title="To sync with master if you have unpublished commits:"></a>To sync with master if you have unpublished commits:</h4><pre><code>git pull --rebase origin master
+</code></pre><h4 id="将所有文件名中含有”txt”的文件移入-home-user目录"><a href="#将所有文件名中含有”txt”的文件移入-home-user目录" class="headerlink" title="将所有文件名中含有”txt”的文件移入/home/user目录:"></a>将所有文件名中含有”txt”的文件移入/home/user目录:</h4><pre><code>find -iname &quot;*txt*&quot; -exec mv -v {} /home/user \;
+</code></pre><h4 id="将文件按行并列显示："><a href="#将文件按行并列显示：" class="headerlink" title="将文件按行并列显示："></a>将文件按行并列显示：</h4><pre><code>paste test.txt test1.txt
+</code></pre><h4 id="shell里的进度条"><a href="#shell里的进度条" class="headerlink" title="shell里的进度条:"></a>shell里的进度条:</h4><pre><code>pv data.log
+</code></pre><h4 id="使用netcat将数据发送到Graphite-server"><a href="#使用netcat将数据发送到Graphite-server" class="headerlink" title="使用netcat将数据发送到Graphite server:"></a>使用netcat将数据发送到Graphite server:</h4><pre><code>echo &quot;hosts.sampleHost 10 `date +%s`&quot; | nc 192.168.200.2 3000
+</code></pre><h4 id="将tabs转换成空格："><a href="#将tabs转换成空格：" class="headerlink" title="将tabs转换成空格："></a>将tabs转换成空格：</h4><pre><code>expand test.txt &gt; test1.txt
+</code></pre><h4 id="Skip-bash-history"><a href="#Skip-bash-history" class="headerlink" title="Skip bash history:"></a>Skip bash history:</h4><pre><code>&lt; space &gt;cmd
+</code></pre><h4 id="去之前的工作目录："><a href="#去之前的工作目录：" class="headerlink" title="去之前的工作目录："></a>去之前的工作目录：</h4><pre><code>cd -
+</code></pre><h4 id="拆分大体积的tar-gz文件-每个100MB-，然后合并回去："><a href="#拆分大体积的tar-gz文件-每个100MB-，然后合并回去：" class="headerlink" title="拆分大体积的tar.gz文件(每个100MB)，然后合并回去："></a>拆分大体积的tar.gz文件(每个100MB)，然后合并回去：</h4><pre><code>split –b 100m /path/to/large/archive /path/to/output/files
+cat files* &gt; archive
+</code></pre><h4 id="使用curl获取HTTP-status-code"><a href="#使用curl获取HTTP-status-code" class="headerlink" title="使用curl获取HTTP status code:"></a>使用curl获取HTTP status code:</h4><pre><code>curl -sL -w &quot;%{http_code}\\n&quot; www.example.com -o /dev/null
+</code></pre><h4 id="设置root密码，强化MySQL安全安装"><a href="#设置root密码，强化MySQL安全安装" class="headerlink" title="设置root密码，强化MySQL安全安装:"></a>设置root密码，强化MySQL安全安装:</h4><pre><code>/usr/bin/mysql_secure_installation
+</code></pre><h4 id="当Ctrl-c不好使时"><a href="#当Ctrl-c不好使时" class="headerlink" title="当Ctrl + c不好使时:"></a>当Ctrl + c不好使时:</h4><pre><code>Ctrl + \
+</code></pre><h4 id="获取文件owner"><a href="#获取文件owner" class="headerlink" title="获取文件owner:"></a>获取文件owner:</h4><pre><code>stat -c %U file.txt
+</code></pre><h4 id="block设备列表："><a href="#block设备列表：" class="headerlink" title="block设备列表："></a>block设备列表：</h4><pre><code>lsblk -f
+</code></pre><h4 id="找出文件名结尾有空格的文件："><a href="#找出文件名结尾有空格的文件：" class="headerlink" title="找出文件名结尾有空格的文件："></a>找出文件名结尾有空格的文件：</h4><pre><code>find . -type f -exec egrep -l &quot; +$&quot; {} \;
+</code></pre><h4 id="找出文件名有tab缩进符的文件"><a href="#找出文件名有tab缩进符的文件" class="headerlink" title="找出文件名有tab缩进符的文件"></a>找出文件名有tab缩进符的文件</h4><pre><code>find . -type f -exec egrep -l $&apos;\t&apos; {} \;
+</code></pre><h4 id="用”-”打印出横线-全选复制放进笔记"><a href="#用”-”打印出横线-全选复制放进笔记" class="headerlink" title="用”=”打印出横线:全选复制放进笔记"></a>用”=”打印出横线:全选复制放进笔记</h4><pre><code>printf &apos;%100s\n&apos; | tr &apos; &apos; =
+</code></pre></span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux/" rel="tag">#Linux</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/17/基于鸟哥linux私房菜整理的常用基本命令/" rel="next" title="基于鸟哥linux私房菜整理的常用基本命令">
+                <i class="fa fa-chevron-left"></i> 基于鸟哥linux私房菜整理的常用基本命令
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/04/20/Python学习笔记-思维导图/" rel="prev" title="Python学习笔记[思维导图]">
+                Python学习笔记[思维导图] <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+    
+    <div class="mod-category_article-time">
+      <span>
+          <time itemprop="dateCreated" datetime="2016-04-17T09:32:41+08:00" content="2016-04-17">
+                  2016-04-17
+          </time>
+      </span>
+    </div>
+  </article>
+
+
+
+	 <div>
+      
+        <style type="text/css">
+
+    .donate_bar {
+        text-align: center;
+        margin-top : 5%;
+    }
+
+    .donate_bar.hidden {
+        display:none;
+    }
+
+    .donate_bar a.btn_donate {
+        display: inline-block;
+        width: 82px;
+        height: 82px;
+        margin-left:auto;
+        margin-right:auto;
+
+        background: url("http://img.t.sinajs.cn/t5/style/images/apps_PRF/e_media/btn_reward.gif") no-repeat;
+        _background: url("http://img.t.sinajs.cn/t5/style/images/apps_PRF/e_media/btn_reward.gif") no-repeat; 
+
+        -webkit-transition: background 0s;
+        -moz-transition: background 0s;
+        -o-transition: background 0s;
+        -ms-transition: background 0s;
+        transition: background 0s;
+    }
+
+    .donate_bar a.btn_donate:hover { 
+        background-position: 0px -82px;
+        color: #87daff;
+    }
+
+    .donate_bar .donate_txt {
+        display: block;
+        color: #9d9d9d;
+        font: 14px/2 "Microsoft Yahei";
+    }
+
+    .bold { 
+        font-weight: bold; 
+    }
+
+    .post-donate a {
+        border-bottom: 0px;
+		
+    }
+
+    #donate_guide table {
+        border: none;
+    }
+	
+    #donate_guide td {
+        border-bottom: none;
+        border-right: none;
+        // background: #333333;
+        valign: top;
+    }
+
+</style>
+
+
+
+    
+
+    <div class ="post-donate">
+        <div id="donate_board" class="donate_bar center">
+              <a id="btn_donate" class="btn_donate" href="javascript:;" title="Donate me"></a>
+              <span id="donate_txt" class="donate_txt">
+                   
+                        Enjoy it ? Donate me !  欣赏此文？求鼓励，求支持！
+                   
+              </span>
+            <br>
+        </div>  
+  
+        <div id="donate_guide" class="donate_bar center hidden">
+            <!--
+            
+                <a href="http://7xq6al.com1.z0.glb.clouddn.com/alipay2.jpg" title="支付宝打赏" class="fancybox" rel="article0" 
+                    style="float:left;margin-left:25%;margin-right:10px;">
+                    <img src="http://7xq6al.com1.z0.glb.clouddn.com/alipay2.jpg" title="" height="164px" width="164px">
+                </a> 
+              
+
+            
+                <a href="http://7xq6al.com1.z0.glb.clouddn.com/weixin.jpg" title="微信打赏" class="fancybox" rel="article0"
+                    style="margin-right:30%">
+                    <img src="http://7xq6al.com1.z0.glb.clouddn.com/weixin.jpg" title="" height="164px" width="164px">
+                </a>
+            
+            -->
+            <table>
+                <tr>
+                    <td>
+                        
+                            <a href="http://7xq6al.com1.z0.glb.clouddn.com/alipay2.jpg" title="alipay" class="fancybox" rel="article0" 
+                                style="float:left;margin-left:25%;margin-right:10px;">
+                                <img src="http://7xq6al.com1.z0.glb.clouddn.com/alipay2.jpg" title="" height="164px" width="164px">
+                            </a> 
+                         
+                    </td>
+                    <td>
+                        
+                            <a href="http://7xq6al.com1.z0.glb.clouddn.com/weixin.jpg" title="weixin" class="fancybox" rel="article0"
+                                style="margin-right:30%">
+                                <img src="http://7xq6al.com1.z0.glb.clouddn.com/weixin.jpg" title="" height="164px" width="164px">
+                            </a>
+                        
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+
+        <script type="text/javascript">
+            document.getElementById('btn_donate').onclick = function() {
+                $('#donate_board').addClass('hidden');
+                // $('#donate_guide').removeClass('hidden');
+                $('#donate_guide').show(2000);
+            }
+
+        </script>
+    </div>
+
+    
+
+
+
+      
+    </div>
+	
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+            <!-- 多说热评文章-->
+            <p class="hot-commit">热评文章</p>
+            <div class="ds-top-threads" data-range="monthly" data-num-items="5"></div>
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2016/04/17/73条日常Linux-shell命令汇总/"
+                   data-title="73条日常Linux shell命令汇总" data-url="http://www.poetries.top/2016/04/17/73条日常Linux-shell命令汇总/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/avatar.jpg" alt="Poetry" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Poetry</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">技术改变生活</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">132</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">40</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="http://poetries.github.io/atom.xml" rel="alternate">
+              <i class="menu-item-icon icon-next-feed"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/poetries" target="_blank">
+                  <i class="fa fa-github"></i> GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/poetries1" target="_blank">
+                  <i class="fa fa-weibo"></i> Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/94077fcddfc0/latest_articles" target="_blank">
+                  <i class="fa fa-jianshu"></i> Jianshu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">常用链接</p>
+            
+              <span class="links-of-author-item">
+                <a href="http://jsdig.com/" target="_blank">前端搜索</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://cssvalues.com/" target="_blank">css检索</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://f2er.club/" target="_blank">醉牛前端</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://caibaojian.com/links" target="_blank">前端网址</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://jsdig.com/" target="_blank">前端导航</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.css88.com/nav/" target="_blank">前端css88</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://codecloud.net/" target="_blank">程序资料</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://frontenddev.org/" target="_blank">FED社区</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.awesomes.cn/" target="_blank">构建工具</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://overapi.com/" target="_blank">OverAPI</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://devdocs.io/" target="_blank">DevDocs</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://yisibl.github.io/css-vocabulary/" target="_blank">CSS词汇</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jb51.net/onlineread/JavaScript-Garden-CN/#intro" target="_blank">JS花园</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://tool.oschina.net/" target="_blank">工具索引</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://hao.shejidaren.com/" target="_blank">设计导航</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://admire.so/" target="_blank">设计相关</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.uedh.cn/" target="_blank">用户体验</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://jsbin.com/" target="_blank">JSbin</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://codepen.io/pen" target="_blank">Codepen</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://runjs.cn/" target="_blank">RunJs</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://app.gistboxapp.com/" target="_blank">GitBox</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://tool.lu/" target="_blank">ToolBox</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#检查远程端口是否对bash开放："><span class="nav-number">1.</span> <span class="nav-text">检查远程端口是否对bash开放：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#让进程转入后台："><span class="nav-number">2.</span> <span class="nav-text">让进程转入后台：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#将进程转到前台："><span class="nav-number">3.</span> <span class="nav-text">将进程转到前台：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#产生随机的十六进制数，其中n是字符数："><span class="nav-number">4.</span> <span class="nav-text">产生随机的十六进制数，其中n是字符数：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在当前shell里执行一个文件里的命令："><span class="nav-number">5.</span> <span class="nav-text">在当前shell里执行一个文件里的命令：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#截取前5个字符："><span class="nav-number">6.</span> <span class="nav-text">截取前5个字符：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SSH-debug-模式"><span class="nav-number">7.</span> <span class="nav-text">SSH debug 模式:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SSH-with-pem-key"><span class="nav-number">8.</span> <span class="nav-text">SSH with pem key:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#用wget抓取完整的网站目录结构，存放到本地目录中："><span class="nav-number">9.</span> <span class="nav-text">用wget抓取完整的网站目录结构，存放到本地目录中：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一次创建多个目录："><span class="nav-number">10.</span> <span class="nav-text">一次创建多个目录：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#列出包括子进程的进程树："><span class="nav-number">11.</span> <span class="nav-text">列出包括子进程的进程树：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建-war-文件"><span class="nav-number">12.</span> <span class="nav-text">创建 war 文件:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#测试硬盘写入速度："><span class="nav-number">13.</span> <span class="nav-text">测试硬盘写入速度：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#测试硬盘读取速度："><span class="nav-number">14.</span> <span class="nav-text">测试硬盘读取速度：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取文本的md5-hash："><span class="nav-number">15.</span> <span class="nav-text">获取文本的md5 hash：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#检查xml格式："><span class="nav-number">16.</span> <span class="nav-text">检查xml格式：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#将tar-gz提取到新目录里："><span class="nav-number">17.</span> <span class="nav-text">将tar.gz提取到新目录里：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用curl获取HTTP头信息："><span class="nav-number">18.</span> <span class="nav-text">使用curl获取HTTP头信息：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改文件或目录的时间戳-YYMMDDhhmm"><span class="nav-number">19.</span> <span class="nav-text">修改文件或目录的时间戳(YYMMDDhhmm):</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#用wget命令执行ftp下载："><span class="nav-number">20.</span> <span class="nav-text">用wget命令执行ftp下载：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#生成随机密码-例子里是16个字符长"><span class="nav-number">21.</span> <span class="nav-text">生成随机密码(例子里是16个字符长):</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#快速备份一个文件："><span class="nav-number">22.</span> <span class="nav-text">快速备份一个文件：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#访问Windows共享目录："><span class="nav-number">23.</span> <span class="nav-text">访问Windows共享目录：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#执行历史记录里的命令-这里是第100行"><span class="nav-number">24.</span> <span class="nav-text">执行历史记录里的命令(这里是第100行):</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解压"><span class="nav-number">25.</span> <span class="nav-text">解压:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输入多行文字-CTRL-d-退出"><span class="nav-number">26.</span> <span class="nav-text">输入多行文字(CTRL + d 退出):</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建空文件或清空一个现有文件："><span class="nav-number">27.</span> <span class="nav-text">创建空文件或清空一个现有文件：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#与Ubuntu-NTP-server同步时间："><span class="nav-number">28.</span> <span class="nav-text">与Ubuntu NTP server同步时间：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#用netstat显示所有tcp4监听端口："><span class="nav-number">29.</span> <span class="nav-text">用netstat显示所有tcp4监听端口：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#qcow2镜像文件转换："><span class="nav-number">30.</span> <span class="nav-text">qcow2镜像文件转换：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#重复运行文件，显示其输出（缺省是2秒一次）："><span class="nav-number">31.</span> <span class="nav-text">重复运行文件，显示其输出（缺省是2秒一次）：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#所有用户列表："><span class="nav-number">32.</span> <span class="nav-text">所有用户列表：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Mount-root-in-read-write-mode"><span class="nav-number">33.</span> <span class="nav-text">Mount root in read/write mode:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#挂载一个目录（这是不能使用链接的情况）"><span class="nav-number">34.</span> <span class="nav-text">挂载一个目录（这是不能使用链接的情况）:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#动态更新DNS-server"><span class="nav-number">35.</span> <span class="nav-text">动态更新DNS server:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#递归grep所有目录："><span class="nav-number">36.</span> <span class="nav-text">递归grep所有目录：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#列出前10个最大的文件："><span class="nav-number">37.</span> <span class="nav-text">列出前10个最大的文件：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#显示剩余内存-MB"><span class="nav-number">38.</span> <span class="nav-text">显示剩余内存(MB):</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#打开Vim并跳到文件末："><span class="nav-number">39.</span> <span class="nav-text">打开Vim并跳到文件末：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Git-克隆指定分支-master"><span class="nav-number">40.</span> <span class="nav-text">Git 克隆指定分支(master):</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Git-切换到其它分支-develop"><span class="nav-number">41.</span> <span class="nav-text">Git 切换到其它分支(develop):</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Git-删除分支-myfeature"><span class="nav-number">42.</span> <span class="nav-text">Git 删除分支(myfeature):</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Git-删除远程分支"><span class="nav-number">43.</span> <span class="nav-text">Git 删除远程分支</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Git-将新分支推送到远程服务器："><span class="nav-number">44.</span> <span class="nav-text">Git 将新分支推送到远程服务器：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#打印历史记录中最后一次cat命令："><span class="nav-number">45.</span> <span class="nav-text">打印历史记录中最后一次cat命令：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行历史记录里最后一次cat命令："><span class="nav-number">46.</span> <span class="nav-text">运行历史记录里最后一次cat命令：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#找出-home-user下所有空子目录"><span class="nav-number">47.</span> <span class="nav-text">找出/home/user下所有空子目录:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取test-txt文件中第50-60行内容："><span class="nav-number">48.</span> <span class="nav-text">获取test.txt文件中第50-60行内容：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行最后一个命令-如果最后一个命令是mkdir-root-test-下面将会运行-sudo-mkdir-root-test-："><span class="nav-number">49.</span> <span class="nav-text">运行最后一个命令(如果最后一个命令是mkdir /root/test, 下面将会运行: sudo mkdir /root/test)：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建临时RAM文件系统-–-ramdisk-先创建-tmpram目录"><span class="nav-number">50.</span> <span class="nav-text">创建临时RAM文件系统 – ramdisk (先创建/tmpram目录):</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Grep-whole-words"><span class="nav-number">51.</span> <span class="nav-text">Grep whole words:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在需要提升权限的情况下往一个文件里追加文本："><span class="nav-number">52.</span> <span class="nav-text">在需要提升权限的情况下往一个文件里追加文本：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#列出所有kill-signal参数"><span class="nav-number">53.</span> <span class="nav-text">列出所有kill signal参数:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在bash历史记录里禁止记录最后一次会话："><span class="nav-number">54.</span> <span class="nav-text">在bash历史记录里禁止记录最后一次会话：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#扫描网络寻找开放的端口："><span class="nav-number">55.</span> <span class="nav-text">扫描网络寻找开放的端口：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设置git-email"><span class="nav-number">56.</span> <span class="nav-text">设置git email:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#To-sync-with-master-if-you-have-unpublished-commits"><span class="nav-number">57.</span> <span class="nav-text">To sync with master if you have unpublished commits:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#将所有文件名中含有”txt”的文件移入-home-user目录"><span class="nav-number">58.</span> <span class="nav-text">将所有文件名中含有”txt”的文件移入/home/user目录:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#将文件按行并列显示："><span class="nav-number">59.</span> <span class="nav-text">将文件按行并列显示：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#shell里的进度条"><span class="nav-number">60.</span> <span class="nav-text">shell里的进度条:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用netcat将数据发送到Graphite-server"><span class="nav-number">61.</span> <span class="nav-text">使用netcat将数据发送到Graphite server:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#将tabs转换成空格："><span class="nav-number">62.</span> <span class="nav-text">将tabs转换成空格：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Skip-bash-history"><span class="nav-number">63.</span> <span class="nav-text">Skip bash history:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#去之前的工作目录："><span class="nav-number">64.</span> <span class="nav-text">去之前的工作目录：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#拆分大体积的tar-gz文件-每个100MB-，然后合并回去："><span class="nav-number">65.</span> <span class="nav-text">拆分大体积的tar.gz文件(每个100MB)，然后合并回去：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用curl获取HTTP-status-code"><span class="nav-number">66.</span> <span class="nav-text">使用curl获取HTTP status code:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设置root密码，强化MySQL安全安装"><span class="nav-number">67.</span> <span class="nav-text">设置root密码，强化MySQL安全安装:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#当Ctrl-c不好使时"><span class="nav-number">68.</span> <span class="nav-text">当Ctrl + c不好使时:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取文件owner"><span class="nav-number">69.</span> <span class="nav-text">获取文件owner:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#block设备列表："><span class="nav-number">70.</span> <span class="nav-text">block设备列表：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#找出文件名结尾有空格的文件："><span class="nav-number">71.</span> <span class="nav-text">找出文件名结尾有空格的文件：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#找出文件名有tab缩进符的文件"><span class="nav-number">72.</span> <span class="nav-text">找出文件名有tab缩进符的文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#用”-”打印出横线-全选复制放进笔记"><span class="nav-number">73.</span> <span class="nav-text">用”=”打印出横线:全选复制放进笔记</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Poetry</span>
+  
+  <p style="margin-left:13px; position:relative;top:29px;display:inline-block;">
+     <a target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=9cTCxMzDw8fFwsa1hITblpqY" style="text-decoration:none;">
+         <img src="http://rescdn.qqmail.com/zh_CN/htmledition/images/function/qm_open/ico_mailme_01.png"/>
+      </a>
+  </p>
+  
+</div>
+
+<p style="margin-left:10px;width:60px;height:30px;display:inline-block;margin-top:10px;">
+	<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1260404165'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1260404165%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+</p>
+<p style="position:relative;top:-4px;width:24px;height:30px;margin-left:10px;margin-right:10px;color:red;display:inline-block;"><a href="http://ta.qq.com" target="_blank"><img class="fenxi" src="http://tcss.qq.com/icon/toss_21.gif" alt="腾讯分析"></a></p>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"poetry"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
+
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+
+  
+    <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/MathJax.js"></script>
+    <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/config/TeX-AMS-MML_HTMLorMML.js"></script>
+  
+
+
+  
+  
+
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"slide":{"type":"slide","bdImg":"3","bdPos":"left","bdTop":"250"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+  
+     <!-- custom analytics part create by xiamo -->
+<script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("tIIXiDlAWApnLSnalOqcrADh-gzGzoHsz", "N6UqlI5OjE9dGhd1ISBLU7e6");</script>
+<script>
+function showTime(Counter) {
+	var query = new AV.Query(Counter);
+	$(".leancloud_visitors").each(function() {
+		var url = $(this).attr("id").trim();
+		query.equalTo("url", url);
+		query.find({
+			success: function(results) {
+				if (results.length == 0) {
+					var content = $(document.getElementById(url)).text() + ': 0';
+					$(document.getElementById(url)).text(content);
+					return;
+				}
+				for (var i = 0; i < results.length; i++) {
+					var object = results[i];
+					var content = $(document.getElementById(url)).text() + ': ' + object.get('time');
+					$(document.getElementById(url)).text(content);
+				}
+			},
+			error: function(object, error) {
+				console.log("Error: " + error.code + " " + error.message);
+			}
+		});
+
+	});
+}
+
+function addCount(Counter) {
+	var Counter = AV.Object.extend("Counter");
+	url = $(".leancloud_visitors").attr('id').trim();
+	title = $(".leancloud_visitors").attr('data-flag-title').trim();
+	var query = new AV.Query(Counter);
+	query.equalTo("url", url);
+	query.find({
+		success: function(results) {
+			if (results.length > 0) {
+				var counter = results[0];
+				counter.fetchWhenSave(true);
+				counter.increment("time");
+				counter.save(null, {
+					success: function(counter) {
+						var content = $(document.getElementById(url)).text() + ': ' + counter.get('time');
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(counter, error) {
+						console.log('Failed to save Visitor num, with error message: ' + error.message);
+					}
+				});
+			} else {
+				var newcounter = new Counter();
+				newcounter.set("title", title);
+				newcounter.set("url", url);
+				newcounter.set("time", 1);
+				newcounter.save(null, {
+					success: function(newcounter) {
+					    console.log("newcounter.get('time')="+newcounter.get('time'));
+						var content = $(document.getElementById(url)).text() + ': ' + newcounter.get('time');
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(newcounter, error) {
+						console.log('Failed to create');
+					}
+				});
+			}
+		},
+		error: function(error) {
+			console.log('Error:' + error.code + " " + error.message);
+		}
+	});
+}
+$(function() {
+	var Counter = AV.Object.extend("Counter");
+	if ($('.leancloud_visitors').length == 1) {
+		addCount(Counter);
+	} else if ($('.post-title-link').length > 1) {
+		showTime(Counter);
+	}
+}); 
+</script>
+  
+  
+  
+  <div>
+    <button class="assist-btn circle" id="assist_btn" title="双击亮屏" style="left: 73px; top: 169px;">
+         开灯
+    </button>
+ </div>
+<script type="text/javascript">
+    // 浮动圆点展开与收缩
+
+    $(function () {
+        var assist_box = $('.assist-box');
+        $('#assist_btn').hover(function () {
+            assist_box.stop().show(300);
+        }, function () {
+            assist_box.stop().hide(150);
+        })
+    });
+
+    //浮动圆点拖动
+    $(function () {
+        var box = document.getElementById('assist_btn');
+        box.onmousedown = function (event) {
+            var e = event || window.event,
+                t = e.target || e.srcElement,
+                // 鼠标按下时的坐标x1,y1
+                x1 = e.clientX,
+                y1 = e.clientY,
+                //鼠标按下时的左右偏移量
+                dragLeft = this.offsetLeft,
+                dragTop = this.offsetTop;
+
+            document.onmousemove = function (event) {
+                var e = event || window.event,
+                    t = e.target || e.srcElement,
+                    // 鼠标移动时的动态坐标
+                    x2 = e.clientX,
+                    y2 = e.clientY,
+                    // 鼠标移动时的坐标的变化量
+                    x = x2 - x1,
+                    y = y2 - y1;
+                box.style.left = (dragLeft + x) + 'px';
+                box.style.top = (dragTop + y) + 'px';
+            }
+
+            document.onmouseup = function () {
+                this.onmousemove = null;
+            }
+        }
+    });
+
+/*
+    $whitesmoke   = #f5f5f5
+    $gainsboro    = #eee
+    $gray-lighter = #ddd
+    $grey-light   = #ccc
+    $grey         = #bbb
+    $grey-dark    = #999
+    $grey-dim     = #666
+    $black-light  = #555
+    $black-deep   = #222
+    $red          = #ff2a2a
+    $blue-bright  = #87daff
+    $blue         = #0684bd
+    $blue-deep    = #262a30
+*/
+    // white theme
+    var body = {color: "#555", background: "white"};
+    var a_tag = {color: "#222"};
+    var header = { background: "#f5f5f5"};
+    var logo_line_i = {background: "#222"};
+    // var post_code = {background: "#eee", color: "#222"};
+
+    function switch_theme() {
+        $("body").css(body);
+        $("a:not('.links-of-author-item a, .site-state-item a, .site-state-posts a, .feed-link a, .motion-element a, .post-tags a, .show-commit-cls a, #donate_board a')").css(a_tag);
+        $(".header, .footer").css(header);
+        $(".logo-line-before i, .logo-line-after i").css(logo_line_i);
+        //$(".post code").css(post_code);
+        $("#idhyt-surprise-ball #idhyt-surprise-ball-animation .drag").css(a_tag);
+        $(".post-title-link, .posts-expand .post-meta, .post-comments-count, .disqus-comment-count, .post-category a, .post-nav-next a, .post-nav-item a").css(a_tag);
+        
+        // $("code").css({color: '#c5c8c6', background: '#1d1f21'});
+        $("#assist_btn").hide(1500);
+    }
+
+    $(function () {
+        $("#assist_btn").dblclick(function() {
+            switch_theme();
+        });
+    });
+
+</script>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"poetry"};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+
+</body>
+</html>

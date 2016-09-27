@@ -1,0 +1,1667 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+  
+    <link href='//fonts.lug.ustc.edu.cn/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+  
+
+
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+
+
+    <meta name="description" content="技术改变生活" />
+
+
+
+  <meta name="keywords" content="Vim," />
+
+
+
+  <link rel="alternate" href="http://poetries.github.io/atom.xml" title="Poetry's Blog" type="application/atom+xml" />
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+<meta name="description" content="插入模式和退出VIM的方法VIM 具有 6 种基本模式和 5 种派生模式。
+
+基本模式：普通模式、插入模式、可视模式、选择模式、命令行模式和 Ex 模式；
+派生模式：操作符等待模式、插入普通模式、插入可视模式、插入选择模式和替换模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vim使用摘要笔记">
+<meta property="og:url" content="http://www.poetries.top/2016/03/19/Vim使用摘要笔记/index.html">
+<meta property="og:site_name" content="Poetry's Blog">
+<meta property="og:description" content="插入模式和退出VIM的方法VIM 具有 6 种基本模式和 5 种派生模式。
+
+基本模式：普通模式、插入模式、可视模式、选择模式、命令行模式和 Ex 模式；
+派生模式：操作符等待模式、插入普通模式、插入可视模式、插入选择模式和替换模式">
+<meta property="og:image" content="http://7xq6al.com1.z0.glb.clouddn.com/vim-1.png">
+<meta property="og:image" content="http://7xq6al.com1.z0.glb.clouddn.com/vim-2.png">
+<meta property="og:image" content="http://7xq6al.com1.z0.glb.clouddn.com/vim-3.png">
+<meta property="og:image" content="http://7xq6al.com1.z0.glb.clouddn.com/vim-4.png">
+<meta property="og:image" content="http://7xq6al.com1.z0.glb.clouddn.com/vim-5.png">
+<meta property="og:image" content="http://7xq6al.com1.z0.glb.clouddn.com/vim-6.png">
+<meta property="og:image" content="http://xxx.fishc.com/forum/201510/29/232631xzmv2mjpv9ii4vao.png">
+<meta property="og:image" content="http://xxx.fishc.com/forum/201511/06/162556ihjb5obhtgf5s6jm.png">
+<meta property="og:image" content="http://7xq6al.com1.z0.glb.clouddn.com/vim-7.png">
+<meta property="og:image" content="https://github.com/ma6174/vim/raw/master/screenshot.png">
+<meta property="og:image" content="http://7xq6al.com1.z0.glb.clouddn.com/%E5%85%A5%E9%97%A8%E7%89%88--vim.png">
+<meta property="og:image" content="http://7xq6al.com1.z0.glb.clouddn.com/%E7%BB%8F%E5%85%B8%E7%89%88--vim.gif">
+<meta property="og:image" content="http://7xq6al.com1.z0.glb.clouddn.com/%E8%BF%9B%E9%98%B6%E7%89%88--vim.png">
+<meta property="og:image" content="http://7xq6al.com1.z0.glb.clouddn.com/%E5%A2%9E%E5%BC%BA%E7%89%88--vim.png">
+<meta property="og:updated_time" content="2016-09-27T15:41:22.579Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vim使用摘要笔记">
+<meta name="twitter:description" content="插入模式和退出VIM的方法VIM 具有 6 种基本模式和 5 种派生模式。
+
+基本模式：普通模式、插入模式、可视模式、选择模式、命令行模式和 Ex 模式；
+派生模式：操作符等待模式、插入普通模式、插入可视模式、插入选择模式和替换模式">
+<meta name="twitter:image" content="http://7xq6al.com1.z0.glb.clouddn.com/vim-1.png">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+
+
+  <title> Vim使用摘要笔记 | Poetry's Blog </title>
+  <style type="text/css">
+    .main {
+      padding-bottom: 190px;
+    }
+    .circle {
+        width: 40px;
+        height: 40px;
+        background: rgba(98, 187, 77, 0.68) no-repeat;
+        cursor: move;
+	    	opacity: 0.7;
+    }
+
+    .assist-btn {
+        position: fixed;
+        top: 50％;
+        left: 10px;
+        -moz-border-radius: 50px;
+        -webkit-border-radius: 50px;
+        border-radius: 50px;
+        outline: none;
+        border: none;
+        color: rgb(214, 10, 10);
+    }
+  p.top51la{
+      font-size: 12px;
+      position:fixed;
+      top:5px;
+      right:5px;
+  }
+   p.top51la a span img{
+      display:inline-block;
+      width: 10px;
+   }
+    p.top51la a + img{
+        display: none;
+   }
+  p.topUV {
+      font-size: 12px;
+      position:fixed;
+      top:5px;
+      right:20px;
+   }
+  p.topUV a img{
+      display: inline-block; 
+      width: 11px;
+    }
+  p.topUV a{
+      border-bottom: none;
+    }
+</style>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?40b1f89aa80f2527b3db779c6898c879";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=58036087";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta custom-logo">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Poetry's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">聆听、感受、成长</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+
+        
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+
+        
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+
+        
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+
+        
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle"></i> <br />
+            
+            留言
+          </a>
+        </li>
+
+        
+      
+
+      <li class="menu-item" style="opacity: 1; transform: translateY(0px);"> <a title="把这个链接拖到你的工具栏中,任何网页都可以High" href='javascript:(function() {
+          function c() {
+              var e = document.createElement("link");
+              e.setAttribute("type", "text/css");
+              e.setAttribute("rel", "stylesheet");
+              e.setAttribute("href", f);
+              e.setAttribute("class", l);
+              document.body.appendChild(e)
+          }
+
+          function h() {
+              var e = document.getElementsByClassName(l);
+              for (var t = 0; t < e.length; t++) {
+                  document.body.removeChild(e[t])
+              }
+          }
+
+          function p() {
+              var e = document.createElement("div");
+              e.setAttribute("class", a);
+              document.body.appendChild(e);
+              setTimeout(function() {
+                  document.body.removeChild(e)
+              }, 100)
+          }
+
+          function d(e) {
+              return {
+                  height : e.offsetHeight,
+                  width : e.offsetWidth
+              }
+          }
+
+          function v(i) {
+              var s = d(i);
+              return s.height > e &amp;&amp; s.height < n &amp;&amp; s.width > t &amp;&amp; s.width < r
+          }
+
+          function m(e) {
+              var t = e;
+              var n = 0;
+              while (!!t) {
+                  n += t.offsetTop;
+                  t = t.offsetParent
+              }
+              return n
+          }
+
+          function g() {
+              var e = document.documentElement;
+              if (!!window.innerWidth) {
+                  return window.innerHeight
+              } else if (e &amp;&amp; !isNaN(e.clientHeight)) {
+                  return e.clientHeight
+              }
+              return 0
+          }
+
+          function y() {
+              if (window.pageYOffset) {
+                  return window.pageYOffset
+              }
+              return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+          }
+
+          function E(e) {
+              var t = m(e);
+              return t >= w &amp;&amp; t <= b + w
+          }
+
+          function S() {
+              var e = document.createElement("audio");
+              e.setAttribute("class", l);
+              e.src = i;
+              e.loop = false;
+              e.addEventListener("canplay", function() {
+                  setTimeout(function() {
+                      x(k)
+                  }, 500);
+                  setTimeout(function() {
+                      N();
+                      p();
+                      for (var e = 0; e < O.length; e++) {
+                          T(O[e])
+                      }
+                  }, 15500)
+              }, true);
+              e.addEventListener("ended", function() {
+                  N();
+                  h()
+              }, true);
+              e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+              document.body.appendChild(e);
+              e.play()
+          }
+
+          function x(e) {
+              e.className += " " + s + " " + o
+          }
+
+          function T(e) {
+              e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+          }
+
+          function N() {
+              var e = document.getElementsByClassName(s);
+              var t = new RegExp("\\b" + s + "\\b");
+              for (var n = 0; n < e.length; ) {
+                  e[n].className = e[n].className.replace(t, "")
+              }
+          }
+
+          var e = 30;
+          var t = 30;
+          var n = 350;
+          var r = 350;
+          var i = "https://ss0.bdstatic.com/y0s1hSulBw92lNKgpU_Z2jR7b2w6buu/data2/music/8b77e748d030862ea6ed5ef0fcf7832d/242078559/242078559.mp3?xcode=0683c9c47ce11a94766f476e85847328";
+          var s = "mw-harlem_shake_me";
+          var o = "im_first";
+          var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+          var a = "mw-strobe_light";
+          var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+          var l = "mw_added_css";
+          var b = g();
+          var w = y();
+          var C = document.getElementsByTagName("*");
+          var k = null;
+          for (var L = 0; L < C.length; L++) {
+              var A = C[L];
+              if (v(A)) {
+                  if (E(A)) {
+                      k = A;
+                      break
+                  }
+              }
+          }
+          if (A === null) {
+              console.warn("Could not find a node of the right size. Please try a different page.");
+              return
+          }
+          c();
+          S();
+          var O = [];
+          for (var L = 0; L < C.length; L++) {
+              var A = C[L];
+              if (v(A)) {
+                  O.push(A)
+              }
+          }
+          })()' class="okmemo-tmp-unselect"><i class="menu-item-icon fa fa-music fa-fw"></i>High一下</a> </li>
+
+      
+      
+    </ul>
+  
+    
+
+  
+    <div class="site-search">
+      
+  
+  <form class="site-search-form">
+    <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  </form>
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'v9qj9piTH6n2pV9s23zR','2.0.0');
+</script>
+
+
+
+    </div>
+
+  
+</nav>
+
+
+ </div>
+    </header>
+	
+	
+	
+	<a href="https://github.com/poetries" target="_blank">
+	<img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/c6625ac1f3ee0a12250227cf83ce904423abf351/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_gray_6d6d6d.png">
+	</a>
+<p class="topUV"><span style="color:#0e0e0e;position:relative;top:-2px;">本站热度&nbsp;</span>
+  <script src='http://www.xiaoniu168.com/counts3110.html' language='JavaScript' charset='utf-8'></script>
+  <script>
+      var oP = document.getElementsByClassName("topUV")[0];
+      oP.getElementsByTagName("a")[0].setAttribute("href","javascript:void(0);");
+  </script>
+  <span style="color:#0e0e0e;position: relative;top: -2px;">&nbsp;&nbsp;℃</span>
+</p>
+      
+	
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Vim使用摘要笔记
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+        
+          <!-- <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-03-19T01:04:38+00:00" content="2016-03-19">
+              2016-03-19
+            </time>
+          </span>-->
+
+          
+            <span class="post-category" >
+              &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/工欲善其事必先利其器/" itemprop="url" rel="index">
+                    <span itemprop="name">工欲善其事必先利其器</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/19/Vim使用摘要笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/19/Vim使用摘要笔记/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+         
+         
+            &nbsp; | &nbsp;<span>热度</span>&nbsp;<span style="color:red;" id="/2016/03/19/Vim使用摘要笔记/"class="leancloud_visitors"  data-flag-title="Vim使用摘要笔记"></span><span style="color:red;">&nbsp;℃</span>
+            
+            <!-- <span id="/2016/03/19/Vim使用摘要笔记/"class="leancloud_visitors"  data-flag-title="Vim使用摘要笔记">
+              &nbsp; | &nbsp;热度&nbsp;
+               </span> -->
+            
+      
+           
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h3 id="插入模式和退出VIM的方法"><a href="#插入模式和退出VIM的方法" class="headerlink" title="插入模式和退出VIM的方法"></a>插入模式和退出VIM的方法</h3><p>VIM 具有 6 种基本模式和 5 种派生模式。</p>
+<blockquote>
+<p>基本模式：普通模式、插入模式、可视模式、选择模式、命令行模式和 Ex 模式；</p>
+<p>派生模式：操作符等待模式、插入普通模式、插入可视模式、插入选择模式和替换模式</p>
+</blockquote>
+<h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><p><img src="http://7xq6al.com1.z0.glb.clouddn.com/vim-1.png" alt="此处输入图片的描述"></p>
+<p><img src="http://7xq6al.com1.z0.glb.clouddn.com/vim-2.png" alt="此处输入图片的描述"></p>
+<hr>
+<h3 id="删除命令、数字的奥义、撤销和恢复命令"><a href="#删除命令、数字的奥义、撤销和恢复命令" class="headerlink" title="删除命令、数字的奥义、撤销和恢复命令"></a>删除命令、数字的奥义、撤销和恢复命令</h3><p><img src="http://7xq6al.com1.z0.glb.clouddn.com/vim-3.png" alt="此处输入图片的描述"></p>
+<p><img src="http://7xq6al.com1.z0.glb.clouddn.com/vim-4.png" alt="此处输入图片的描述"></p>
+<p><img src="http://7xq6al.com1.z0.glb.clouddn.com/vim-5.png" alt="此处输入图片的描述"></p>
+<hr>
+<h3 id="粘贴命令、替换命令、替换模式和修改命令"><a href="#粘贴命令、替换命令、替换模式和修改命令" class="headerlink" title="粘贴命令、替换命令、替换模式和修改命令"></a>粘贴命令、替换命令、替换模式和修改命令</h3><ul>
+<li><strong>粘贴命令</strong><br>使用 p 命令可以将最后一次删除的内容粘贴到光标之后。（大写的 P 则是粘贴到光标之前）</li>
+</ul>
+<p><strong>这里需要注意的是：</strong>如果你需要粘贴的是整行为单位，那么 p 命令将在光标的下一行开始粘贴；如果你拷贝的是非整行的局部字符串，那么 p 命令将在光标后开始粘贴。</p>
+<ul>
+<li><strong>拷贝命令</strong></li>
+</ul>
+<p>其实我们用的最多的还是拷贝粘贴，VIM 用 y 命令实现拷贝。语法跟删除的 d 命令一样：<code>d motion</code></p>
+<p>其中的 motion 同样是用来表示操作范围的指令，即 yy 表示拷贝当前行，<code>3yy</code> 则表示拷贝 3 行；<code>y$</code> 表示从光标所在的位置拷贝到行尾的所有字符；<code>yG</code> 则表示从光标所在行拷贝到文件末尾行的所有字符</p>
+<p>拷贝完成之后同样使用 <code>p</code> 命令进行粘贴</p>
+<ul>
+<li><strong>替换命令</strong></li>
+</ul>
+<p>VIM 还提供了一个简单的替换命令：r 命令</p>
+<p>r 用于替换光标所在的字符，做法是先将光标移动到需要替换的字符处，按一下 r 键，然后输入新的字符。注意，全程无需进入插入模式，也不会进入插入模式</p>
+<ul>
+<li><strong>替换模式</strong></li>
+</ul>
+<p>对于需要替换多个字符，更好的方案是直接进入替换模式。按下大写的 R 键，屏幕左下角出现 – REPLACE – 字样，说明你已经处于替换模式。此时输入字符可以连续替换光标及其后边的内容。</p>
+<ul>
+<li><strong>修改命令</strong></li>
+</ul>
+<p>修改跟替换是不一样的！<br>修改跟替换是不一样的！</p>
+<p>修改会进入插入模式，替换不会进入插入模式！<br>修改会进入插入模式，替换不会进入插入模式！</p>
+<p>修改命令我们使用 c 键来启动，格式是：<code>c [number] motion</code></p>
+<p><code>motion</code> 依然表示范围，[数字]依然拥有奥义，同样是可选的，加上数字表示重复执行多次 motion 范围…</p>
+<p><img src="http://7xq6al.com1.z0.glb.clouddn.com/vim-6.png" alt="此处输入图片的描述"></p>
+<p>事实上，<strong>修改 == 删除 + 进入插入模式</strong></p>
+<hr>
+<h3 id="文件信息、跳转、定位括号和缩进"><a href="#文件信息、跳转、定位括号和缩进" class="headerlink" title="文件信息、跳转、定位括号和缩进"></a>文件信息、跳转、定位括号和缩进</h3><p>有时候，你可能需要知道当前的文件信息，比如文件名，文件状态，文件的总行数，以及光标所在的相对位置</p>
+<p>快捷键 <code>ctrl + g</code> 可以解决你的需求：</p>
+<p><img src="http://xxx.fishc.com/forum/201510/29/232631xzmv2mjpv9ii4vao.png" alt="此处输入图片的描述"></p>
+<ul>
+<li><strong>跳转</strong></li>
+</ul>
+<p>在 VIM 有两种方式可以将光标跳转到指定的位置：</p>
+<ul>
+<li>行号 + G</li>
+<li>行号</li>
+</ul>
+<p>比如将光标跳转到第 333 行的位置，你就输入数字 333，再输入大写字母 G 即可见证奇迹；或者输入冒号（:）进入命令行模式，再输入数字 333，最后回车，也可以跳转到目的地</p>
+<p>如果单独输入 G 键（前边没有输入数字），那么光标是直接去到文件的最后一行；如果输入两个小写 g，即 <code>gg</code>，则将光标跳转到文件的第一行。</p>
+<ul>
+<li><strong>定位括号</strong></li>
+</ul>
+<p>VIM 有个按键可以帮你快速定位到另一半括号，就是 % 键。将光标移动到 <code>()，[]，{}</code>，中的任何一半括号上，按下 <code>%</code> 键，便可看到此时光标已经跳转到另外一半的括号上了</p>
+<ul>
+<li><strong>缩进</strong></li>
+</ul>
+<p>在编写代码的时候我们经常需要对代码进行缩进，VIM 可以使用尖括号（<code>&amp;lt;</code> 或 <code>&amp;gt;</code>）来控制缩进，我们常用的就是两个同方向的尖括号表示将光标所在的语句进行缩进和反缩进操作。很明显 <code>&amp;gt;&amp;gt;</code> 表示缩进，而 <code>&amp;lt;&amp;lt;</code> 则表示反缩进</p>
+<p>不过行数一多……到底要缩进多少行就成了一个问题……这时，你可以按一下 <code>v</code> 进入可视模式（左下角出现 <code>-- VISUAL --</code> 字样），然后通过 <code>h、j、k、l</code> 或 其他 <code>motion</code> 来移动你的光标，此时光标所到之处必被一道亮光所包围（表示被选中），选择好需要缩进的目标后，只需按一下 <code>&amp;gt;</code> 即可完成任务</p>
+<p><img src="http://xxx.fishc.com/forum/201511/06/162556ihjb5obhtgf5s6jm.png" alt="此处输入图片的描述"></p>
+<hr>
+<h3 id="搜索命令和替换命令"><a href="#搜索命令和替换命令" class="headerlink" title="搜索命令和替换命令"></a>搜索命令和替换命令</h3><ul>
+<li><strong>搜索命令</strong></li>
+</ul>
+<p><img src="http://7xq6al.com1.z0.glb.clouddn.com/vim-7.png" alt="此处输入图片的描述"></p>
+<p>最后提个醒：在搜索命令中，<code>.、*、[、]、^、%、/、?、~</code> 和 <code>$</code> 这 10 个字符有着特殊意义，所以在使用这些字符的时候要在前面加上一个反斜杠<code>（\）</code>，比如你要搜索问号，则输入 <code>/\?</code></p>
+<ul>
+<li><strong>替换命令</strong></li>
+</ul>
+<p>搜索在很多情况下都是为了替换</p>
+<p>通过搜索功能，我们将光标定位到目标位置，如果你确定这个目标是可恶的，需要被替换的，你可以输入 <code>:s/old/new</code>，这样即可将光标所在行的第一个 old 替换为 new；你如果输入的是 <code>:s/old/new/g</code>，则表示将光标所在行的所有 old 替换为 new。</p>
+<p>输入 : <code>%s/old/new/g</code> 表示替换整个文件中每个匹配的字符串<br>输入 : <code>%s/old/new/gc</code> 替换提示信息<br>输入 : <code>5,13s/old/new/g</code> 替换第 5 行到第 13 行之间的所有 XX</p>
+<h3 id="执行shell命令、文件另存为、合并文件和打开多个文件"><a href="#执行shell命令、文件另存为、合并文件和打开多个文件" class="headerlink" title="执行shell命令、文件另存为、合并文件和打开多个文件"></a>执行shell命令、文件另存为、合并文件和打开多个文件</h3><ul>
+<li><strong>执行shell命令</strong></li>
+</ul>
+<p>想知道当前 / 下边有哪些目录和文件，在 VIM 中你可以输入 <code>:!ls</code></p>
+<p>在输入冒号（:）进入命令行模式，输入感叹号（<code>!</code>），在其后便可以加上 <code>shell</code> 命令。此后 VIM 将临时跳转回 shell，并执行命令。再次按下 Enter 键回到 VIM</p>
+<ul>
+<li><strong>文件另存为</strong></li>
+</ul>
+<p>输入 <code>:w 新文件名</code>   文件另存为</p>
+<p>如：输入 <code>:w test2</code> 该命令会以 test2 为文件名拷贝保存整个 test 文件</p>
+<ul>
+<li><strong>局部内容另存为</strong></li>
+</ul>
+<p>言下之意就是，VIM 可以将文件中的局部文本另存为一个新的文件</p>
+<p>这就需要你进入一种新的模式，叫：<code>可视模式</code></p>
+<p>在普通模式中按下 <code>V</code> 键即进入可视模式，进入后左下角显示 <code>VISUAL</code></p>
+<p>此时光标的位置开始为选中状态，你可以通过任何移动或范围的按键来移动光标，光标所到之处皆为选中状态（<code>h、j、k、l</code> 移动光标，$ 去到行尾，0 去到行首……）：</p>
+<p>选好范围之后的操作就跟“文件另存为”一样了；<code>按下冒号（:）</code>屏幕左下方出现 :<code>&#39;&amp;lt;,&#39;&amp;gt;</code>现在请输入 <code>w test2</code>；表示新建一个 test2 文件，并将选中的内容单独存放进去。</p>
+<p>这里有个问题，如果路径中已经存在 test2 文件，那么 VIM 会提醒你需要加感叹号（!）才能强制覆盖文件。即输入 <code>w! test2</code></p>
+<ul>
+<li><strong>合并文件</strong></li>
+</ul>
+<p>所谓合并文件，便是在 VIM 打开的一个文件中读取并置入另一个文件</p>
+<p>只需要输入冒号（:）进入命令行模式，然后输入 <code>r</code> 文件名</p>
+<p>即可将指定文件的内容读取并置入到光标的下一行中</p>
+<ul>
+<li><strong>打开多个文件</strong></li>
+</ul>
+<p>VIM 还可以同时打开多个文件，并且允许你通过水平或垂直的方式并排它们</p>
+<p>VIM 使用 <code>–o 或 –O</code> 选项打开多个文件，其中 <code>–o</code> 表示垂直并排，<code>-O</code> 表示水平并排；例如 <code>vim -o lesson4 lesson5 lesson6</code></p>
+<p>打开后默认光标是落在第一个文件中的，此时之前学过的所有命令都可以上，不过仅限于第一个文件。那如何将焦点（光标）切换到另一个文件中呢？很简单，使用 <code>ctrl + w + w</code> 将光标切换到下一个文件；或者使用 ctrl + w + 方向（方向键或 h、j、k、l）</p>
+<p>退出文件的话可以使用原来的 <code>q、q!、wq</code> 或者 <code>ZZ（shirt + z + z）</code></p>
+<p>退出多个文件：命令的后边加上小写 <code>a</code>，则表示退出动作是针对所有的<code>（ALL）：qa、qa!、wqa</code></p>
+<hr>
+<h3 id="其他总结"><a href="#其他总结" class="headerlink" title="其他总结"></a>其他总结</h3><ul>
+<li><strong>【vim窗口管理】</strong></li>
+</ul>
+<ul>
+<li><p>打开<strong>NerdTRee</strong>(<code>：NER--&gt;tab</code>)</p>
+</li>
+<li><p>多屏幕移动光标左侧 <code>ctrl+w+h</code>  右侧 <code>ctrl+w+l</code>  在目录结构打开文件 i</p>
+</li>
+<li><p><code>0</code> 展开目录结构</p>
+</li>
+</ul>
+<p>自动补全：ctrl+P（基于单词）</p>
+<ul>
+<li><p><strong>【配置VIM】</strong></p>
+<ul>
+<li><p>临时的配置  <code>：set</code> 或者 <code>：set all</code></p>
+</li>
+<li><p>永久的配置  <code>~/.vimrcor ~/.exrc</code></p>
+</li>
+</ul>
+</li>
+<li><p>一些通用的配置  ：</p>
+<ul>
+<li>:set number  </li>
+<li>:set autoindent  </li>
+<li>:set textwidth=65(vim only)</li>
+<li>:set wrapmargin=15</li>
+<li>:set ignorecase</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="vim-使用tip"><a href="#vim-使用tip" class="headerlink" title="vim 使用tip"></a>vim 使用tip</h3><ul>
+<li><strong>编写python程序</strong></li>
+</ul>
+<p>自动插入头信息：</p>
+<pre><code>#!/usr/bin/env python
+# coding=utf-8
+</code></pre><p>输入<code>.</code>或按<code>TAB</code>键会触发代码补全功能<br><code>:w</code>保存代码之后会自动检查代码错误与规范<br>按F6可以按pep8格式对代码格式优化<br>按<code>F5</code>可以一键执行代码<br>多窗口操作</p>
+<p>使用<code>:sp + 文件名</code> 可以水平分割窗口<br>使用<code>:vs + 文件名</code> 可以垂直分割窗口<br>使用<code>Ctrl + w</code> 可以快速在窗口间切换</p>
+<ul>
+<li><strong>编写markdown文件</strong></li>
+</ul>
+<p>编写markdown文件(*.md)的时候，在<code>normal</code>模式下按 <code>md</code> 即可在当前目录下生成相应的<code>html</code>文件</p>
+<p>生成之后还是在<code>normal</code>模式按<code>fi</code>可以使用firefox打开相应的html文件预览<br>当然也可以使用万能的<code>F5键</code>来一键转换并打开预览<br>如果打开过程中屏幕出现一些混乱信息，可以按<code>Ctrl + l</code>来恢复<br>快速注释</p>
+<hr>
+<h3 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h3><ul>
+<li><strong>vim配置文件和插件</strong></li>
+</ul>
+<p>下载地址：<a href="https://github.com/ma6174/vim" target="_blank" rel="external">超强vim配置文件</a></p>
+<p><strong>运行截图</strong></p>
+<p><img src="https://github.com/ma6174/vim/raw/master/screenshot.png" alt="此处输入图片的描述"></p>
+<hr>
+<ul>
+<li><strong>vim键位图–重要</strong></li>
+</ul>
+<p><strong>入门版</strong></p>
+<p><img src="http://7xq6al.com1.z0.glb.clouddn.com/%E5%85%A5%E9%97%A8%E7%89%88--vim.png" alt="此处输入图片的描述"></p>
+<hr>
+<p><strong>经典版【推荐】</strong></p>
+<p><img src="http://7xq6al.com1.z0.glb.clouddn.com/%E7%BB%8F%E5%85%B8%E7%89%88--vim.gif" alt="此处输入图片的描述"></p>
+<hr>
+<p><strong>进阶版</strong></p>
+<p><img src="http://7xq6al.com1.z0.glb.clouddn.com/%E8%BF%9B%E9%98%B6%E7%89%88--vim.png" alt="此处输入图片的描述"></p>
+<hr>
+<p><strong>增强版</strong></p>
+<p><img src="http://7xq6al.com1.z0.glb.clouddn.com/%E5%A2%9E%E5%BC%BA%E7%89%88--vim.png" alt="此处输入图片的描述"></p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Vim/" rel="tag">#Vim</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/03/16/CSS实现水平-垂直居中-转/" rel="next" title="CSS实现水平|垂直居中[转]">
+                <i class="fa fa-chevron-left"></i> CSS实现水平|垂直居中[转]
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/03/19/Chrome基础快捷键/" rel="prev" title="Chrome基础快捷键">
+                Chrome基础快捷键 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+    
+    <div class="mod-category_article-time">
+      <span>
+          <time itemprop="dateCreated" datetime="2016-03-19T09:04:38+08:00" content="2016-03-19">
+                  2016-03-19
+          </time>
+      </span>
+    </div>
+  </article>
+
+
+
+	 <div>
+      
+        <style type="text/css">
+
+    .donate_bar {
+        text-align: center;
+        margin-top : 5%;
+    }
+
+    .donate_bar.hidden {
+        display:none;
+    }
+
+    .donate_bar a.btn_donate {
+        display: inline-block;
+        width: 82px;
+        height: 82px;
+        margin-left:auto;
+        margin-right:auto;
+
+        background: url("http://img.t.sinajs.cn/t5/style/images/apps_PRF/e_media/btn_reward.gif") no-repeat;
+        _background: url("http://img.t.sinajs.cn/t5/style/images/apps_PRF/e_media/btn_reward.gif") no-repeat; 
+
+        -webkit-transition: background 0s;
+        -moz-transition: background 0s;
+        -o-transition: background 0s;
+        -ms-transition: background 0s;
+        transition: background 0s;
+    }
+
+    .donate_bar a.btn_donate:hover { 
+        background-position: 0px -82px;
+        color: #87daff;
+    }
+
+    .donate_bar .donate_txt {
+        display: block;
+        color: #9d9d9d;
+        font: 14px/2 "Microsoft Yahei";
+    }
+
+    .bold { 
+        font-weight: bold; 
+    }
+
+    .post-donate a {
+        border-bottom: 0px;
+		
+    }
+
+    #donate_guide table {
+        border: none;
+    }
+	
+    #donate_guide td {
+        border-bottom: none;
+        border-right: none;
+        // background: #333333;
+        valign: top;
+    }
+
+</style>
+
+
+
+    
+
+    <div class ="post-donate">
+        <div id="donate_board" class="donate_bar center">
+              <a id="btn_donate" class="btn_donate" href="javascript:;" title="Donate me"></a>
+              <span id="donate_txt" class="donate_txt">
+                   
+                        Enjoy it ? Donate me !  欣赏此文？求鼓励，求支持！
+                   
+              </span>
+            <br>
+        </div>  
+  
+        <div id="donate_guide" class="donate_bar center hidden">
+            <!--
+            
+                <a href="http://7xq6al.com1.z0.glb.clouddn.com/alipay2.jpg" title="支付宝打赏" class="fancybox" rel="article0" 
+                    style="float:left;margin-left:25%;margin-right:10px;">
+                    <img src="http://7xq6al.com1.z0.glb.clouddn.com/alipay2.jpg" title="" height="164px" width="164px">
+                </a> 
+              
+
+            
+                <a href="http://7xq6al.com1.z0.glb.clouddn.com/weixin.jpg" title="微信打赏" class="fancybox" rel="article0"
+                    style="margin-right:30%">
+                    <img src="http://7xq6al.com1.z0.glb.clouddn.com/weixin.jpg" title="" height="164px" width="164px">
+                </a>
+            
+            -->
+            <table>
+                <tr>
+                    <td>
+                        
+                            <a href="http://7xq6al.com1.z0.glb.clouddn.com/alipay2.jpg" title="alipay" class="fancybox" rel="article0" 
+                                style="float:left;margin-left:25%;margin-right:10px;">
+                                <img src="http://7xq6al.com1.z0.glb.clouddn.com/alipay2.jpg" title="" height="164px" width="164px">
+                            </a> 
+                         
+                    </td>
+                    <td>
+                        
+                            <a href="http://7xq6al.com1.z0.glb.clouddn.com/weixin.jpg" title="weixin" class="fancybox" rel="article0"
+                                style="margin-right:30%">
+                                <img src="http://7xq6al.com1.z0.glb.clouddn.com/weixin.jpg" title="" height="164px" width="164px">
+                            </a>
+                        
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+
+        <script type="text/javascript">
+            document.getElementById('btn_donate').onclick = function() {
+                $('#donate_board').addClass('hidden');
+                // $('#donate_guide').removeClass('hidden');
+                $('#donate_guide').show(2000);
+            }
+
+        </script>
+    </div>
+
+    
+
+
+
+      
+    </div>
+	
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+            <!-- 多说热评文章-->
+            <p class="hot-commit">热评文章</p>
+            <div class="ds-top-threads" data-range="monthly" data-num-items="5"></div>
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2016/03/19/Vim使用摘要笔记/"
+                   data-title="Vim使用摘要笔记" data-url="http://www.poetries.top/2016/03/19/Vim使用摘要笔记/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/avatar.jpg" alt="Poetry" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Poetry</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">技术改变生活</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">132</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">40</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="http://poetries.github.io/atom.xml" rel="alternate">
+              <i class="menu-item-icon icon-next-feed"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/poetries" target="_blank">
+                  <i class="fa fa-github"></i> GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/poetries1" target="_blank">
+                  <i class="fa fa-weibo"></i> Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/94077fcddfc0/latest_articles" target="_blank">
+                  <i class="fa fa-jianshu"></i> Jianshu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">常用链接</p>
+            
+              <span class="links-of-author-item">
+                <a href="http://jsdig.com/" target="_blank">前端搜索</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://cssvalues.com/" target="_blank">css检索</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://f2er.club/" target="_blank">醉牛前端</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://caibaojian.com/links" target="_blank">前端网址</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://jsdig.com/" target="_blank">前端导航</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.css88.com/nav/" target="_blank">前端css88</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://codecloud.net/" target="_blank">程序资料</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://frontenddev.org/" target="_blank">FED社区</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.awesomes.cn/" target="_blank">构建工具</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://overapi.com/" target="_blank">OverAPI</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://devdocs.io/" target="_blank">DevDocs</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://yisibl.github.io/css-vocabulary/" target="_blank">CSS词汇</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jb51.net/onlineread/JavaScript-Garden-CN/#intro" target="_blank">JS花园</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://tool.oschina.net/" target="_blank">工具索引</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://hao.shejidaren.com/" target="_blank">设计导航</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://admire.so/" target="_blank">设计相关</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.uedh.cn/" target="_blank">用户体验</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://jsbin.com/" target="_blank">JSbin</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://codepen.io/pen" target="_blank">Codepen</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://runjs.cn/" target="_blank">RunJs</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://app.gistboxapp.com/" target="_blank">GitBox</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://tool.lu/" target="_blank">ToolBox</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#插入模式和退出VIM的方法"><span class="nav-number">1.</span> <span class="nav-text">插入模式和退出VIM的方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number"></span> <span class="nav-text"></span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#删除命令、数字的奥义、撤销和恢复命令"><span class="nav-number">1.</span> <span class="nav-text">删除命令、数字的奥义、撤销和恢复命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#粘贴命令、替换命令、替换模式和修改命令"><span class="nav-number">2.</span> <span class="nav-text">粘贴命令、替换命令、替换模式和修改命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件信息、跳转、定位括号和缩进"><span class="nav-number">3.</span> <span class="nav-text">文件信息、跳转、定位括号和缩进</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#搜索命令和替换命令"><span class="nav-number">4.</span> <span class="nav-text">搜索命令和替换命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#执行shell命令、文件另存为、合并文件和打开多个文件"><span class="nav-number">5.</span> <span class="nav-text">执行shell命令、文件另存为、合并文件和打开多个文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他总结"><span class="nav-number">6.</span> <span class="nav-text">其他总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vim-使用tip"><span class="nav-number">7.</span> <span class="nav-text">vim 使用tip</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#附录"><span class="nav-number">8.</span> <span class="nav-text">附录</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Poetry</span>
+  
+  <p style="margin-left:13px; position:relative;top:29px;display:inline-block;">
+     <a target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=9cTCxMzDw8fFwsa1hITblpqY" style="text-decoration:none;">
+         <img src="http://rescdn.qqmail.com/zh_CN/htmledition/images/function/qm_open/ico_mailme_01.png"/>
+      </a>
+  </p>
+  
+</div>
+
+<p style="margin-left:10px;width:60px;height:30px;display:inline-block;margin-top:10px;">
+	<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1260404165'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1260404165%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+</p>
+<p style="position:relative;top:-4px;width:24px;height:30px;margin-left:10px;margin-right:10px;color:red;display:inline-block;"><a href="http://ta.qq.com" target="_blank"><img class="fenxi" src="http://tcss.qq.com/icon/toss_21.gif" alt="腾讯分析"></a></p>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"poetry"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
+
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+
+  
+    <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/MathJax.js"></script>
+    <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/config/TeX-AMS-MML_HTMLorMML.js"></script>
+  
+
+
+  
+  
+
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"slide":{"type":"slide","bdImg":"3","bdPos":"left","bdTop":"250"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+  
+     <!-- custom analytics part create by xiamo -->
+<script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("tIIXiDlAWApnLSnalOqcrADh-gzGzoHsz", "N6UqlI5OjE9dGhd1ISBLU7e6");</script>
+<script>
+function showTime(Counter) {
+	var query = new AV.Query(Counter);
+	$(".leancloud_visitors").each(function() {
+		var url = $(this).attr("id").trim();
+		query.equalTo("url", url);
+		query.find({
+			success: function(results) {
+				if (results.length == 0) {
+					var content = $(document.getElementById(url)).text() + ': 0';
+					$(document.getElementById(url)).text(content);
+					return;
+				}
+				for (var i = 0; i < results.length; i++) {
+					var object = results[i];
+					var content = $(document.getElementById(url)).text() + ': ' + object.get('time');
+					$(document.getElementById(url)).text(content);
+				}
+			},
+			error: function(object, error) {
+				console.log("Error: " + error.code + " " + error.message);
+			}
+		});
+
+	});
+}
+
+function addCount(Counter) {
+	var Counter = AV.Object.extend("Counter");
+	url = $(".leancloud_visitors").attr('id').trim();
+	title = $(".leancloud_visitors").attr('data-flag-title').trim();
+	var query = new AV.Query(Counter);
+	query.equalTo("url", url);
+	query.find({
+		success: function(results) {
+			if (results.length > 0) {
+				var counter = results[0];
+				counter.fetchWhenSave(true);
+				counter.increment("time");
+				counter.save(null, {
+					success: function(counter) {
+						var content = $(document.getElementById(url)).text() + ': ' + counter.get('time');
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(counter, error) {
+						console.log('Failed to save Visitor num, with error message: ' + error.message);
+					}
+				});
+			} else {
+				var newcounter = new Counter();
+				newcounter.set("title", title);
+				newcounter.set("url", url);
+				newcounter.set("time", 1);
+				newcounter.save(null, {
+					success: function(newcounter) {
+					    console.log("newcounter.get('time')="+newcounter.get('time'));
+						var content = $(document.getElementById(url)).text() + ': ' + newcounter.get('time');
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(newcounter, error) {
+						console.log('Failed to create');
+					}
+				});
+			}
+		},
+		error: function(error) {
+			console.log('Error:' + error.code + " " + error.message);
+		}
+	});
+}
+$(function() {
+	var Counter = AV.Object.extend("Counter");
+	if ($('.leancloud_visitors').length == 1) {
+		addCount(Counter);
+	} else if ($('.post-title-link').length > 1) {
+		showTime(Counter);
+	}
+}); 
+</script>
+  
+  
+  
+  <div>
+    <button class="assist-btn circle" id="assist_btn" title="双击亮屏" style="left: 73px; top: 169px;">
+         开灯
+    </button>
+ </div>
+<script type="text/javascript">
+    // 浮动圆点展开与收缩
+
+    $(function () {
+        var assist_box = $('.assist-box');
+        $('#assist_btn').hover(function () {
+            assist_box.stop().show(300);
+        }, function () {
+            assist_box.stop().hide(150);
+        })
+    });
+
+    //浮动圆点拖动
+    $(function () {
+        var box = document.getElementById('assist_btn');
+        box.onmousedown = function (event) {
+            var e = event || window.event,
+                t = e.target || e.srcElement,
+                // 鼠标按下时的坐标x1,y1
+                x1 = e.clientX,
+                y1 = e.clientY,
+                //鼠标按下时的左右偏移量
+                dragLeft = this.offsetLeft,
+                dragTop = this.offsetTop;
+
+            document.onmousemove = function (event) {
+                var e = event || window.event,
+                    t = e.target || e.srcElement,
+                    // 鼠标移动时的动态坐标
+                    x2 = e.clientX,
+                    y2 = e.clientY,
+                    // 鼠标移动时的坐标的变化量
+                    x = x2 - x1,
+                    y = y2 - y1;
+                box.style.left = (dragLeft + x) + 'px';
+                box.style.top = (dragTop + y) + 'px';
+            }
+
+            document.onmouseup = function () {
+                this.onmousemove = null;
+            }
+        }
+    });
+
+/*
+    $whitesmoke   = #f5f5f5
+    $gainsboro    = #eee
+    $gray-lighter = #ddd
+    $grey-light   = #ccc
+    $grey         = #bbb
+    $grey-dark    = #999
+    $grey-dim     = #666
+    $black-light  = #555
+    $black-deep   = #222
+    $red          = #ff2a2a
+    $blue-bright  = #87daff
+    $blue         = #0684bd
+    $blue-deep    = #262a30
+*/
+    // white theme
+    var body = {color: "#555", background: "white"};
+    var a_tag = {color: "#222"};
+    var header = { background: "#f5f5f5"};
+    var logo_line_i = {background: "#222"};
+    // var post_code = {background: "#eee", color: "#222"};
+
+    function switch_theme() {
+        $("body").css(body);
+        $("a:not('.links-of-author-item a, .site-state-item a, .site-state-posts a, .feed-link a, .motion-element a, .post-tags a, .show-commit-cls a, #donate_board a')").css(a_tag);
+        $(".header, .footer").css(header);
+        $(".logo-line-before i, .logo-line-after i").css(logo_line_i);
+        //$(".post code").css(post_code);
+        $("#idhyt-surprise-ball #idhyt-surprise-ball-animation .drag").css(a_tag);
+        $(".post-title-link, .posts-expand .post-meta, .post-comments-count, .disqus-comment-count, .post-category a, .post-nav-next a, .post-nav-item a").css(a_tag);
+        
+        // $("code").css({color: '#c5c8c6', background: '#1d1f21'});
+        $("#assist_btn").hide(1500);
+    }
+
+    $(function () {
+        $("#assist_btn").dblclick(function() {
+            switch_theme();
+        });
+    });
+
+</script>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"poetry"};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+
+</body>
+</html>

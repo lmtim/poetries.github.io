@@ -1,0 +1,2027 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+  
+    <link href='//fonts.lug.ustc.edu.cn/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+  
+
+
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+
+
+    <meta name="description" content="技术改变生活" />
+
+
+
+  <meta name="keywords" content="sql," />
+
+
+
+  <link rel="alternate" href="http://poetries.github.io/atom.xml" title="Poetry's Blog" type="application/atom+xml" />
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+<meta name="description" content="第一部分：数据库相关概念什么是数据库
+
+狭义:
+
+存情数据的仓库
+
+
+广义:
+
+可以对数据进行存储和管理的软件以及数据本身统称为数据库
+
+
+
+数据库是由表、  关系、  操作组成
+为什么需要数据库
+
+几乎所有的应用软件的后台都需要数据库
+数据库存储数据占用空间小容易持久保存
+存储比较安全
+容易维护和升级
+数据库移植比较容易
+简化对数据的操作
+为将来学习0racle做准备
+B/s架构里面包含数据库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SqlServer2005学习总结">
+<meta property="og:url" content="http://www.poetries.top/2016/05/17/SqlServer2005学习总结/index.html">
+<meta property="og:site_name" content="Poetry's Blog">
+<meta property="og:description" content="第一部分：数据库相关概念什么是数据库
+
+狭义:
+
+存情数据的仓库
+
+
+广义:
+
+可以对数据进行存储和管理的软件以及数据本身统称为数据库
+
+
+
+数据库是由表、  关系、  操作组成
+为什么需要数据库
+
+几乎所有的应用软件的后台都需要数据库
+数据库存储数据占用空间小容易持久保存
+存储比较安全
+容易维护和升级
+数据库移植比较容易
+简化对数据的操作
+为将来学习0racle做准备
+B/s架构里面包含数据库">
+<meta property="og:updated_time" content="2016-09-27T15:41:22.579Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SqlServer2005学习总结">
+<meta name="twitter:description" content="第一部分：数据库相关概念什么是数据库
+
+狭义:
+
+存情数据的仓库
+
+
+广义:
+
+可以对数据进行存储和管理的软件以及数据本身统称为数据库
+
+
+
+数据库是由表、  关系、  操作组成
+为什么需要数据库
+
+几乎所有的应用软件的后台都需要数据库
+数据库存储数据占用空间小容易持久保存
+存储比较安全
+容易维护和升级
+数据库移植比较容易
+简化对数据的操作
+为将来学习0racle做准备
+B/s架构里面包含数据库">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+
+
+  <title> SqlServer2005学习总结 | Poetry's Blog </title>
+  <style type="text/css">
+    .main {
+      padding-bottom: 190px;
+    }
+    .circle {
+        width: 40px;
+        height: 40px;
+        background: rgba(98, 187, 77, 0.68) no-repeat;
+        cursor: move;
+	    	opacity: 0.7;
+    }
+
+    .assist-btn {
+        position: fixed;
+        top: 50％;
+        left: 10px;
+        -moz-border-radius: 50px;
+        -webkit-border-radius: 50px;
+        border-radius: 50px;
+        outline: none;
+        border: none;
+        color: rgb(214, 10, 10);
+    }
+  p.top51la{
+      font-size: 12px;
+      position:fixed;
+      top:5px;
+      right:5px;
+  }
+   p.top51la a span img{
+      display:inline-block;
+      width: 10px;
+   }
+    p.top51la a + img{
+        display: none;
+   }
+  p.topUV {
+      font-size: 12px;
+      position:fixed;
+      top:5px;
+      right:20px;
+   }
+  p.topUV a img{
+      display: inline-block; 
+      width: 11px;
+    }
+  p.topUV a{
+      border-bottom: none;
+    }
+</style>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?40b1f89aa80f2527b3db779c6898c879";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=58036087";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta custom-logo">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Poetry's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">聆听、感受、成长</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+
+        
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+
+        
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+
+        
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+
+        
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle"></i> <br />
+            
+            留言
+          </a>
+        </li>
+
+        
+      
+
+      <li class="menu-item" style="opacity: 1; transform: translateY(0px);"> <a title="把这个链接拖到你的工具栏中,任何网页都可以High" href='javascript:(function() {
+          function c() {
+              var e = document.createElement("link");
+              e.setAttribute("type", "text/css");
+              e.setAttribute("rel", "stylesheet");
+              e.setAttribute("href", f);
+              e.setAttribute("class", l);
+              document.body.appendChild(e)
+          }
+
+          function h() {
+              var e = document.getElementsByClassName(l);
+              for (var t = 0; t < e.length; t++) {
+                  document.body.removeChild(e[t])
+              }
+          }
+
+          function p() {
+              var e = document.createElement("div");
+              e.setAttribute("class", a);
+              document.body.appendChild(e);
+              setTimeout(function() {
+                  document.body.removeChild(e)
+              }, 100)
+          }
+
+          function d(e) {
+              return {
+                  height : e.offsetHeight,
+                  width : e.offsetWidth
+              }
+          }
+
+          function v(i) {
+              var s = d(i);
+              return s.height > e &amp;&amp; s.height < n &amp;&amp; s.width > t &amp;&amp; s.width < r
+          }
+
+          function m(e) {
+              var t = e;
+              var n = 0;
+              while (!!t) {
+                  n += t.offsetTop;
+                  t = t.offsetParent
+              }
+              return n
+          }
+
+          function g() {
+              var e = document.documentElement;
+              if (!!window.innerWidth) {
+                  return window.innerHeight
+              } else if (e &amp;&amp; !isNaN(e.clientHeight)) {
+                  return e.clientHeight
+              }
+              return 0
+          }
+
+          function y() {
+              if (window.pageYOffset) {
+                  return window.pageYOffset
+              }
+              return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+          }
+
+          function E(e) {
+              var t = m(e);
+              return t >= w &amp;&amp; t <= b + w
+          }
+
+          function S() {
+              var e = document.createElement("audio");
+              e.setAttribute("class", l);
+              e.src = i;
+              e.loop = false;
+              e.addEventListener("canplay", function() {
+                  setTimeout(function() {
+                      x(k)
+                  }, 500);
+                  setTimeout(function() {
+                      N();
+                      p();
+                      for (var e = 0; e < O.length; e++) {
+                          T(O[e])
+                      }
+                  }, 15500)
+              }, true);
+              e.addEventListener("ended", function() {
+                  N();
+                  h()
+              }, true);
+              e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+              document.body.appendChild(e);
+              e.play()
+          }
+
+          function x(e) {
+              e.className += " " + s + " " + o
+          }
+
+          function T(e) {
+              e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+          }
+
+          function N() {
+              var e = document.getElementsByClassName(s);
+              var t = new RegExp("\\b" + s + "\\b");
+              for (var n = 0; n < e.length; ) {
+                  e[n].className = e[n].className.replace(t, "")
+              }
+          }
+
+          var e = 30;
+          var t = 30;
+          var n = 350;
+          var r = 350;
+          var i = "https://ss0.bdstatic.com/y0s1hSulBw92lNKgpU_Z2jR7b2w6buu/data2/music/8b77e748d030862ea6ed5ef0fcf7832d/242078559/242078559.mp3?xcode=0683c9c47ce11a94766f476e85847328";
+          var s = "mw-harlem_shake_me";
+          var o = "im_first";
+          var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+          var a = "mw-strobe_light";
+          var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+          var l = "mw_added_css";
+          var b = g();
+          var w = y();
+          var C = document.getElementsByTagName("*");
+          var k = null;
+          for (var L = 0; L < C.length; L++) {
+              var A = C[L];
+              if (v(A)) {
+                  if (E(A)) {
+                      k = A;
+                      break
+                  }
+              }
+          }
+          if (A === null) {
+              console.warn("Could not find a node of the right size. Please try a different page.");
+              return
+          }
+          c();
+          S();
+          var O = [];
+          for (var L = 0; L < C.length; L++) {
+              var A = C[L];
+              if (v(A)) {
+                  O.push(A)
+              }
+          }
+          })()' class="okmemo-tmp-unselect"><i class="menu-item-icon fa fa-music fa-fw"></i>High一下</a> </li>
+
+      
+      
+    </ul>
+  
+    
+
+  
+    <div class="site-search">
+      
+  
+  <form class="site-search-form">
+    <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  </form>
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'v9qj9piTH6n2pV9s23zR','2.0.0');
+</script>
+
+
+
+    </div>
+
+  
+</nav>
+
+
+ </div>
+    </header>
+	
+	
+	
+	<a href="https://github.com/poetries" target="_blank">
+	<img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/c6625ac1f3ee0a12250227cf83ce904423abf351/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_gray_6d6d6d.png">
+	</a>
+<p class="topUV"><span style="color:#0e0e0e;position:relative;top:-2px;">本站热度&nbsp;</span>
+  <script src='http://www.xiaoniu168.com/counts3110.html' language='JavaScript' charset='utf-8'></script>
+  <script>
+      var oP = document.getElementsByClassName("topUV")[0];
+      oP.getElementsByTagName("a")[0].setAttribute("href","javascript:void(0);");
+  </script>
+  <span style="color:#0e0e0e;position: relative;top: -2px;">&nbsp;&nbsp;℃</span>
+</p>
+      
+	
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                SqlServer2005学习总结
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+        
+          <!-- <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-05-17T09:42:17+00:00" content="2016-05-17">
+              2016-05-17
+            </time>
+          </span>-->
+
+          
+            <span class="post-category" >
+              &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/DataBase/" itemprop="url" rel="index">
+                    <span itemprop="name">DataBase</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/17/SqlServer2005学习总结/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/17/SqlServer2005学习总结/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+         
+         
+            &nbsp; | &nbsp;<span>热度</span>&nbsp;<span style="color:red;" id="/2016/05/17/SqlServer2005学习总结/"class="leancloud_visitors"  data-flag-title="SqlServer2005学习总结"></span><span style="color:red;">&nbsp;℃</span>
+            
+            <!-- <span id="/2016/05/17/SqlServer2005学习总结/"class="leancloud_visitors"  data-flag-title="SqlServer2005学习总结">
+              &nbsp; | &nbsp;热度&nbsp;
+               </span> -->
+            
+      
+           
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><hr>
+<h3 id="第一部分：数据库相关概念"><a href="#第一部分：数据库相关概念" class="headerlink" title="第一部分：数据库相关概念"></a><strong>第一部分：数据库相关概念</strong></h3><p><strong>什么是数据库</strong></p>
+<ul>
+<li><p>狭义:</p>
+<ul>
+<li>存情数据的仓库</li>
+</ul>
+</li>
+<li><p>广义:</p>
+<ul>
+<li>可以对数据进行存储和管理的软件以及数据本身统称为数据库</li>
+</ul>
+</li>
+</ul>
+<p>数据库是由表、  关系、  操作组成</p>
+<p><strong>为什么需要数据库</strong></p>
+<ul>
+<li>几乎所有的应用软件的后台都需要数据库</li>
+<li>数据库存储数据占用空间小容易持久保存</li>
+<li>存储比较安全</li>
+<li>容易维护和升级</li>
+<li>数据库移植比较容易</li>
+<li>简化对数据的操作</li>
+<li>为将来学习0racle做准备</li>
+<li><p>B/s架构里面包含数据库</p>
+<a id="more"></a>
+<p><strong>数据库的安装和卸载</strong></p>
+</li>
+<li><p>sq12000</p>
+</li>
+<li>解决挂起的问题</li>
+</ul>
+<p><strong>预备知识</strong></p>
+<ul>
+<li>学习SqlServer2005必须的先学一门编程语言么</li>
+<li>不需要,但是懂一门编程语言的话会有助于学习sqlserver2005 的TL SQ</li>
+</ul>
+<p><strong>数据结构和数据库的区别</strong></p>
+<ul>
+<li>数据库是在应用软件级别研究数据的存储和操作数据结构是在系统软件级别研究数据的存储和操作</li>
+</ul>
+<p><strong>什么是连接 【重点】</strong></p>
+<ul>
+<li>有了编程语言为什么还需要数据库</li>
+<li>对内存数据操作是编程语言的强项,   但是对硬盘数据操作却是编程语言的弱项对硬盘数据操作是数据库的强项, 是数据库研究的核心同题</li>
+</ul>
+<p><strong>建议初学者从三个方面学习数据库数据库是如何存储数据的</strong></p>
+<ul>
+<li>字段记录表约束(主键外键唯一键非空 check default触发器)</li>
+<li><p>数据库是如何操作数据的<br><code>insert  update delete T-SQL</code> 存储过程函数触发器</p>
+</li>
+<li><p>数据库是如何显示数据的<br><code>select</code>(重点的重点)</p>
+</li>
+</ul>
+<p><strong>必各的一些操作</strong></p>
+<ul>
+<li>如何建数据库</li>
+<li>如何删除数据库</li>
+<li>如何附加和分高数据库</li>
+<li>设置登录用户名和密码</li>
+<li>如何创建用户</li>
+</ul>
+<p><strong>数据库是如何解决数据存储问题的 【最基础内容, 必须掌握】</strong></p>
+<p><strong>1.表的相关数据</strong></p>
+<ul>
+<li><p>字段</p>
+<ul>
+<li>一个事物的某一个特征</li>
+</ul>
+</li>
+<li><p>记录</p>
+<ul>
+<li>字段的组合表示的是一个具体的事物</li>
+</ul>
+</li>
+<li><p>表</p>
+<ul>
+<li>记录的组合表示的是同一类型事物的集合</li>
+</ul>
+</li>
+</ul>
+<p><strong>表和字段、记录的关系</strong></p>
+<ul>
+<li>字段是事物的属性</li>
+<li>记录是事物本身</li>
+<li><p>表是事物的集合</p>
+</li>
+<li><p>列</p>
+<ul>
+<li>字段的另一种称谓</li>
+</ul>
+</li>
+<li><p>属性</p>
+<ul>
+<li>字段的另一种称谓</li>
+</ul>
+</li>
+<li><p>元组</p>
+<ul>
+<li>记录的另一种称谓</li>
+</ul>
+</li>
+</ul>
+<p><strong>2.   create table命令</strong></p>
+<ul>
+<li>通过图形化界面建表<br>create table最后一个字段的后面建议不要写逗号说明:简単掌握后面我们会再详细的介绍</li>
+</ul>
+<p><strong>3.    什么是约束</strong></p>
+<ul>
+<li><p>定义</p>
+<ul>
+<li>对一个表中属性操作的限制叫做约束</li>
+</ul>
+</li>
+<li><p>分类</p>
+<ul>
+<li>主键约束<br>不允许重复元素選免了数据的冗余</li>
+</ul>
+</li>
+<li><p>外键约束</p>
+<ul>
+<li>通过外键约束从语法上保证了本事物所</li>
+<li>关联的其他事物一定是存在的</li>
+</ul>
+</li>
+</ul>
+<p>事物和事物之间的关系是通过外键来体现的</p>
+<ul>
+<li><p>check约束</p>
+<ul>
+<li>保证事物属性的取值在合法的范围之内</li>
+</ul>
+</li>
+<li><p>default约束</p>
+<ul>
+<li>保证事物的属性一定会有一个值</li>
+</ul>
+</li>
+<li><p>唯一约束</p>
+<ul>
+<li>保证了事物属性的取值不允许重复,,但允许其中有一列且只能有一列为空</li>
+</ul>
+</li>
+</ul>
+<p><strong>间题:</strong></p>
+<p>ul,i que键是否允许多列为空?</p>
+<p>答:</p>
+<ul>
+<li>SqlServer2005只允许一个uni que列为空</li>
+<li>Oracle1 IG允许多个uni que列为空</li>
+</ul>
+<p><strong>not null</strong></p>
+<ul>
+<li>要求用户必须的为该属性赋一个值,否则语法出错!</li>
+</ul>
+<ul>
+<li>如果一个字段不写n,11也不行not n,11</li>
+<li>则默认是rm11即默认允许为空,用户可以不给该字段赋值</li>
+<li>如果用户没有为该字段赋值,则该字段的值默认是nd1</li>
+</ul>
+<p><strong>要注意nu11和 default的区别</strong></p>
+<ul>
+<li>相同点:<ul>
+<li>都允许用户不赋值</li>
+</ul>
+</li>
+<li>不同点:<ul>
+<li>nu11修饰的字段如果用户不赋值则默认是nu1 1</li>
+<li>default修饰的字段如果用户不赋値则默认是default指定的那个值</li>
+</ul>
+</li>
+</ul>
+<p><strong>4.    表和约束的异同</strong></p>
+<ul>
+<li>数据库是通过表来解决事物的存備同题的</li>
+<li>数据库是通过约束来解决事物取值的有效性和合法性的问题</li>
+<li><p>建表的过程就是指定事物属性及其事物属性各种约束的过程</p>
+</li>
+<li><p>什么是关系</p>
+<ul>
+<li>定义:<br>表和表之间的联系</li>
+</ul>
+</li>
+<li><p>实现方式</p>
+<ul>
+<li>通过设置不同形式的外键来体现表和表的不同关系</li>
+</ul>
+</li>
+<li><p>分类(假设是A表和B表)</p>
+<ul>
+<li><p>一对一<br>既可以把表A 的主键充当表B的外键<br>也可以把表B的主键充当表A的外键</p>
+</li>
+<li><p>一对多【重点】<br>把表A 的主键充当表B的外键<br>或者讲: 把A表的主键添加到B表来充当B表的外键</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>在多的一方添加外键</p>
+<ul>
+<li>多对多<br>多对多必须的通过単独的一张表来表示</li>
+</ul>
+<p><strong>例子</strong></p>
+<ul>
+<li>班级和教师</li>
+<li>班级是一张表</li>
+<li>教师是一张表</li>
+<li>班级和教师的关系也是一张表</li>
+</ul>
+<p><strong>6.  主键</strong></p>
+<ul>
+<li><p>定义</p>
+<ul>
+<li>能够唯一标示一个事物的一个字段或者多个字段的组合, 被称为主键</li>
+</ul>
+</li>
+<li><p>主键的特点【重点】:</p>
+<ul>
+<li>含有主键的表叫做主键表</li>
+<li>主键通常都是整数不建议使用字符串当主體(如果主體是用于集群式服务,才可以考虑用字符串当主體)</li>
+<li>主键的值通常都不允许修改, 除非本记录被删除</li>
+<li>主键不要定义成i d, 而要定义成表名 Id或者表名_i d</li>
+<li>要用代理主键,不要用业务主键</li>
+<li>任何一张表, 强烈建议不要使用有业务含义的字段充当主键</li>
+<li>我们通常都是在表中単独添加一个整型的编号充当主键字段</li>
+<li>主键是否连续增长不是十分重要</li>
+</ul>
+</li>
+</ul>
+<p><strong>7.  外键</strong></p>
+<ul>
+<li>定义:<ul>
+<li>如果一个表中的若干个字段是来自另外若干个表的主键或唯一键<br>则这若干个字段就是外键</li>
+</ul>
+</li>
+</ul>
+<p><strong>注意:</strong></p>
+<ul>
+<li>外键通常是来自另外表的主键而不是唯一键, 因为唯一键可能为M11</li>
+<li>外键不一定是来自另外的表, 也可能来自本表的主键</li>
+<li>含有外键的表叫外建表, 外键字段来自的那一张表叫做主键表</li>
+</ul>
+<p><strong>问题:</strong></p>
+<ul>
+<li>先删主键表还是外建表?</li>
+</ul>
+<p>答集:  先删外建表<br>如果先删主键表,会报错,因为这会导致外建表中的数据引用失败</p>
+<hr>
+<h3 id="第二部分：查询"><a href="#第二部分：查询" class="headerlink" title="第二部分：查询"></a><strong>第二部分：查询</strong></h3><p><strong>査询【最重要难度最大,考试必考内容,强烈建议所有的学生都要熟练掌握査询的内容】</strong></p>
+<p><strong>1.计算列</strong></p>
+<figure class="highlight plain"><figcaption><span>from emp;```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">- -- *表示所有的</div><div class="line">- -- from emp 表示从emp表査询</div><div class="line"></div><div class="line">```select empno,  ename from emp</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><figcaption><span>ename,  sa1 from emp;```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">- select ename, sa1*12 as″年薪″ from emp;</div><div class="line">- --as可以省略记住:″年薪″不要写成&apos;年薪&apos;也不要写成年薪</div><div class="line"></div><div class="line">- select ename,  sa1*12 as″年薪″, sa1″月薪″, job from emp;</div><div class="line"></div><div class="line">```select888 from emp;</div></pre></td></tr></table></figure>
+<p>–ok<br>-一输出的行数是emp表的行数 每行只有一个字段,</p>
+<p><code>select5;</code>   –ok<br>-一不推荐</p>
+<p><strong>注意:</strong></p>
+<ul>
+<li>在0racle中字段的别名不允许用单引号括起来</li>
+<li>但是sqlserver2005却允许,,因此为了兼容性 -最好字段别名用双引号括起来, 不要用单引号</li>
+</ul>
+<p><strong>2.  distinct【不允许重复的】</strong></p>
+<figure class="highlight plain"><figcaption><span>distinct deptno from emp;```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">```--distince deptno会过滤掉重复的deptno</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><figcaption><span>distinct comm from emp;```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">--distinct也可以过滤掉重复的nu11  或者说如果有多个nu11只输出一个</div><div class="line">```select distinct comm, deptno from emp;```-一把comm和deptno的组合进行过滤```select deptno, distinct comn from emp1```--error逻辑上有冲突</div><div class="line"></div><div class="line"></div><div class="line">**3. between【在某个范围】**</div><div class="line"></div><div class="line">- -一査找工资在1 500到3000之间(包括和)的所有的员工的信息</div><div class="line">```select* from e1lIp</div><div class="line">where sa1&gt;=1500 and sa1&lt;=3000</div></pre></td></tr></table></figure>
+<p>等价于<br><figure class="highlight plain"><figcaption><span>from emp</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">where sa1 between1500 and3000</div></pre></td></tr></table></figure></p>
+<ul>
+<li>-一査找工资小于3ooo或大于1 5oo的所有的员工的信息<figure class="highlight plain"><figcaption><span>from emp where sa1<1500 or="" sa1="">3000```</1500></span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">等价于</div><div class="line">```select* from emp  where sa1 not between1500 and3000</div></pre></td></tr></table></figure></li>
+</ul>
+<p><strong>4.  in【属于若干个弧立的值】</strong></p>
+<p>``select*from emp where sa1 in(1500,  3000,  5000)<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">等价于</div><div class="line">```select* from emp</div><div class="line">where sa1=1500 or sa1=3000 or sa1=5000</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><figcaption><span>emp where salnot in(1500, 3000, 5000)``` </span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">- -一把sa1既不是也不是也不是的记录输出等价于</div><div class="line"></div><div class="line">```select* from enp</div><div class="line">where sa1〇1500 and sat〇3000 and sat〇5000</div></pre></td></tr></table></figure>
+<ul>
+<li>-一数据库中不等于有两种表示:   <code>!=     &lt;&gt;</code>   <strong>推荐使用第二种</strong></li>
+<li>-一对或取反是并且对并且取反是或</li>
+</ul>
+<p><strong>5.  top【最前面的若干个记录专属于sqlserver的语法,不可移植到其他数据库】</strong></p>
+<figure class="highlight plain"><figcaption><span>top5 *from emp;```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">``select top15 percent* from emp; ```  -一输出的是3个,不是2个</div><div class="line">``select top5  from emp;``` --error</div><div class="line"></div><div class="line">**6. nu11【没有值空值】**</div><div class="line"></div><div class="line">- 零和rm11是不一样的, nu11表示空值,投有值,零表示一个确定的值</div><div class="line"></div><div class="line">- nu11不能参与如下运算: 〇  !=  =</div><div class="line">- n111可以参与如下运算:   is     not is</div><div class="line">- select* from emp where comm is nu11;  -一输出奖金为空的员工的信息</div><div class="line">```select* from emp where comm is not nu11;``` </div><div class="line"></div><div class="line">- 一输出奖金不为空的员工的信息</div><div class="line"></div><div class="line">```select* from e叩 where comm 〇 null; ```-一输出为空error</div><div class="line">```select*from emp where comm !=nu11; ```-一输出为空error</div><div class="line">```select* from emp where comm = nu11; ``` -一输出为空error</div><div class="line"></div><div class="line">- 任何类型的数据都允许为 nu1 1</div><div class="line"></div><div class="line">```create table t1 (:l,lamenvarchar(20), cnt int, riqi datetime);</div><div class="line">insert into t1 values(nu1l, nu11, nu11);``` -0K</div><div class="line"></div><div class="line">- 任何数字与rm1 1参与数学运算的结果永远是nu1 1</div><div class="line"></div><div class="line">- 一输出每个员工的姓名年薪(包含了奖金)   comn假设是一年的奖金</div><div class="line">```select empno, ename, sa1*12+comm ″年薪&quot; from emp;</div></pre></td></tr></table></figure>
+<ul>
+<li>-一本程序证明了: r,u11不能参与任何数据运算否则结果永远为空</li>
+<li><p>一正确的写法是:</p>
+<figure class="highlight plain"><figcaption><span>ename, sa1*12+isnu11(comm, 0)″年薪″ from emp;```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">--is null(comm, 0)如果comm是nu11就返回零否则返回comm的值</div><div class="line"></div><div class="line"></div><div class="line">**7.  order by  【以某个字段排序】**</div><div class="line"></div><div class="line">- `order by a, b`                       --a和b都是升序</div><div class="line">- `order by a, b desc`               --a升序 b降序</div><div class="line">- `order by a desc, b`        -a降序 b升序</div><div class="line">- `order by a desc, b desc`       --a和b都是降序</div><div class="line"></div><div class="line"></div><div class="line">- 文字描述:</div><div class="line"> - 如果不指定排序的标准,则默认是升序升序用asc表示默认可以不写</div><div class="line"></div><div class="line"> - 为一个字段指定的排序标准并不会对另一个字段产生影响强烈建议为每一个字段都指定排序的标准</div><div class="line"></div><div class="line">**例子:**</div><div class="line"></div><div class="line"> - asc是升序的意思默认可以不写 desc是降序</div><div class="line"></div><div class="line">`select* from emp order by sa1;` 一默认是按照升序排序</div><div class="line"></div><div class="line">    select*from emp order by deptno, sa1;</div><div class="line"></div><div class="line">- -一先按照deptno升序排序,如果deptno相同,再按照sa1升序排序</div><div class="line"></div><div class="line">    select* from emp order by deptno desc, sa1;</div><div class="line"></div><div class="line">- -一先按deptno降序排序如果deptno相同再按照sal升序排序</div><div class="line">- -一记住sa1是升序不是降序</div><div class="line">`--orderby a desc, b, c, d`     desc只对a产生影响不会对后面的b  c d产生影响</div><div class="line"></div><div class="line">```select*from emp order by deptno, sa1 desc</div></pre></td></tr></table></figure>
+</li>
+<li><p>-一问题: desc是否会对deptno产生影响?</p>
+</li>
+<li>-一答案:不会</li>
+<li>-一先按deptno升序,如果deptno相同,再按sa1降序</li>
+</ul>
+<p><strong>8.模糊査询 【搜索时经常使用】</strong></p>
+<ul>
+<li>格式:<br>select字段的集合 from表名 where某个字段的名字1ike匹配的条件<br>匹配的条件通常含有通配符</li>
+</ul>
+<ul>
+<li><p>通配符:<br>%<br>表示任意o个或多个字符</p>
+<figure class="highlight plain"><figcaption><span>emp  where enamelike'%A%'  ``` </span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">- --ename只要含有字母A就输出</div><div class="line">```select*from emp where enamelike&apos;A%&apos;  ``` </div><div class="line"></div><div class="line">- -ename只要首字母是A的就输出</div><div class="line">```select*    from emp     where enamelike&apos;%A&apos;</div></pre></td></tr></table></figure>
+</li>
+<li><p>-ename只要尾字母是A的就输出</p>
+</li>
+<li><p>[这是下划线不是減号]</p>
+</li>
+<li><p>表示任意单个字符</p>
+<figure class="highlight plain"><figcaption><span>from emp where enamelike'_A%'```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">- -ename只要第二个字母是A的就输出</div><div class="line"></div><div class="line">**[a-f]**</div><div class="line"></div><div class="line">- a到f中的任意单个字符只能是a b c d e f中的任意一个字符</div><div class="line">`select* from emp where` </div><div class="line"></div><div class="line">- `enamelike&apos;_[A-F]%&apos;&apos;&apos;`-一把ename中第二个字符是A或B或c或D或E或F的记录输出</div><div class="line"></div><div class="line">**[a, f]**</div><div class="line"></div><div class="line">- a或f</div><div class="line"></div><div class="line"></div><div class="line">**[a-c]**</div><div class="line"></div><div class="line">- 不是a也不是b也不是c的任意单个字符</div><div class="line"></div><div class="line">`select* from emp where enamelike&apos;_[A-F]%&apos;&apos;&apos;`-一把ename中第二个字符不是A也不是B也不是c也不是D也不是E也不是F的记录输出</div><div class="line"></div><div class="line">**注意:**</div><div class="line"></div><div class="line">- 匹配的条件必须的用单引号括起来   不能省略也不能改用双引号</div><div class="line">通配符作为不同字符使用的同题</div><div class="line"></div><div class="line"></div><div class="line">```select* from student where namelike&apos;%\%%&apos; escape&apos;\&apos;  ``` -一把name中包含有%的输出```select* from student where namelike&apos;%\_%&apos; escape&apos;\&apos;``` 一把name中包含有_的输出</div><div class="line"></div><div class="line">**9.聚合函数【多行记录返回至一个值通常用于统计分组的信息】函数的分类**</div><div class="line"></div><div class="line">- 単行函数</div><div class="line"> - 每一行返回一个值</div><div class="line"></div><div class="line">- 多行函数</div><div class="line"> - 多行返回一个值</div><div class="line"> - 聚合函数是多行函数</div><div class="line"></div><div class="line"> **例子:**</div><div class="line">```selectlower(ename) from emp;``` 一最终返回的是行1ower0是单行函数</div><div class="line">`select max(sa1) from emp;` 一返回行max0是多行函数</div><div class="line"></div><div class="line"></div><div class="line">**聚合函数的分类**</div><div class="line"></div><div class="line">- max()</div><div class="line">-min()</div><div class="line">-avg()  平均值</div><div class="line">-count()求个数</div><div class="line">-count(*)</div><div class="line"></div><div class="line">返回表中所有的记录的个数</div><div class="line"></div><div class="line">`select count(*) from emp;`  -一返回emp表所有记录的个数</div><div class="line">count(字段名)</div><div class="line"></div><div class="line">- 返回字段值非空的记录的个数, 重复的记录也会被当做有效的记录</div><div class="line">```select courlt(deptno) from emp;</div></pre></td></tr></table></figure>
+</li>
+<li><p>-一返回值是这说明deptno重复的记录也被当做有效的记录</p>
+<figure class="highlight plain"><figcaption><span>coul,it(l1omm) from emp;``</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">- -一返回値是这说明 c omm为ru」1 1的记录不会被当做有效的记录</div><div class="line"></div><div class="line">- count(distinct字段名)</div><div class="line"> - 返回字段不重复并且非空的记录的个数</div><div class="line"></div><div class="line">```select count(distinct deptno) from emp;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>-一返回值是 统计deptno不重复的记录的个数</p>
+<p><strong>注意的问题</strong></p>
+<ul>
+<li>判断如下sq1语句是否正确</li>
+</ul>
+<figure class="highlight plain"><figcaption><span>ma:x(sa1), min(sa1), count(*) from emp; ```--ok</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">select max(sa1) -最高工资″, min(sa1)″最低工资″, count(*)″员工人数″ from emp; --ok</div><div class="line">```select max(sa1), 1ower(ename) from emp;``` --error单行函数和多行函数不能混用</div><div class="line">```select ma;x(sa1) from emp;``` --ok默认把所有的信息当做一组</div><div class="line"></div><div class="line">**10. group by  【分组难点】**</div><div class="line"></div><div class="line">- 格式:</div><div class="line"> - group by字段的集合</div><div class="line"></div><div class="line">- 功能:</div><div class="line"> - 把表中的记录按照字段分成不同的组</div><div class="line"></div><div class="line">**例子**</div><div class="line"></div><div class="line">- 査询不同部门的平均工资</div><div class="line">```select deptno, avg(sa1)</div></pre></td></tr></table></figure>
+<p>as″部门平均工资⊠   from emp group by deptno</p>
+<p><strong>注意:</strong></p>
+<ul>
+<li>理解:  gro·up by a, b, c的用法</li>
+<li>先按a分组,如果a相同,再按b分组,如果b相同,再按c分组</li>
+<li>最终统计的是最小分组的信息</li>
+<li>一定要明自下列语句为什么是错误的</li>
+</ul>
+<p>select deptno, avg(sa1) as″部门平均工资⊠, ename<br>from emp<br>解oup by deptno</p>
+<p>select deptno,  ename<br>from emp<br>解oup by deptno</p>
+<p>select deptno, job, sa1<br>from emp<br>解oup by deptno, job<br>记住:使用了gro1」p by之后select 不能出现组内的详细信息中只能出现分组后的整体信息,</p>
+<p><strong>11. having【对分组之后的信息进行过滤难点】</strong></p>
+<ul>
+<li><p>having子句是用来对分组之后的数据进行过滤<br>因此使用having时通常都会先使用group by</p>
+</li>
+<li><p>如果没使用gro·L!p by但使用了having<br>则意味着having把所有的记录当做一组来进行过滤<br>极少用</p>
+<figure class="highlight plain"><figcaption><span>count(*)</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">from emp</div><div class="line">having avg(sa1) &gt; 1000</div></pre></td></tr></table></figure>
+</li>
+<li><p>having子句出现的字段必须的是分组之后的组的整体信息having子句不允许出现组内的详细信息</p>
+</li>
+<li><p>尽管select字段中可以出现别名</p>
+</li>
+<li>但是having子句中不能出现字段的别名, </li>
+<li><p>只能使用字段最原始的名字原因不得而知</p>
+</li>
+<li><p><strong>having和where的异同</strong></p>
+</li>
+<li><p>相同的:</p>
+<ul>
+<li><p>都是对数据过滤,只保留有效的数据<br>where和having一样, </p>
+</li>
+<li><p>都不允许出现字段的别名,,只允许出现最原始的字段的名字,本结论在S‘11Server2005和Olracle11G都成立</p>
+</li>
+</ul>
+</li>
+<li>不同:<ul>
+<li>where是对原始的记录过滤 having是对分组之后的记录过滤</li>
+<li>where必须的写在having的前面,顺序不可颠倒否则运行出错</li>
+</ul>
+</li>
+</ul>
+<p><strong>例子:</strong></p>
+<p>一把工资大于,<br>-一统计输出部门平均工资大于的部门的部门编号部门的平均工资select deptno, avg(sa1)″平均工资″, count(*)″部门人数″,,max(sa1) ″部门的最高工资″<br>from emp<br>where sa1 &gt;2000  –where是对原始的记录过滤<br>group by deptno<br>having avg(sa1) &gt; 3000  -一对分组之后的记录过滤</p>
+<p>一判断入选语句是否正确</p>
+<blockquote>
+<p>select deptno, avg(sal)″平均工资″, count(*)″部门人数″,,max(sa1) ″部门的最高工资″ from<br>emp group by deptno having avg(sa1) &gt;3000  -一对分组之后的记录过滤 where sa1 &gt;<br>2000  一一where写在了having的后面  error</p>
+</blockquote>
+<p><strong>12.连接査询</strong></p>
+<ul>
+<li><p>定义</p>
+<ul>
+<li>将两个表或者两个以上的表以一定的连接条件连接起来</li>
+<li>从中检索出满足条件的数据</li>
+</ul>
+</li>
+<li><p>分类</p>
+</li>
+</ul>
+<p><strong>内连接【重点的重点也是难点的难点】</strong></p>
+<ul>
+<li><ol>
+<li><code>select... fromA, B</code>的用法<br>产生的结果:</li>
+</ol>
+</li>
+<li>行数是A和B的乘积</li>
+<li><p>列数是A和B之和</p>
+</li>
+<li><p>或者说<br>油表的每一条记录都和B表的每一条记录组合在一起形成的是个笛卡尔积</p>
+</li>
+<li><p>或者说:</p>
+<ul>
+<li>把B表的每一条记录都和A表的每一条记录组合在一起形成的是个笛卡尔积</li>
+</ul>
+</li>
+</ul>
+<p><strong>注意:</strong></p>
+<figure class="highlight plain"><figcaption><span>from A, B```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">输出结果和</div><div class="line">```select* from B, A</div></pre></td></tr></table></figure>
+<p>是一模一样的</p>
+<p><strong>例子</strong><br>-一输出70行11列<br><figure class="highlight plain"><figcaption><span>from emp, dept```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">**2. select... from A, Bwhere... 的用法**</div><div class="line"></div><div class="line">```select... from A, B ``` --A和B可以互换</div><div class="line">产生的簡卡尔积, 用where中的条件进行过滤</div><div class="line">**例子:**</div><div class="line">-一输出5行11列</div><div class="line">select*</div><div class="line">from emp, dept  --dept和emp互换输出结果不变</div><div class="line">where empno= 7369</div><div class="line"></div><div class="line">-   select... from A join B on... select...  from A join B on</div><div class="line">-  SQL92标准和 SQL99标准的区别</div><div class="line">```select...  from A, B where.</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><figcaption><span>from A join B on```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div></pre></td><td class="code"><pre><div class="line">输出结果是一样</div><div class="line"></div><div class="line"></div><div class="line">**推荐使用 sQL99标准**</div><div class="line"></div><div class="line">- sq199更容易理解</div><div class="line">- 在sq199标准中, on和,rhere可以做不同的分工</div><div class="line">on指定连接条件</div><div class="line">where对连接之后临时表的数据进行过糖</div><div class="line"></div><div class="line">**示例:**</div><div class="line"></div><div class="line">一把工资大于2000的员工的姓名和部门的名称输出 和 工资的等级</div><div class="line">-sc1199标准明显的优于sq192</div><div class="line"></div><div class="line">    select″E″.enae,″D″.hme,″S&quot;.grade</div><div class="line">    from e叩 &quot;E″</div><div class="line">    join dept″D″</div><div class="line">    on″E″.deptno=″D〟.deptno</div><div class="line">    Join salgrade″S″</div><div class="line">    on″E″.sa1&gt;=″S″.1osal md&quot;E″.sa1 &lt;=″S″.hisal</div><div class="line">    where″E&quot;.sa1 &gt; 2000</div><div class="line"></div><div class="line">一把工资大于2ooo的员工的姓名和部门的名称输出 和 工资的等级-sq192标准</div><div class="line"></div><div class="line">    select″E″.en訓e,″D″.如ae,″S″.grade</div><div class="line">    from e叩 ″E″, dept&quot;D〟, salpade″S″</div><div class="line">    where″E&quot;,sa1 &gt; 2000  md  &quot;E″,deptno=″D″,deptno md</div><div class="line">    (″E″.sa1&gt;=″S″.1osa1 md -E″.sa1 &lt;=″S″.hisa1)</div><div class="line"></div><div class="line"></div><div class="line">**5.  select、   from、   where、   Join、   on、   group、     order、   top、   having的混合使用**</div><div class="line"></div><div class="line">**査询的顺序**</div><div class="line"></div><div class="line">- select top....</div><div class="line">- from A</div><div class="line">- join B</div><div class="line">- on....</div><div class="line">- join C</div><div class="line">- on....</div><div class="line">- where,.....</div><div class="line">- group by...</div><div class="line">- having. , , . .</div><div class="line">- order by.....</div><div class="line">**例子:**</div><div class="line"></div><div class="line">- -一把工资大于的所有的员工按部门分组把部门平均工资大于的最</div><div class="line">- -一高前个的部门的编号部门的名称部 「J平均工资的等级</div><div class="line"></div><div class="line">- **一第一种写法**</div><div class="line"></div><div class="line">&gt;     select&quot;T″,*,  &quot;D″,如ae,  &quot;S″.grade</div><div class="line">&gt;     from dept″D″</div><div class="line">&gt;     join(select top2″E&quot;.deptno,  avg(sa1)″avg_sa1″</div><div class="line">&gt;     from emp″E″</div><div class="line">&gt;     join dept″D″</div><div class="line">&gt;     on″E″.deptno=″D&quot;.deptno</div><div class="line">&gt;     Join salpade″S&quot;</div><div class="line">&gt;     on -E″.sa1 between〃S&quot;.1osa1 nd″S&quot;.hisa1</div><div class="line">&gt;     where ⊠E&quot;.sa1 &gt; 1500</div><div class="line">&gt;     group by ⊠E″.deptno</div><div class="line">&gt;     having avg(″E〟.sat) &gt; 2000</div><div class="line">&gt;     order by avg(&quot;E&quot;.sat) desc</div><div class="line">&gt;     ) ″T″</div><div class="line">&gt;     on&quot;D〟.deptno=″T″.deptno</div><div class="line">&gt;     imer join salgrade″S&quot;</div><div class="line">&gt;     on″T&quot;.″avg_sa1&quot; between&quot;S″.1osa1 nd&quot;S″.hisa1</div><div class="line"></div><div class="line"></div><div class="line">- **一第二种写法**</div><div class="line"></div><div class="line">&gt; select″T-.*,  ″D-. hae,  ″S&quot;.grade from dept″D″ join(select top2</div><div class="line">&gt; deptno,  avg(sa1)    as″avg_sa1″ from emp where sa1 &gt; 1500 group by</div><div class="line">&gt; deptno having avg(sa1)  &gt; 2000 order by″avg_sa1″ desc )  ″T″</div><div class="line">&gt; on″D″.deptno=″T″.deptno Join salgrade″S&quot; on″T&quot;.″avg_sa1″</div><div class="line">&gt; between″S″.1osa1 nd″S″,hisal</div><div class="line"></div><div class="line">**6. 习题**</div><div class="line"></div><div class="line">- 判断以下语句输出是几行</div><div class="line">```select&apos;l: from emp, dept where emp.deptno= 10</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><figcaption><span>from emp, dept where dept.deptno= 10 ```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">- -一过滤条件不是连接条件</div><div class="line"></div><div class="line">考虑如何把</div><div class="line">selelit:* from emp, dept where dept.dept:lio= 10 以sq199标准来输出</div><div class="line"></div><div class="line"></div><div class="line">1&gt;求出每个员工的姓名部门编号薪水和薪水的等级</div><div class="line">2&gt;査找每个部门的编号该部门所有员工的平均工资平均工资的等级</div><div class="line">3&gt;査找每个部门的编号部门名称该部门所有员工的平均工资平均工资的等级</div><div class="line">4&gt;求出emp表中所有领导的信息</div><div class="line">5&gt; 求出平均薪水最高的部门的编号和部门的平均工资</div><div class="line">6&gt;把工资大于所有员工中工资最低的前3个人的姓名工资部门编号部门名称工资等级输出</div><div class="line"></div><div class="line"></div><div class="line">**自连接**</div><div class="line"></div><div class="line">- 定义</div><div class="line"> - 一张表自己和自己连接起来査询数据</div><div class="line"></div><div class="line"> **例子**</div><div class="line"> </div><div class="line">- 不准用聚合函数求薪水最高的员工的信息</div><div class="line"></div><div class="line"></div><div class="line">**联合**</div><div class="line"></div><div class="line">- 定义</div><div class="line"> - 表和表之间的数据以纵向的方式连接在一起</div><div class="line"> - **注意:** 我们以前讲的所有的连接是以横向的方式连接在一起的</div><div class="line"></div><div class="line">**例子:**</div><div class="line"></div><div class="line">- 输出每个员工的姓名工资上司的姓名</div><div class="line"></div><div class="line">```select&quot;E1″,enae,″E1″.sa1,   ″E2″.en訓e″上司的姓名″</div><div class="line">from emp″E1″</div><div class="line">Join emp″磁″</div><div class="line">on&quot;E1&quot;.m解 =″E2″.empno</div><div class="line">uni on</div><div class="line">select ename, sa1, &apos;已是最大老板&apos; from emp where mgr is nul1</div></pre></td></tr></table></figure>
+<p><strong>注意:</strong></p>
+<ul>
+<li>若干个select子句要联合成功的话,必须的满足两个条件<ul>
+<li>这若干个select子句输出的列数必须是相等的</li>
+<li>这若干个se1 ect子句输出列的数据类型至少是兼容的</li>
+</ul>
+</li>
+</ul>
+<p><code>identity</code>【主键自动增长,用户不需要为identity修饰的主键赋值】<br>用户如何手动给被i dent i ty修饰的主键赋值不重要</p>
+<p>表中删除数据后又插入数据会导致主键不连续递增 怎么办?<br>主键是否连续增长不十分重要</p>
+<p><strong>视图</strong></p>
+<ul>
+<li>为什么需要视图</li>
+</ul>
+<p><strong>示例</strong></p>
+<ul>
+<li><p>求出平均工资最高的部门的编号和部门的平均工资</p>
+</li>
+<li><p><strong>总结:</strong></p>
+<ul>
+<li>简化査询</li>
+<li>避免了代码的冗余</li>
+<li>避免了书写大量重复的sq1语句</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>什么是视图</li>
+<li>视图从代码上看是一个select语句</li>
+<li>视图从逻辑上看被当做一个虚拟表看待</li>
+</ul>
+<ul>
+<li><strong>如何创建视图</strong></li>
+</ul>
+<p><code>create view</code>视图的名字<br>as<br>-se1 ect的前面不能添加begin<br>select语句<br>-se1 ect的后面不能添加end</p>
+<p><strong>注意的问题</strong></p>
+<ul>
+<li>创建视图的 se1 ec t语句必须的为所有的计算列指定别名<br>-error<br>create view v$_a<br>as<br>select avg(sa1) from emp;</li>
+</ul>
+<p>-ok<br>create view v$_a</p>
+<p>as<br>select avg(sa1) as ⊠avg_sa1″ from emp;</p>
+<ul>
+<li>视图不是物理表,是虚拟表</li>
+<li>不建议通过视图更新视图所依附的原始表的数据或结构</li>
+</ul>
+<ul>
+<li><p><strong>视图的优点</strong></p>
+<ul>
+<li>简化査询</li>
+<li>增加数据的保密性</li>
+</ul>
+</li>
+<li><p><strong>视图的缺点</strong></p>
+<ul>
+<li>增加了数据库维护的成本</li>
+<li>视图只是简化了査询,但是并不能加快査询的速度这也是视图使用不足的地方</li>
+</ul>
+</li>
+</ul>
+<p><strong>事务【重要】</strong></p>
+<ul>
+<li>初学者必须要理解的三个概念</li>
+<li><p>事务是用来研究什么的</p>
+<ul>
+<li>避免数据处于不合理的中间状态</li>
+<li>转账</li>
+</ul>
+</li>
+<li><p>怎样保证多用户同时访间同一个数据时呈现给用户的数据是合理的<br>很复杂,现在人类仍然投有设计出很好的解决办法!</p>
+</li>
+<li><p><strong>事务和线程的关系</strong></p>
+<ul>
+<li>事务是通过锁来解决并发访问的</li>
+<li>线程同步也是通过锁来解决并发访同的  synchronized</li>
+</ul>
+</li>
+</ul>
+<p>所谓并发访同是指: 多用户同时访同同一个数据</p>
+<ul>
+<li><p><strong>事务和第三方插件的关系</strong></p>
+<ul>
+<li>直接使用事务库技术难度很大 很多人是借助第三放插件来实现</li>
+<li>因此我们一般人不需要细细的研究数据库中事务的语法细节</li>
+</ul>
+</li>
+<li><p>第三方插件要想完成预期的功能,   一般必须的借助数据库中的事物机制来实现</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li>索引</li>
+<li>存储过程游标</li>
+<li>TL_SQL 触发器</li>
+</ul>
+<ul>
+<li><p><strong>分页査询</strong></p>
+<ul>
+<li>总结</li>
+</ul>
+</li>
+</ul>
+<p>假设每页显示n条记录, 当前要显示的是第m页<br>表名是A  主键是A_id<br>select top n<em><br>from A<br>where A_id not in(select top  (m-1)</em>n   A_id from emp)</p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/sql/" rel="tag">#sql</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/13/java学习思维导图总结/" rel="next" title="java学习思维导图总结">
+                <i class="fa fa-chevron-left"></i> java学习思维导图总结
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/20/HTML5-CSS3-最酷的-loading-效果收集/" rel="prev" title="HTML5+CSS3 最酷的 loading 效果收集">
+                HTML5+CSS3 最酷的 loading 效果收集 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+    
+    <div class="mod-category_article-time">
+      <span>
+          <time itemprop="dateCreated" datetime="2016-05-17T17:42:17+08:00" content="2016-05-17">
+                  2016-05-17
+          </time>
+      </span>
+    </div>
+  </article>
+
+
+
+	 <div>
+      
+        <style type="text/css">
+
+    .donate_bar {
+        text-align: center;
+        margin-top : 5%;
+    }
+
+    .donate_bar.hidden {
+        display:none;
+    }
+
+    .donate_bar a.btn_donate {
+        display: inline-block;
+        width: 82px;
+        height: 82px;
+        margin-left:auto;
+        margin-right:auto;
+
+        background: url("http://img.t.sinajs.cn/t5/style/images/apps_PRF/e_media/btn_reward.gif") no-repeat;
+        _background: url("http://img.t.sinajs.cn/t5/style/images/apps_PRF/e_media/btn_reward.gif") no-repeat; 
+
+        -webkit-transition: background 0s;
+        -moz-transition: background 0s;
+        -o-transition: background 0s;
+        -ms-transition: background 0s;
+        transition: background 0s;
+    }
+
+    .donate_bar a.btn_donate:hover { 
+        background-position: 0px -82px;
+        color: #87daff;
+    }
+
+    .donate_bar .donate_txt {
+        display: block;
+        color: #9d9d9d;
+        font: 14px/2 "Microsoft Yahei";
+    }
+
+    .bold { 
+        font-weight: bold; 
+    }
+
+    .post-donate a {
+        border-bottom: 0px;
+		
+    }
+
+    #donate_guide table {
+        border: none;
+    }
+	
+    #donate_guide td {
+        border-bottom: none;
+        border-right: none;
+        // background: #333333;
+        valign: top;
+    }
+
+</style>
+
+
+
+    
+
+    <div class ="post-donate">
+        <div id="donate_board" class="donate_bar center">
+              <a id="btn_donate" class="btn_donate" href="javascript:;" title="Donate me"></a>
+              <span id="donate_txt" class="donate_txt">
+                   
+                        Enjoy it ? Donate me !  欣赏此文？求鼓励，求支持！
+                   
+              </span>
+            <br>
+        </div>  
+  
+        <div id="donate_guide" class="donate_bar center hidden">
+            <!--
+            
+                <a href="http://7xq6al.com1.z0.glb.clouddn.com/alipay2.jpg" title="支付宝打赏" class="fancybox" rel="article0" 
+                    style="float:left;margin-left:25%;margin-right:10px;">
+                    <img src="http://7xq6al.com1.z0.glb.clouddn.com/alipay2.jpg" title="" height="164px" width="164px">
+                </a> 
+              
+
+            
+                <a href="http://7xq6al.com1.z0.glb.clouddn.com/weixin.jpg" title="微信打赏" class="fancybox" rel="article0"
+                    style="margin-right:30%">
+                    <img src="http://7xq6al.com1.z0.glb.clouddn.com/weixin.jpg" title="" height="164px" width="164px">
+                </a>
+            
+            -->
+            <table>
+                <tr>
+                    <td>
+                        
+                            <a href="http://7xq6al.com1.z0.glb.clouddn.com/alipay2.jpg" title="alipay" class="fancybox" rel="article0" 
+                                style="float:left;margin-left:25%;margin-right:10px;">
+                                <img src="http://7xq6al.com1.z0.glb.clouddn.com/alipay2.jpg" title="" height="164px" width="164px">
+                            </a> 
+                         
+                    </td>
+                    <td>
+                        
+                            <a href="http://7xq6al.com1.z0.glb.clouddn.com/weixin.jpg" title="weixin" class="fancybox" rel="article0"
+                                style="margin-right:30%">
+                                <img src="http://7xq6al.com1.z0.glb.clouddn.com/weixin.jpg" title="" height="164px" width="164px">
+                            </a>
+                        
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+
+        <script type="text/javascript">
+            document.getElementById('btn_donate').onclick = function() {
+                $('#donate_board').addClass('hidden');
+                // $('#donate_guide').removeClass('hidden');
+                $('#donate_guide').show(2000);
+            }
+
+        </script>
+    </div>
+
+    
+
+
+
+      
+    </div>
+	
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+            <!-- 多说热评文章-->
+            <p class="hot-commit">热评文章</p>
+            <div class="ds-top-threads" data-range="monthly" data-num-items="5"></div>
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2016/05/17/SqlServer2005学习总结/"
+                   data-title="SqlServer2005学习总结" data-url="http://www.poetries.top/2016/05/17/SqlServer2005学习总结/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/avatar.jpg" alt="Poetry" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Poetry</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">技术改变生活</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">132</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">40</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="http://poetries.github.io/atom.xml" rel="alternate">
+              <i class="menu-item-icon icon-next-feed"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/poetries" target="_blank">
+                  <i class="fa fa-github"></i> GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/poetries1" target="_blank">
+                  <i class="fa fa-weibo"></i> Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/94077fcddfc0/latest_articles" target="_blank">
+                  <i class="fa fa-jianshu"></i> Jianshu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">常用链接</p>
+            
+              <span class="links-of-author-item">
+                <a href="http://jsdig.com/" target="_blank">前端搜索</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://cssvalues.com/" target="_blank">css检索</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://f2er.club/" target="_blank">醉牛前端</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://caibaojian.com/links" target="_blank">前端网址</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://jsdig.com/" target="_blank">前端导航</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.css88.com/nav/" target="_blank">前端css88</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://codecloud.net/" target="_blank">程序资料</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://frontenddev.org/" target="_blank">FED社区</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.awesomes.cn/" target="_blank">构建工具</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://overapi.com/" target="_blank">OverAPI</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://devdocs.io/" target="_blank">DevDocs</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://yisibl.github.io/css-vocabulary/" target="_blank">CSS词汇</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jb51.net/onlineread/JavaScript-Garden-CN/#intro" target="_blank">JS花园</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://tool.oschina.net/" target="_blank">工具索引</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://hao.shejidaren.com/" target="_blank">设计导航</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://admire.so/" target="_blank">设计相关</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.uedh.cn/" target="_blank">用户体验</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://jsbin.com/" target="_blank">JSbin</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://codepen.io/pen" target="_blank">Codepen</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://runjs.cn/" target="_blank">RunJs</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://app.gistboxapp.com/" target="_blank">GitBox</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://tool.lu/" target="_blank">ToolBox</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一部分：数据库相关概念"><span class="nav-number">1.</span> <span class="nav-text">第一部分：数据库相关概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二部分：查询"><span class="nav-number">2.</span> <span class="nav-text">第二部分：查询</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Poetry</span>
+  
+  <p style="margin-left:13px; position:relative;top:29px;display:inline-block;">
+     <a target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=9cTCxMzDw8fFwsa1hITblpqY" style="text-decoration:none;">
+         <img src="http://rescdn.qqmail.com/zh_CN/htmledition/images/function/qm_open/ico_mailme_01.png"/>
+      </a>
+  </p>
+  
+</div>
+
+<p style="margin-left:10px;width:60px;height:30px;display:inline-block;margin-top:10px;">
+	<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1260404165'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1260404165%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+</p>
+<p style="position:relative;top:-4px;width:24px;height:30px;margin-left:10px;margin-right:10px;color:red;display:inline-block;"><a href="http://ta.qq.com" target="_blank"><img class="fenxi" src="http://tcss.qq.com/icon/toss_21.gif" alt="腾讯分析"></a></p>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"poetry"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
+
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+
+  
+    <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/MathJax.js"></script>
+    <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/config/TeX-AMS-MML_HTMLorMML.js"></script>
+  
+
+
+  
+  
+
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"slide":{"type":"slide","bdImg":"3","bdPos":"left","bdTop":"250"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+  
+     <!-- custom analytics part create by xiamo -->
+<script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("tIIXiDlAWApnLSnalOqcrADh-gzGzoHsz", "N6UqlI5OjE9dGhd1ISBLU7e6");</script>
+<script>
+function showTime(Counter) {
+	var query = new AV.Query(Counter);
+	$(".leancloud_visitors").each(function() {
+		var url = $(this).attr("id").trim();
+		query.equalTo("url", url);
+		query.find({
+			success: function(results) {
+				if (results.length == 0) {
+					var content = $(document.getElementById(url)).text() + ': 0';
+					$(document.getElementById(url)).text(content);
+					return;
+				}
+				for (var i = 0; i < results.length; i++) {
+					var object = results[i];
+					var content = $(document.getElementById(url)).text() + ': ' + object.get('time');
+					$(document.getElementById(url)).text(content);
+				}
+			},
+			error: function(object, error) {
+				console.log("Error: " + error.code + " " + error.message);
+			}
+		});
+
+	});
+}
+
+function addCount(Counter) {
+	var Counter = AV.Object.extend("Counter");
+	url = $(".leancloud_visitors").attr('id').trim();
+	title = $(".leancloud_visitors").attr('data-flag-title').trim();
+	var query = new AV.Query(Counter);
+	query.equalTo("url", url);
+	query.find({
+		success: function(results) {
+			if (results.length > 0) {
+				var counter = results[0];
+				counter.fetchWhenSave(true);
+				counter.increment("time");
+				counter.save(null, {
+					success: function(counter) {
+						var content = $(document.getElementById(url)).text() + ': ' + counter.get('time');
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(counter, error) {
+						console.log('Failed to save Visitor num, with error message: ' + error.message);
+					}
+				});
+			} else {
+				var newcounter = new Counter();
+				newcounter.set("title", title);
+				newcounter.set("url", url);
+				newcounter.set("time", 1);
+				newcounter.save(null, {
+					success: function(newcounter) {
+					    console.log("newcounter.get('time')="+newcounter.get('time'));
+						var content = $(document.getElementById(url)).text() + ': ' + newcounter.get('time');
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(newcounter, error) {
+						console.log('Failed to create');
+					}
+				});
+			}
+		},
+		error: function(error) {
+			console.log('Error:' + error.code + " " + error.message);
+		}
+	});
+}
+$(function() {
+	var Counter = AV.Object.extend("Counter");
+	if ($('.leancloud_visitors').length == 1) {
+		addCount(Counter);
+	} else if ($('.post-title-link').length > 1) {
+		showTime(Counter);
+	}
+}); 
+</script>
+  
+  
+  
+  <div>
+    <button class="assist-btn circle" id="assist_btn" title="双击亮屏" style="left: 73px; top: 169px;">
+         开灯
+    </button>
+ </div>
+<script type="text/javascript">
+    // 浮动圆点展开与收缩
+
+    $(function () {
+        var assist_box = $('.assist-box');
+        $('#assist_btn').hover(function () {
+            assist_box.stop().show(300);
+        }, function () {
+            assist_box.stop().hide(150);
+        })
+    });
+
+    //浮动圆点拖动
+    $(function () {
+        var box = document.getElementById('assist_btn');
+        box.onmousedown = function (event) {
+            var e = event || window.event,
+                t = e.target || e.srcElement,
+                // 鼠标按下时的坐标x1,y1
+                x1 = e.clientX,
+                y1 = e.clientY,
+                //鼠标按下时的左右偏移量
+                dragLeft = this.offsetLeft,
+                dragTop = this.offsetTop;
+
+            document.onmousemove = function (event) {
+                var e = event || window.event,
+                    t = e.target || e.srcElement,
+                    // 鼠标移动时的动态坐标
+                    x2 = e.clientX,
+                    y2 = e.clientY,
+                    // 鼠标移动时的坐标的变化量
+                    x = x2 - x1,
+                    y = y2 - y1;
+                box.style.left = (dragLeft + x) + 'px';
+                box.style.top = (dragTop + y) + 'px';
+            }
+
+            document.onmouseup = function () {
+                this.onmousemove = null;
+            }
+        }
+    });
+
+/*
+    $whitesmoke   = #f5f5f5
+    $gainsboro    = #eee
+    $gray-lighter = #ddd
+    $grey-light   = #ccc
+    $grey         = #bbb
+    $grey-dark    = #999
+    $grey-dim     = #666
+    $black-light  = #555
+    $black-deep   = #222
+    $red          = #ff2a2a
+    $blue-bright  = #87daff
+    $blue         = #0684bd
+    $blue-deep    = #262a30
+*/
+    // white theme
+    var body = {color: "#555", background: "white"};
+    var a_tag = {color: "#222"};
+    var header = { background: "#f5f5f5"};
+    var logo_line_i = {background: "#222"};
+    // var post_code = {background: "#eee", color: "#222"};
+
+    function switch_theme() {
+        $("body").css(body);
+        $("a:not('.links-of-author-item a, .site-state-item a, .site-state-posts a, .feed-link a, .motion-element a, .post-tags a, .show-commit-cls a, #donate_board a')").css(a_tag);
+        $(".header, .footer").css(header);
+        $(".logo-line-before i, .logo-line-after i").css(logo_line_i);
+        //$(".post code").css(post_code);
+        $("#idhyt-surprise-ball #idhyt-surprise-ball-animation .drag").css(a_tag);
+        $(".post-title-link, .posts-expand .post-meta, .post-comments-count, .disqus-comment-count, .post-category a, .post-nav-next a, .post-nav-item a").css(a_tag);
+        
+        // $("code").css({color: '#c5c8c6', background: '#1d1f21'});
+        $("#assist_btn").hide(1500);
+    }
+
+    $(function () {
+        $("#assist_btn").dblclick(function() {
+            switch_theme();
+        });
+    });
+
+</script>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"poetry"};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+
+</body>
+</html>

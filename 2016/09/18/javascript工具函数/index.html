@@ -1,0 +1,1505 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+  
+    <link href='//fonts.lug.ustc.edu.cn/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+  
+
+
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+
+
+    <meta name="description" content="技术改变生活" />
+
+
+
+  <meta name="keywords" content="Snippet,Javascript," />
+
+
+
+  <link rel="alternate" href="http://poetries.github.io/atom.xml" title="Poetry's Blog" type="application/atom+xml" />
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+<meta name="description" content="第一部分 JavaScript工具函数
+转义特殊字符为html实体
+123HtmlEncode: function(str)&amp;#123;    return str.replace(/&amp;amp;/g, &apos;&amp;amp;amp;&apos;).replace(/\&quot;/g, &apos;&amp;amp;quot;&apos;).replace(/&amp;lt;/g, &apos;&amp;amp;lt;&apos;).replace(/&amp;gt;/g, &apos;&amp;amp;gt;&apos;)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="javascript工具函数">
+<meta property="og:url" content="http://www.poetries.top/2016/09/18/javascript工具函数/index.html">
+<meta property="og:site_name" content="Poetry's Blog">
+<meta property="og:description" content="第一部分 JavaScript工具函数
+转义特殊字符为html实体
+123HtmlEncode: function(str)&amp;#123;    return str.replace(/&amp;amp;/g, &apos;&amp;amp;amp;&apos;).replace(/\&quot;/g, &apos;&amp;amp;quot;&apos;).replace(/&amp;lt;/g, &apos;&amp;amp;lt;&apos;).replace(/&amp;gt;/g, &apos;&amp;amp;gt;&apos;)">
+<meta property="og:updated_time" content="2016-09-27T15:41:22.579Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="javascript工具函数">
+<meta name="twitter:description" content="第一部分 JavaScript工具函数
+转义特殊字符为html实体
+123HtmlEncode: function(str)&amp;#123;    return str.replace(/&amp;amp;/g, &apos;&amp;amp;amp;&apos;).replace(/\&quot;/g, &apos;&amp;amp;quot;&apos;).replace(/&amp;lt;/g, &apos;&amp;amp;lt;&apos;).replace(/&amp;gt;/g, &apos;&amp;amp;gt;&apos;)">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+
+
+  <title> javascript工具函数 | Poetry's Blog </title>
+  <style type="text/css">
+    .main {
+      padding-bottom: 190px;
+    }
+    .circle {
+        width: 40px;
+        height: 40px;
+        background: rgba(98, 187, 77, 0.68) no-repeat;
+        cursor: move;
+	    	opacity: 0.7;
+    }
+
+    .assist-btn {
+        position: fixed;
+        top: 50％;
+        left: 10px;
+        -moz-border-radius: 50px;
+        -webkit-border-radius: 50px;
+        border-radius: 50px;
+        outline: none;
+        border: none;
+        color: rgb(214, 10, 10);
+    }
+  p.top51la{
+      font-size: 12px;
+      position:fixed;
+      top:5px;
+      right:5px;
+  }
+   p.top51la a span img{
+      display:inline-block;
+      width: 10px;
+   }
+    p.top51la a + img{
+        display: none;
+   }
+  p.topUV {
+      font-size: 12px;
+      position:fixed;
+      top:5px;
+      right:20px;
+   }
+  p.topUV a img{
+      display: inline-block; 
+      width: 11px;
+    }
+  p.topUV a{
+      border-bottom: none;
+    }
+</style>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?40b1f89aa80f2527b3db779c6898c879";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=58036087";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta custom-logo">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Poetry's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">聆听、感受、成长</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+
+        
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+
+        
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+
+        
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+
+        
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle"></i> <br />
+            
+            留言
+          </a>
+        </li>
+
+        
+      
+
+      <li class="menu-item" style="opacity: 1; transform: translateY(0px);"> <a title="把这个链接拖到你的工具栏中,任何网页都可以High" href='javascript:(function() {
+          function c() {
+              var e = document.createElement("link");
+              e.setAttribute("type", "text/css");
+              e.setAttribute("rel", "stylesheet");
+              e.setAttribute("href", f);
+              e.setAttribute("class", l);
+              document.body.appendChild(e)
+          }
+
+          function h() {
+              var e = document.getElementsByClassName(l);
+              for (var t = 0; t < e.length; t++) {
+                  document.body.removeChild(e[t])
+              }
+          }
+
+          function p() {
+              var e = document.createElement("div");
+              e.setAttribute("class", a);
+              document.body.appendChild(e);
+              setTimeout(function() {
+                  document.body.removeChild(e)
+              }, 100)
+          }
+
+          function d(e) {
+              return {
+                  height : e.offsetHeight,
+                  width : e.offsetWidth
+              }
+          }
+
+          function v(i) {
+              var s = d(i);
+              return s.height > e &amp;&amp; s.height < n &amp;&amp; s.width > t &amp;&amp; s.width < r
+          }
+
+          function m(e) {
+              var t = e;
+              var n = 0;
+              while (!!t) {
+                  n += t.offsetTop;
+                  t = t.offsetParent
+              }
+              return n
+          }
+
+          function g() {
+              var e = document.documentElement;
+              if (!!window.innerWidth) {
+                  return window.innerHeight
+              } else if (e &amp;&amp; !isNaN(e.clientHeight)) {
+                  return e.clientHeight
+              }
+              return 0
+          }
+
+          function y() {
+              if (window.pageYOffset) {
+                  return window.pageYOffset
+              }
+              return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+          }
+
+          function E(e) {
+              var t = m(e);
+              return t >= w &amp;&amp; t <= b + w
+          }
+
+          function S() {
+              var e = document.createElement("audio");
+              e.setAttribute("class", l);
+              e.src = i;
+              e.loop = false;
+              e.addEventListener("canplay", function() {
+                  setTimeout(function() {
+                      x(k)
+                  }, 500);
+                  setTimeout(function() {
+                      N();
+                      p();
+                      for (var e = 0; e < O.length; e++) {
+                          T(O[e])
+                      }
+                  }, 15500)
+              }, true);
+              e.addEventListener("ended", function() {
+                  N();
+                  h()
+              }, true);
+              e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+              document.body.appendChild(e);
+              e.play()
+          }
+
+          function x(e) {
+              e.className += " " + s + " " + o
+          }
+
+          function T(e) {
+              e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+          }
+
+          function N() {
+              var e = document.getElementsByClassName(s);
+              var t = new RegExp("\\b" + s + "\\b");
+              for (var n = 0; n < e.length; ) {
+                  e[n].className = e[n].className.replace(t, "")
+              }
+          }
+
+          var e = 30;
+          var t = 30;
+          var n = 350;
+          var r = 350;
+          var i = "https://ss0.bdstatic.com/y0s1hSulBw92lNKgpU_Z2jR7b2w6buu/data2/music/8b77e748d030862ea6ed5ef0fcf7832d/242078559/242078559.mp3?xcode=0683c9c47ce11a94766f476e85847328";
+          var s = "mw-harlem_shake_me";
+          var o = "im_first";
+          var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+          var a = "mw-strobe_light";
+          var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+          var l = "mw_added_css";
+          var b = g();
+          var w = y();
+          var C = document.getElementsByTagName("*");
+          var k = null;
+          for (var L = 0; L < C.length; L++) {
+              var A = C[L];
+              if (v(A)) {
+                  if (E(A)) {
+                      k = A;
+                      break
+                  }
+              }
+          }
+          if (A === null) {
+              console.warn("Could not find a node of the right size. Please try a different page.");
+              return
+          }
+          c();
+          S();
+          var O = [];
+          for (var L = 0; L < C.length; L++) {
+              var A = C[L];
+              if (v(A)) {
+                  O.push(A)
+              }
+          }
+          })()' class="okmemo-tmp-unselect"><i class="menu-item-icon fa fa-music fa-fw"></i>High一下</a> </li>
+
+      
+      
+    </ul>
+  
+    
+
+  
+    <div class="site-search">
+      
+  
+  <form class="site-search-form">
+    <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  </form>
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'v9qj9piTH6n2pV9s23zR','2.0.0');
+</script>
+
+
+
+    </div>
+
+  
+</nav>
+
+
+ </div>
+    </header>
+	
+	
+	
+	<a href="https://github.com/poetries" target="_blank">
+	<img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/c6625ac1f3ee0a12250227cf83ce904423abf351/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_gray_6d6d6d.png">
+	</a>
+<p class="topUV"><span style="color:#0e0e0e;position:relative;top:-2px;">本站热度&nbsp;</span>
+  <script src='http://www.xiaoniu168.com/counts3110.html' language='JavaScript' charset='utf-8'></script>
+  <script>
+      var oP = document.getElementsByClassName("topUV")[0];
+      oP.getElementsByTagName("a")[0].setAttribute("href","javascript:void(0);");
+  </script>
+  <span style="color:#0e0e0e;position: relative;top: -2px;">&nbsp;&nbsp;℃</span>
+</p>
+      
+	
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                javascript工具函数
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+        
+          <!-- <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-09-18T15:21:00+00:00" content="2016-09-18">
+              2016-09-18
+            </time>
+          </span>-->
+
+          
+            <span class="post-category" >
+              &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Front-End/" itemprop="url" rel="index">
+                    <span itemprop="name">Front-End</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/18/javascript工具函数/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/18/javascript工具函数/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+         
+         
+            &nbsp; | &nbsp;<span>热度</span>&nbsp;<span style="color:red;" id="/2016/09/18/javascript工具函数/"class="leancloud_visitors"  data-flag-title="javascript工具函数"></span><span style="color:red;">&nbsp;℃</span>
+            
+            <!-- <span id="/2016/09/18/javascript工具函数/"class="leancloud_visitors"  data-flag-title="javascript工具函数">
+              &nbsp; | &nbsp;热度&nbsp;
+               </span> -->
+            
+      
+           
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h3 id="第一部分-JavaScript工具函数"><a href="#第一部分-JavaScript工具函数" class="headerlink" title="第一部分 JavaScript工具函数"></a>第一部分 JavaScript工具函数</h3><hr>
+<h4 id="转义特殊字符为html实体"><a href="#转义特殊字符为html实体" class="headerlink" title="转义特殊字符为html实体"></a>转义特殊字符为html实体</h4><hr>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">HtmlEncode: <span class="function"><span class="keyword">function</span>(<span class="params">str</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> str.replace(<span class="regexp">/&amp;/g</span>, <span class="string">'&amp;amp;'</span>).replace(<span class="regexp">/\"/g</span>, <span class="string">'&amp;quot;'</span>).replace(<span class="regexp">/&lt;/g</span>, <span class="string">'&amp;lt;'</span>).replace(<span class="regexp">/&gt;/g</span>, <span class="string">'&amp;gt;'</span>).replace(<span class="regexp">/'/g</span>, <span class="string">'&amp;apos;'</span>);</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<h4 id="验证是否为有效的手机电话号码"><a href="#验证是否为有效的手机电话号码" class="headerlink" title="验证是否为有效的手机电话号码"></a>验证是否为有效的手机电话号码</h4><hr>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">IsMobile: <span class="function"><span class="keyword">function</span>(<span class="params">str</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> rp = <span class="regexp">/^1[3|4|5|7|8][0-9]\d&#123;4,8&#125;$/</span>;</div><div class="line">    <span class="keyword">return</span> rp.test(str);</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
+<h4 id="验证是否为有效的座机电话号码"><a href="#验证是否为有效的座机电话号码" class="headerlink" title="验证是否为有效的座机电话号码"></a>验证是否为有效的座机电话号码</h4><hr>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">IsTel: <span class="function"><span class="keyword">function</span>(<span class="params">str</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> rp = <span class="regexp">/^([0-9]&#123;3,4&#125;-)?[0-9]&#123;7,8&#125;$/</span>;</div><div class="line">    <span class="keyword">return</span> rp.test(str);</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
+<h4 id="清除左空格-右空格"><a href="#清除左空格-右空格" class="headerlink" title="清除左空格/右空格"></a>清除左空格/右空格</h4><hr>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Ltrim: <span class="function"><span class="keyword">function</span>(<span class="params">str</span>)</span>&#123; <span class="keyword">return</span> str.replace( <span class="regexp">/^(\s*|　*)/</span>, <span class="string">""</span>); &#125;,</div><div class="line"><span class="attr">Rtrim</span>: <span class="function"><span class="keyword">function</span>(<span class="params">str</span>)</span>&#123; <span class="keyword">return</span> str.replace( <span class="regexp">/(\s*|　*)$/</span>, <span class="string">""</span>); &#125;,</div></pre></td></tr></table></figure>
+<h4 id="清除左右空格"><a href="#清除左右空格" class="headerlink" title="清除左右空格"></a>清除左右空格</h4><hr>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Trim: <span class="function"><span class="keyword">function</span>(<span class="params">str</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.Ltrim(<span class="keyword">this</span>.Rtrim(str));</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
+<h4 id="判断是那种类型的浏览器"><a href="#判断是那种类型的浏览器" class="headerlink" title="判断是那种类型的浏览器"></a>判断是那种类型的浏览器</h4><hr>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line">WhichBrowser: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> userAgent = navigator.userAgent;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> isOpera = userAgent.indexOf(<span class="string">"Opera"</span>) &gt; <span class="number">-1</span>;</div><div class="line">    <span class="keyword">var</span> isIE = userAgent.indexOf(<span class="string">"compatible"</span>) &gt; <span class="number">-1</span> &amp;&amp; userAgent.indexOf(<span class="string">"MSIE"</span>) &gt; <span class="number">-1</span> &amp;&amp; !isOpera;</div><div class="line">    <span class="keyword">var</span> isFF = userAgent.indexOf(<span class="string">"Firefox"</span>) &gt; <span class="number">-1</span>;</div><div class="line">    <span class="keyword">var</span> isCH = userAgent.indexOf(<span class="string">"Chrome"</span>) &gt; <span class="number">-1</span>;</div><div class="line">    <span class="keyword">var</span> isSafari = userAgent.indexOf(<span class="string">"Safari"</span>) &gt; <span class="number">-1</span>;</div><div class="line"> </div><div class="line">    <span class="keyword">if</span> (isIE)&#123;</div><div class="line">        <span class="keyword">var</span> IE5 = IE55 = IE6 = IE7 = IE8 = <span class="literal">false</span>;</div><div class="line">        <span class="keyword">var</span> reIE = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"MSIE (\\d+\\.\\d+);"</span>);</div><div class="line">        reIE.test(userAgent);</div><div class="line">        <span class="keyword">var</span> fIEVersion = <span class="built_in">parseFloat</span>(<span class="built_in">RegExp</span>[<span class="string">"$1"</span>]);</div><div class="line">        IE55 = fIEVersion == <span class="number">5.5</span>;</div><div class="line">        IE6 = fIEVersion == <span class="number">6.0</span>;</div><div class="line">        IE7 = fIEVersion == <span class="number">7.0</span>;</div><div class="line">        IE8 = fIEVersion == <span class="number">8.0</span>;</div><div class="line">        <span class="keyword">if</span> (IE55) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="string">"IE55"</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (IE6) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="string">"IE6"</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (IE7) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="string">"IE7"</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (IE8) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="string">"IE8"</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"> </div><div class="line">    <span class="keyword">if</span> (isFF) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">"Firefox"</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (isCH) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">"Chrome"</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (isOpera) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">"Opera"</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (isSafari) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">"Safari"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
+<h4 id="获取客户端浏览器cookie"><a href="#获取客户端浏览器cookie" class="headerlink" title="获取客户端浏览器cookie"></a>获取客户端浏览器cookie</h4><hr>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">GetCookie: <span class="function"><span class="keyword">function</span>(<span class="params">c_name</span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span>(<span class="built_in">document</span>.cookie.length&gt;<span class="number">0</span>)&#123;</div><div class="line">        c_start = <span class="built_in">document</span>.cookie.indexOf(c_name + <span class="string">'='</span>);</div><div class="line">        <span class="keyword">if</span>(c_start != <span class="number">-1</span>)&#123;</div><div class="line">            c_start = c_start + c_name.length + <span class="number">1</span>;</div><div class="line">            c_end = <span class="built_in">document</span>.cookie.indexOf(<span class="string">';'</span>,c_start);</div><div class="line">            <span class="keyword">if</span> (c_end==<span class="number">-1</span>) c_end = <span class="built_in">document</span>.cookie.length;</div><div class="line">            <span class="keyword">return</span> <span class="built_in">unescape</span>(<span class="built_in">document</span>.cookie.substring(c_start,c_end));</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="string">''</span>;</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
+<h4 id="设置客户端浏览器cookie"><a href="#设置客户端浏览器cookie" class="headerlink" title="设置客户端浏览器cookie"></a>设置客户端浏览器cookie</h4><hr>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">    SetCookie: <span class="function"><span class="keyword">function</span>(<span class="params">c_name, value, expiredays</span>)</span>&#123;</div><div class="line">        <span class="keyword">var</span> exdate = <span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line">        exdate.setDate(exdate.getDate() + expiredays);</div><div class="line">        <span class="built_in">document</span>.cookie = c_name + <span class="string">"="</span> + <span class="built_in">escape</span>(value) + ((expiredays==<span class="literal">null</span>) ? <span class="string">""</span> : <span class="string">";expires="</span>+exdate.toGMTString());</div><div class="line">    &#125;,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h3 id="第二部分-插件工具"><a href="#第二部分-插件工具" class="headerlink" title="第二部分 插件工具"></a>第二部分 插件工具</h3><hr>
+<h4 id="Dialog对话框"><a href="#Dialog对话框" class="headerlink" title="Dialog对话框"></a>Dialog对话框</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div></pre></td><td class="code"><pre><div class="line">;(<span class="function"><span class="keyword">function</span>(<span class="params">$</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> DialogBox = <span class="function"><span class="keyword">function</span>(<span class="params">options</span>)</span>&#123;</div><div class="line">        <span class="keyword">this</span>.defaults = &#123;</div><div class="line">            <span class="string">'height'</span>: <span class="number">350</span>,</div><div class="line">            <span class="string">'width'</span>: <span class="number">500</span>,</div><div class="line">            <span class="string">'title'</span>: <span class="string">''</span>,</div><div class="line">            <span class="string">'content'</span>: <span class="string">''</span>,</div><div class="line">            <span class="string">'action'</span>: <span class="string">''</span></div><div class="line">        &#125;;</div><div class="line">        <span class="keyword">this</span>.options = $.extend(<span class="keyword">this</span>.defaults,options);</div><div class="line">    &#125;;</div><div class="line"> </div><div class="line">    DialogBox.prototype = &#123;</div><div class="line"> </div><div class="line">        <span class="attr">mask</span>: <span class="string">''</span>,</div><div class="line">        <span class="attr">dialogBox</span>: <span class="string">''</span>,</div><div class="line"> </div><div class="line">        <span class="attr">close</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="keyword">var</span> self = <span class="keyword">this</span>;</div><div class="line">            self.mask.remove();</div><div class="line">            self.dialogBox.remove();</div><div class="line">        &#125;,</div><div class="line"> </div><div class="line">        <span class="attr">resize</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="keyword">var</span> self = <span class="keyword">this</span>;</div><div class="line">            <span class="keyword">var</span> w_h = $(<span class="built_in">window</span>).height();</div><div class="line">            <span class="keyword">var</span> w_w = $(<span class="built_in">window</span>).width();</div><div class="line"> </div><div class="line">            <span class="keyword">var</span> pos_l = w_w/<span class="number">2</span>-self.defaults.width/<span class="number">2</span>;</div><div class="line">            <span class="keyword">var</span> pos_t = w_h/<span class="number">2</span>-self.defaults.height/<span class="number">2</span>;</div><div class="line">            self.dialogBox.css(&#123;</div><div class="line">                <span class="string">'top'</span>: pos_t,</div><div class="line">                <span class="string">'left'</span>: pos_l</div><div class="line">            &#125;);</div><div class="line">        &#125;,</div><div class="line"> </div><div class="line">        <span class="attr">init</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="keyword">var</span> self = <span class="keyword">this</span>;</div><div class="line"> </div><div class="line">            <span class="comment">// mask</span></div><div class="line">            <span class="keyword">var</span> d_w = $(<span class="built_in">document</span>).width();</div><div class="line">            <span class="keyword">var</span> d_h = $(<span class="built_in">document</span>).height();</div><div class="line">            <span class="keyword">var</span> w_h = $(<span class="built_in">window</span>).height();</div><div class="line">            <span class="keyword">var</span> w_w = $(<span class="built_in">window</span>).width();</div><div class="line"> </div><div class="line">            <span class="keyword">var</span> mask = $(<span class="string">'&lt;div class="dialog-mask"&gt;&lt;/div&gt;'</span>);</div><div class="line">            mask.css(&#123;</div><div class="line">                <span class="string">'height'</span>: d_h,</div><div class="line">                <span class="string">'width'</span>: d_w</div><div class="line">            &#125;);</div><div class="line"> </div><div class="line">            <span class="comment">// dialog-box</span></div><div class="line">            <span class="keyword">var</span> dialog_out = $(<span class="string">'&lt;div class="dialog-out"&gt;&lt;/div&gt;'</span>);</div><div class="line">            <span class="keyword">var</span> pos_l = w_w/<span class="number">2</span>-self.defaults.width/<span class="number">2</span>;</div><div class="line">            <span class="keyword">var</span> pos_t = w_h/<span class="number">2</span>-self.defaults.height/<span class="number">2</span>;</div><div class="line">            dialog_out.css(&#123;</div><div class="line">                <span class="string">'height'</span>: self.defaults.height,</div><div class="line">                <span class="string">'width'</span>: self.defaults.width,</div><div class="line">                <span class="string">'top'</span>: pos_t,</div><div class="line">                <span class="string">'left'</span>: pos_l</div><div class="line">            &#125;);</div><div class="line"> </div><div class="line">            <span class="comment">// insert html</span></div><div class="line">            <span class="keyword">var</span> inner = $(<span class="string">'&lt;div class="dialog-inner"&gt;&lt;/div&gt;'</span>);</div><div class="line">            inner.html(self.defaults.content);</div><div class="line">            dialog_out.append(inner);</div><div class="line"> </div><div class="line">            <span class="comment">// close-btn</span></div><div class="line">            <span class="keyword">var</span> close = $(<span class="string">'&lt;div class="close-btn" title="关闭"&gt;&lt;/div&gt;'</span>);</div><div class="line">            close.click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">                self.close();</div><div class="line">            &#125;);</div><div class="line">            dialog_out.append(close);</div><div class="line"> </div><div class="line">            <span class="comment">// action-btn</span></div><div class="line">            <span class="keyword">var</span> action_btn = $(<span class="string">'&lt;button class="action-btn ibtn"&gt;确认&lt;/button&gt;'</span>);</div><div class="line">            dialog_out.append(action_btn);</div><div class="line">            <span class="keyword">if</span>(<span class="keyword">typeof</span> self.defaults.action === <span class="string">'function'</span>)&#123;</div><div class="line">                action_btn.click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">                    self.defaults.action();</div><div class="line">                &#125;);</div><div class="line">            &#125;<span class="keyword">else</span>&#123;</div><div class="line">                action_btn.click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">                    self.close();</div><div class="line">                &#125;);</div><div class="line">            &#125;</div><div class="line"> </div><div class="line">            <span class="comment">// add to body</span></div><div class="line">            $(<span class="built_in">document</span>.body).append(dialog_out);</div><div class="line">            $(<span class="built_in">document</span>.body).append(mask);</div><div class="line"> </div><div class="line">            self.mask = mask;</div><div class="line">            self.dialogBox = dialog_out;</div><div class="line"> </div><div class="line">            <span class="built_in">window</span>.onresize = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">                self.resize();</div><div class="line">            &#125;;</div><div class="line"> </div><div class="line">            <span class="keyword">return</span> self;</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line"> </div><div class="line">    $.fn.deYuanDialog = <span class="function"><span class="keyword">function</span>(<span class="params">options</span>)</span>&#123;</div><div class="line">        <span class="keyword">var</span> dialog = <span class="keyword">new</span> DialogBox(options);</div><div class="line">        <span class="keyword">return</span> dialog.init();</div><div class="line">    &#125;;</div><div class="line">&#125;)(jQuery);</div></pre></td></tr></table></figure>
+<h4 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h4><hr>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line">;(<span class="function"><span class="keyword">function</span>(<span class="params">$</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> Tip = <span class="function"><span class="keyword">function</span>(<span class="params">element,options</span>)</span>&#123;</div><div class="line">        <span class="keyword">this</span>.element = element;</div><div class="line">        <span class="keyword">this</span>.defaults = &#123;</div><div class="line">            <span class="string">'height'</span>: <span class="number">27</span>,</div><div class="line">            <span class="string">'width'</span>: <span class="number">150</span>,</div><div class="line">            <span class="string">'content'</span>: <span class="string">'温馨提示'</span>,</div><div class="line">            <span class="string">'background-color'</span>: <span class="string">'#000000'</span>,</div><div class="line">        &#125;;</div><div class="line">        <span class="keyword">this</span>.options = $.extend(<span class="keyword">this</span>.defaults,options);</div><div class="line">    &#125;;</div><div class="line"> </div><div class="line">    Tip.prototype = &#123;</div><div class="line"> </div><div class="line">        <span class="attr">hide</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="comment">//$(self.element).remove();</span></div><div class="line">        &#125;,</div><div class="line"> </div><div class="line">        <span class="attr">init</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="keyword">var</span> self = <span class="keyword">this</span>;</div><div class="line">            <span class="keyword">var</span> element = self.element;</div><div class="line">            <span class="keyword">var</span> pos_l = element.offset().left;</div><div class="line">            <span class="keyword">var</span> pos_t = element.offset().top;</div><div class="line"> </div><div class="line">            <span class="keyword">var</span> tip_out = $(<span class="string">'&lt;div class="tip-out"&gt;&lt;span class="tip-arrow"&gt;&lt;/span&gt;&lt;/div&gt;'</span>);</div><div class="line">            <span class="keyword">var</span> tip_body = $(<span class="string">'&lt;div class="tip-body"&gt;&lt;/div&gt;'</span>);</div><div class="line">            tip_body.html(self.defaults.content);</div><div class="line">            tip_out.append(tip_body);</div><div class="line">            tip_out.css(&#123;</div><div class="line">                <span class="string">'left'</span>: pos_l,</div><div class="line">                <span class="string">'top'</span>: pos_t - self.defaults.height - <span class="number">13</span>,</div><div class="line">            &#125;).show();</div><div class="line">            $(<span class="built_in">document</span>.body).append(tip_out);</div><div class="line"> </div><div class="line">            <span class="function"><span class="keyword">function</span> <span class="title">hide</span>(<span class="params"></span>)</span>&#123;</div><div class="line">                tip_out.stop().fadeOut(<span class="string">'slow'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;tip_out.remove();&#125;);</div><div class="line">            &#125;</div><div class="line"> </div><div class="line">            setTimeout(hide,<span class="number">3000</span>);</div><div class="line"> </div><div class="line">            <span class="keyword">return</span> self;</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line"> </div><div class="line">    $.fn.deYuanTip = <span class="function"><span class="keyword">function</span>(<span class="params">options</span>)</span>&#123;</div><div class="line">        <span class="keyword">var</span> tip = <span class="keyword">new</span> Tip(<span class="keyword">this</span>,options);</div><div class="line">        <span class="keyword">return</span> tip.init();</div><div class="line">    &#125;;</div><div class="line">&#125;)(jQuery);</div></pre></td></tr></table></figure>
+<h4 id="Banner"><a href="#Banner" class="headerlink" title="Banner"></a>Banner</h4><hr>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div></pre></td><td class="code"><pre><div class="line">;(<span class="function"><span class="keyword">function</span>(<span class="params">$</span>)</span>&#123;</div><div class="line"> </div><div class="line">    <span class="keyword">var</span> Scrolling = <span class="function"><span class="keyword">function</span>(<span class="params">element,options</span>)</span>&#123;</div><div class="line">        <span class="keyword">this</span>.element = element;</div><div class="line">        <span class="keyword">this</span>.defaults = &#123;</div><div class="line">            <span class="string">'height'</span>: <span class="number">400</span>,  <span class="comment">// 默认高度</span></div><div class="line">            <span class="string">'interval'</span>: <span class="number">3000</span>    <span class="comment">// 默认时间间隔ms</span></div><div class="line">        &#125;;</div><div class="line">        <span class="keyword">this</span>.options = $.extend(<span class="keyword">this</span>.defaults,options);</div><div class="line">    &#125;;</div><div class="line"> </div><div class="line">    Scrolling.prototype = &#123;</div><div class="line">        <span class="attr">d_w</span> : <span class="number">0</span>,    <span class="comment">// 浏览器宽度</span></div><div class="line">        sort: <span class="number">0</span>,    <span class="comment">// 图片顺序</span></div><div class="line">        count : <span class="number">0</span>,  <span class="comment">// 图片数量</span></div><div class="line"> </div><div class="line">        <span class="comment">// 分页按钮</span></div><div class="line">        scrollBtn: <span class="function"><span class="keyword">function</span>(<span class="params">i</span>)</span>&#123;</div><div class="line">            <span class="keyword">var</span> step = <span class="built_in">parseInt</span>(i) ? <span class="built_in">parseInt</span>(i) : <span class="number">0</span>;</div><div class="line">            <span class="keyword">var</span> self = <span class="keyword">this</span>;</div><div class="line">            <span class="keyword">var</span> element = $(self.element);</div><div class="line">            <span class="keyword">var</span> banner = element.find(<span class="string">'.banner-inner'</span>);</div><div class="line"> </div><div class="line">            banner.stop().animate(&#123;</div><div class="line">                <span class="string">'left'</span>: -self.d_w * step</div><div class="line">            &#125;);</div><div class="line"> </div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">        &#125;,</div><div class="line"> </div><div class="line">        <span class="comment">// 初始化</span></div><div class="line">        init: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="keyword">var</span> self = <span class="keyword">this</span>;</div><div class="line">            <span class="keyword">var</span> element = $(self.element);</div><div class="line">            self.d_w = $(<span class="built_in">document</span>).width();</div><div class="line"> </div><div class="line">            <span class="keyword">var</span> inner = element.find(<span class="string">'.banner-inner'</span>);</div><div class="line">            <span class="keyword">var</span> a = inner.find(<span class="string">'a'</span>);</div><div class="line">            self.count = a.length - <span class="number">1</span>;</div><div class="line">            <span class="comment">//设置包裹容器高宽</span></div><div class="line">            <span class="keyword">var</span> wrap = element.find(<span class="string">'.banner-img'</span>);</div><div class="line">            wrap.css(&#123;</div><div class="line">                <span class="string">'height'</span>: self.defaults.height,</div><div class="line">                <span class="string">'width'</span>: self.d_w</div><div class="line">            &#125;);</div><div class="line">            <span class="comment">// 设置内容器高宽</span></div><div class="line">            inner.css(&#123;</div><div class="line">                <span class="string">'height'</span>: self.defaults.height,</div><div class="line">                <span class="string">'width'</span>: (self.count+<span class="number">1</span>) * self.d_w</div><div class="line">            &#125;);</div><div class="line">            <span class="comment">// 设置内容高宽</span></div><div class="line">            a.css(&#123;</div><div class="line">                <span class="string">'height'</span>: self.defaults.height,</div><div class="line">                <span class="string">'width'</span>: self.d_w</div><div class="line">            &#125;);</div><div class="line">            <span class="comment">// 设置btn点击事件</span></div><div class="line">            <span class="keyword">var</span> pages = element.find(<span class="string">'li'</span>);</div><div class="line">            pages.each(<span class="function"><span class="keyword">function</span>(<span class="params">i</span>)</span>&#123;</div><div class="line">                <span class="keyword">var</span> page = $(<span class="keyword">this</span>);</div><div class="line">                page.on(<span class="string">'mousedown'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">                    pages.removeClass(<span class="string">'page-active'</span>);</div><div class="line">                    $(<span class="keyword">this</span>).addClass(<span class="string">'page-active'</span>);</div><div class="line">                    self.sort = i;</div><div class="line">                    self.scrollBtn(self.sort);</div><div class="line">                &#125;);</div><div class="line">            &#125;);</div><div class="line">            <span class="keyword">var</span> btns = element.find(<span class="string">'.banner-btn'</span>);</div><div class="line">            btns.remove();</div><div class="line">            <span class="keyword">var</span> len = pages.length;</div><div class="line">            btns.each(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">                <span class="keyword">var</span> btn = $(<span class="keyword">this</span>);</div><div class="line">                btn.on(<span class="string">'mousedown'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">                    <span class="keyword">var</span> left = $(<span class="keyword">this</span>).hasClass(<span class="string">'left-btn'</span>);</div><div class="line">                    <span class="keyword">var</span> right = $(<span class="keyword">this</span>).hasClass(<span class="string">'right-btn'</span>);</div><div class="line">                    <span class="keyword">if</span>(left)&#123;</div><div class="line">                        <span class="keyword">if</span>(self.sort &lt; len - <span class="number">1</span>)&#123;</div><div class="line">                            self.sort += <span class="number">1</span>;</div><div class="line">                        &#125;</div><div class="line">                        self.scrollBtn(self.sort);</div><div class="line">                        pages.removeClass(<span class="string">'page-active'</span>);</div><div class="line">                        pages.eq(self.sort).addClass(<span class="string">'page-active'</span>);</div><div class="line">                    &#125;</div><div class="line">                    <span class="keyword">if</span>(right)&#123;</div><div class="line">                        <span class="keyword">if</span>(self.sort &gt; <span class="number">0</span>)&#123;</div><div class="line">                            self.sort -= <span class="number">1</span>;</div><div class="line">                        &#125;</div><div class="line">                        self.scrollBtn(self.sort);</div><div class="line">                        pages.removeClass(<span class="string">'page-active'</span>);</div><div class="line">                        pages.eq(self.sort).addClass(<span class="string">'page-active'</span>);</div><div class="line">                    &#125;</div><div class="line">                &#125;);</div><div class="line">            &#125;);</div><div class="line"> </div><div class="line">            <span class="comment">// 当窗口改变大小时重新初始化banner</span></div><div class="line">            <span class="built_in">window</span>.onresize = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">                self.init();</div><div class="line">            &#125;;</div><div class="line"> </div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">        &#125;,</div><div class="line"> </div><div class="line">        <span class="comment">// 自动播放</span></div><div class="line">        scrollAuto: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="keyword">var</span> self = <span class="keyword">this</span>;</div><div class="line">            <span class="keyword">var</span> banner = $(self.element).find(<span class="string">'.banner-inner'</span>);</div><div class="line">            <span class="keyword">var</span> element = $(self.element);</div><div class="line">            <span class="keyword">var</span> btns = element.find(<span class="string">'li'</span>);</div><div class="line">            <span class="function"><span class="keyword">function</span> <span class="title">scroll</span>(<span class="params"></span>)</span>&#123;</div><div class="line">                <span class="keyword">if</span>(self.sort &lt;= self.count)&#123;</div><div class="line">                    banner.stop().animate(&#123;</div><div class="line">                        <span class="string">'left'</span>: (-self.d_w * self.sort)</div><div class="line">                    &#125;);</div><div class="line"> </div><div class="line">                    btns.removeClass(<span class="string">'page-active'</span>);</div><div class="line">                    btns.eq(self.sort).addClass(<span class="string">'page-active'</span>);</div><div class="line"> </div><div class="line">                    self.sort++;</div><div class="line">                &#125;<span class="keyword">else</span>&#123;</div><div class="line">                    self.sort = <span class="number">0</span>;</div><div class="line">                    banner.stop().animate(&#123;</div><div class="line">                        <span class="string">'left'</span>: <span class="number">0</span></div><div class="line">                    &#125;);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            setInterval(scroll, self.defaults.interval);</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line"> </div><div class="line">    $.fn.deYuanBanner = <span class="function"><span class="keyword">function</span>(<span class="params">options</span>)</span>&#123;</div><div class="line">        <span class="keyword">var</span> scrolling = <span class="keyword">new</span> Scrolling(<span class="keyword">this</span>, options);</div><div class="line">        scrolling.init().scrollAuto();</div><div class="line">    &#125;</div><div class="line">&#125;)(jQuery);</div></pre></td></tr></table></figure>
+<h4 id="GotoTop"><a href="#GotoTop" class="headerlink" title="GotoTop"></a>GotoTop</h4><hr>
+<ul>
+<li>当窗口滚动大于300px时出现回底部按钮</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> gotop = $(<span class="string">'&lt;div class="go-to-top" title="回到顶部"&gt;&lt;/div&gt;'</span>);</div><div class="line">$(<span class="built_in">document</span>.body).append(gotop);</div><div class="line">$(<span class="built_in">window</span>).scroll(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span>($(<span class="built_in">window</span>).scrollTop()&gt;<span class="number">300</span>)&#123;</div><div class="line">        gotop.fadeIn(<span class="string">'fast'</span>);</div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">        gotop.fadeOut(<span class="string">'fast'</span>);</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line">gotop.click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    $(<span class="string">'body,html'</span>).animate(&#123;<span class="attr">scrollTop</span>:<span class="number">0</span>&#125;,<span class="number">1000</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h4 id="判断用户是否用低版本的IE浏览器访问网页，如是，则提醒升级"><a href="#判断用户是否用低版本的IE浏览器访问网页，如是，则提醒升级" class="headerlink" title="判断用户是否用低版本的IE浏览器访问网页，如是，则提醒升级"></a>判断用户是否用低版本的IE浏览器访问网页，如是，则提醒升级</h4><hr>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> oldIE = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="string">'IE55'</span>,<span class="string">'IE6'</span>,<span class="string">'IE7'</span>,<span class="string">'IE8'</span>);</div><div class="line">    <span class="keyword">var</span> browser = $Dy.WhichBrowser();</div><div class="line">    <span class="keyword">if</span>(oldIE.toString().indexOf(browser)&gt;<span class="number">-1</span>)&#123;</div><div class="line">        <span class="function"><span class="keyword">function</span> <span class="title">append</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="keyword">var</span> old_browser = $(<span class="string">'&lt;div class="old-browser"&gt;您的浏览器版本过低，为您让您获得更好的浏览体验，请您升级至高版本浏览器，如IE10，Firefox，Chrome。&lt;/div&gt;'</span>);</div><div class="line">            <span class="keyword">var</span> close = $(<span class="string">'&lt;span class="old-close" title="关闭"&gt;×&lt;/span&gt;'</span>);</div><div class="line">            old_browser.append(close);</div><div class="line">            $(<span class="built_in">document</span>.body).prepend(old_browser);</div><div class="line">            old_browser.fadeIn();</div><div class="line"> </div><div class="line">            close.click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">                $Dy.SetCookie(<span class="string">'old_browser_warn'</span>,<span class="literal">true</span>,<span class="number">1</span>);</div><div class="line">                old_browser.remove();</div><div class="line">            &#125;);</div><div class="line">        &#125;</div><div class="line"> </div><div class="line">        <span class="keyword">var</span> is_close = $Dy.GetCookie(<span class="string">'old_browser_warn'</span>);</div><div class="line">        <span class="keyword">if</span>(is_close.length===<span class="number">0</span>)&#123;</div><div class="line">            setTimeout(append,<span class="number">2000</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Snippet/" rel="tag">#Snippet</a>
+          
+            <a href="/tags/Javascript/" rel="tag">#Javascript</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/09/Emmet常用快捷键/" rel="next" title="Emmet常用快捷键">
+                <i class="fa fa-chevron-left"></i> Emmet常用快捷键
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/20/JavaScript中this的一些用法/" rel="prev" title="JavaScript中的this的一些用法">
+                JavaScript中的this的一些用法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+    
+    <div class="mod-category_article-time">
+      <span>
+          <time itemprop="dateCreated" datetime="2016-09-18T23:21:00+08:00" content="2016-09-18">
+                  2016-09-18
+          </time>
+      </span>
+    </div>
+  </article>
+
+
+
+	 <div>
+      
+        <style type="text/css">
+
+    .donate_bar {
+        text-align: center;
+        margin-top : 5%;
+    }
+
+    .donate_bar.hidden {
+        display:none;
+    }
+
+    .donate_bar a.btn_donate {
+        display: inline-block;
+        width: 82px;
+        height: 82px;
+        margin-left:auto;
+        margin-right:auto;
+
+        background: url("http://img.t.sinajs.cn/t5/style/images/apps_PRF/e_media/btn_reward.gif") no-repeat;
+        _background: url("http://img.t.sinajs.cn/t5/style/images/apps_PRF/e_media/btn_reward.gif") no-repeat; 
+
+        -webkit-transition: background 0s;
+        -moz-transition: background 0s;
+        -o-transition: background 0s;
+        -ms-transition: background 0s;
+        transition: background 0s;
+    }
+
+    .donate_bar a.btn_donate:hover { 
+        background-position: 0px -82px;
+        color: #87daff;
+    }
+
+    .donate_bar .donate_txt {
+        display: block;
+        color: #9d9d9d;
+        font: 14px/2 "Microsoft Yahei";
+    }
+
+    .bold { 
+        font-weight: bold; 
+    }
+
+    .post-donate a {
+        border-bottom: 0px;
+		
+    }
+
+    #donate_guide table {
+        border: none;
+    }
+	
+    #donate_guide td {
+        border-bottom: none;
+        border-right: none;
+        // background: #333333;
+        valign: top;
+    }
+
+</style>
+
+
+
+    
+
+    <div class ="post-donate">
+        <div id="donate_board" class="donate_bar center">
+              <a id="btn_donate" class="btn_donate" href="javascript:;" title="Donate me"></a>
+              <span id="donate_txt" class="donate_txt">
+                   
+                        Enjoy it ? Donate me !  欣赏此文？求鼓励，求支持！
+                   
+              </span>
+            <br>
+        </div>  
+  
+        <div id="donate_guide" class="donate_bar center hidden">
+            <!--
+            
+                <a href="http://7xq6al.com1.z0.glb.clouddn.com/alipay2.jpg" title="支付宝打赏" class="fancybox" rel="article0" 
+                    style="float:left;margin-left:25%;margin-right:10px;">
+                    <img src="http://7xq6al.com1.z0.glb.clouddn.com/alipay2.jpg" title="" height="164px" width="164px">
+                </a> 
+              
+
+            
+                <a href="http://7xq6al.com1.z0.glb.clouddn.com/weixin.jpg" title="微信打赏" class="fancybox" rel="article0"
+                    style="margin-right:30%">
+                    <img src="http://7xq6al.com1.z0.glb.clouddn.com/weixin.jpg" title="" height="164px" width="164px">
+                </a>
+            
+            -->
+            <table>
+                <tr>
+                    <td>
+                        
+                            <a href="http://7xq6al.com1.z0.glb.clouddn.com/alipay2.jpg" title="alipay" class="fancybox" rel="article0" 
+                                style="float:left;margin-left:25%;margin-right:10px;">
+                                <img src="http://7xq6al.com1.z0.glb.clouddn.com/alipay2.jpg" title="" height="164px" width="164px">
+                            </a> 
+                         
+                    </td>
+                    <td>
+                        
+                            <a href="http://7xq6al.com1.z0.glb.clouddn.com/weixin.jpg" title="weixin" class="fancybox" rel="article0"
+                                style="margin-right:30%">
+                                <img src="http://7xq6al.com1.z0.glb.clouddn.com/weixin.jpg" title="" height="164px" width="164px">
+                            </a>
+                        
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+
+        <script type="text/javascript">
+            document.getElementById('btn_donate').onclick = function() {
+                $('#donate_board').addClass('hidden');
+                // $('#donate_guide').removeClass('hidden');
+                $('#donate_guide').show(2000);
+            }
+
+        </script>
+    </div>
+
+    
+
+
+
+      
+    </div>
+	
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+            <!-- 多说热评文章-->
+            <p class="hot-commit">热评文章</p>
+            <div class="ds-top-threads" data-range="monthly" data-num-items="5"></div>
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2016/09/18/javascript工具函数/"
+                   data-title="javascript工具函数" data-url="http://www.poetries.top/2016/09/18/javascript工具函数/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/avatar.jpg" alt="Poetry" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Poetry</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">技术改变生活</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">132</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">40</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="http://poetries.github.io/atom.xml" rel="alternate">
+              <i class="menu-item-icon icon-next-feed"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/poetries" target="_blank">
+                  <i class="fa fa-github"></i> GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/poetries1" target="_blank">
+                  <i class="fa fa-weibo"></i> Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/94077fcddfc0/latest_articles" target="_blank">
+                  <i class="fa fa-jianshu"></i> Jianshu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">常用链接</p>
+            
+              <span class="links-of-author-item">
+                <a href="http://jsdig.com/" target="_blank">前端搜索</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://cssvalues.com/" target="_blank">css检索</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://f2er.club/" target="_blank">醉牛前端</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://caibaojian.com/links" target="_blank">前端网址</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://jsdig.com/" target="_blank">前端导航</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.css88.com/nav/" target="_blank">前端css88</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://codecloud.net/" target="_blank">程序资料</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://frontenddev.org/" target="_blank">FED社区</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.awesomes.cn/" target="_blank">构建工具</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://overapi.com/" target="_blank">OverAPI</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://devdocs.io/" target="_blank">DevDocs</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://yisibl.github.io/css-vocabulary/" target="_blank">CSS词汇</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jb51.net/onlineread/JavaScript-Garden-CN/#intro" target="_blank">JS花园</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://tool.oschina.net/" target="_blank">工具索引</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://hao.shejidaren.com/" target="_blank">设计导航</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://admire.so/" target="_blank">设计相关</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.uedh.cn/" target="_blank">用户体验</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://jsbin.com/" target="_blank">JSbin</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://codepen.io/pen" target="_blank">Codepen</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://runjs.cn/" target="_blank">RunJs</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://app.gistboxapp.com/" target="_blank">GitBox</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://tool.lu/" target="_blank">ToolBox</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一部分-JavaScript工具函数"><span class="nav-number">1.</span> <span class="nav-text">第一部分 JavaScript工具函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#转义特殊字符为html实体"><span class="nav-number">1.1.</span> <span class="nav-text">转义特殊字符为html实体</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#验证是否为有效的手机电话号码"><span class="nav-number">1.2.</span> <span class="nav-text">验证是否为有效的手机电话号码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#验证是否为有效的座机电话号码"><span class="nav-number">1.3.</span> <span class="nav-text">验证是否为有效的座机电话号码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#清除左空格-右空格"><span class="nav-number">1.4.</span> <span class="nav-text">清除左空格/右空格</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#清除左右空格"><span class="nav-number">1.5.</span> <span class="nav-text">清除左右空格</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#判断是那种类型的浏览器"><span class="nav-number">1.6.</span> <span class="nav-text">判断是那种类型的浏览器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取客户端浏览器cookie"><span class="nav-number">1.7.</span> <span class="nav-text">获取客户端浏览器cookie</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设置客户端浏览器cookie"><span class="nav-number">1.8.</span> <span class="nav-text">设置客户端浏览器cookie</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二部分-插件工具"><span class="nav-number">2.</span> <span class="nav-text">第二部分 插件工具</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Dialog对话框"><span class="nav-number">2.1.</span> <span class="nav-text">Dialog对话框</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Tips"><span class="nav-number">2.2.</span> <span class="nav-text">Tips</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Banner"><span class="nav-number">2.3.</span> <span class="nav-text">Banner</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GotoTop"><span class="nav-number">2.4.</span> <span class="nav-text">GotoTop</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#判断用户是否用低版本的IE浏览器访问网页，如是，则提醒升级"><span class="nav-number">2.5.</span> <span class="nav-text">判断用户是否用低版本的IE浏览器访问网页，如是，则提醒升级</span></a></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Poetry</span>
+  
+  <p style="margin-left:13px; position:relative;top:29px;display:inline-block;">
+     <a target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=9cTCxMzDw8fFwsa1hITblpqY" style="text-decoration:none;">
+         <img src="http://rescdn.qqmail.com/zh_CN/htmledition/images/function/qm_open/ico_mailme_01.png"/>
+      </a>
+  </p>
+  
+</div>
+
+<p style="margin-left:10px;width:60px;height:30px;display:inline-block;margin-top:10px;">
+	<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1260404165'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1260404165%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+</p>
+<p style="position:relative;top:-4px;width:24px;height:30px;margin-left:10px;margin-right:10px;color:red;display:inline-block;"><a href="http://ta.qq.com" target="_blank"><img class="fenxi" src="http://tcss.qq.com/icon/toss_21.gif" alt="腾讯分析"></a></p>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"poetry"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
+
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+
+  
+    <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/MathJax.js"></script>
+    <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/config/TeX-AMS-MML_HTMLorMML.js"></script>
+  
+
+
+  
+  
+
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"slide":{"type":"slide","bdImg":"3","bdPos":"left","bdTop":"250"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+  
+     <!-- custom analytics part create by xiamo -->
+<script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("tIIXiDlAWApnLSnalOqcrADh-gzGzoHsz", "N6UqlI5OjE9dGhd1ISBLU7e6");</script>
+<script>
+function showTime(Counter) {
+	var query = new AV.Query(Counter);
+	$(".leancloud_visitors").each(function() {
+		var url = $(this).attr("id").trim();
+		query.equalTo("url", url);
+		query.find({
+			success: function(results) {
+				if (results.length == 0) {
+					var content = $(document.getElementById(url)).text() + ': 0';
+					$(document.getElementById(url)).text(content);
+					return;
+				}
+				for (var i = 0; i < results.length; i++) {
+					var object = results[i];
+					var content = $(document.getElementById(url)).text() + ': ' + object.get('time');
+					$(document.getElementById(url)).text(content);
+				}
+			},
+			error: function(object, error) {
+				console.log("Error: " + error.code + " " + error.message);
+			}
+		});
+
+	});
+}
+
+function addCount(Counter) {
+	var Counter = AV.Object.extend("Counter");
+	url = $(".leancloud_visitors").attr('id').trim();
+	title = $(".leancloud_visitors").attr('data-flag-title').trim();
+	var query = new AV.Query(Counter);
+	query.equalTo("url", url);
+	query.find({
+		success: function(results) {
+			if (results.length > 0) {
+				var counter = results[0];
+				counter.fetchWhenSave(true);
+				counter.increment("time");
+				counter.save(null, {
+					success: function(counter) {
+						var content = $(document.getElementById(url)).text() + ': ' + counter.get('time');
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(counter, error) {
+						console.log('Failed to save Visitor num, with error message: ' + error.message);
+					}
+				});
+			} else {
+				var newcounter = new Counter();
+				newcounter.set("title", title);
+				newcounter.set("url", url);
+				newcounter.set("time", 1);
+				newcounter.save(null, {
+					success: function(newcounter) {
+					    console.log("newcounter.get('time')="+newcounter.get('time'));
+						var content = $(document.getElementById(url)).text() + ': ' + newcounter.get('time');
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(newcounter, error) {
+						console.log('Failed to create');
+					}
+				});
+			}
+		},
+		error: function(error) {
+			console.log('Error:' + error.code + " " + error.message);
+		}
+	});
+}
+$(function() {
+	var Counter = AV.Object.extend("Counter");
+	if ($('.leancloud_visitors').length == 1) {
+		addCount(Counter);
+	} else if ($('.post-title-link').length > 1) {
+		showTime(Counter);
+	}
+}); 
+</script>
+  
+  
+  
+  <div>
+    <button class="assist-btn circle" id="assist_btn" title="双击亮屏" style="left: 73px; top: 169px;">
+         开灯
+    </button>
+ </div>
+<script type="text/javascript">
+    // 浮动圆点展开与收缩
+
+    $(function () {
+        var assist_box = $('.assist-box');
+        $('#assist_btn').hover(function () {
+            assist_box.stop().show(300);
+        }, function () {
+            assist_box.stop().hide(150);
+        })
+    });
+
+    //浮动圆点拖动
+    $(function () {
+        var box = document.getElementById('assist_btn');
+        box.onmousedown = function (event) {
+            var e = event || window.event,
+                t = e.target || e.srcElement,
+                // 鼠标按下时的坐标x1,y1
+                x1 = e.clientX,
+                y1 = e.clientY,
+                //鼠标按下时的左右偏移量
+                dragLeft = this.offsetLeft,
+                dragTop = this.offsetTop;
+
+            document.onmousemove = function (event) {
+                var e = event || window.event,
+                    t = e.target || e.srcElement,
+                    // 鼠标移动时的动态坐标
+                    x2 = e.clientX,
+                    y2 = e.clientY,
+                    // 鼠标移动时的坐标的变化量
+                    x = x2 - x1,
+                    y = y2 - y1;
+                box.style.left = (dragLeft + x) + 'px';
+                box.style.top = (dragTop + y) + 'px';
+            }
+
+            document.onmouseup = function () {
+                this.onmousemove = null;
+            }
+        }
+    });
+
+/*
+    $whitesmoke   = #f5f5f5
+    $gainsboro    = #eee
+    $gray-lighter = #ddd
+    $grey-light   = #ccc
+    $grey         = #bbb
+    $grey-dark    = #999
+    $grey-dim     = #666
+    $black-light  = #555
+    $black-deep   = #222
+    $red          = #ff2a2a
+    $blue-bright  = #87daff
+    $blue         = #0684bd
+    $blue-deep    = #262a30
+*/
+    // white theme
+    var body = {color: "#555", background: "white"};
+    var a_tag = {color: "#222"};
+    var header = { background: "#f5f5f5"};
+    var logo_line_i = {background: "#222"};
+    // var post_code = {background: "#eee", color: "#222"};
+
+    function switch_theme() {
+        $("body").css(body);
+        $("a:not('.links-of-author-item a, .site-state-item a, .site-state-posts a, .feed-link a, .motion-element a, .post-tags a, .show-commit-cls a, #donate_board a')").css(a_tag);
+        $(".header, .footer").css(header);
+        $(".logo-line-before i, .logo-line-after i").css(logo_line_i);
+        //$(".post code").css(post_code);
+        $("#idhyt-surprise-ball #idhyt-surprise-ball-animation .drag").css(a_tag);
+        $(".post-title-link, .posts-expand .post-meta, .post-comments-count, .disqus-comment-count, .post-category a, .post-nav-next a, .post-nav-item a").css(a_tag);
+        
+        // $("code").css({color: '#c5c8c6', background: '#1d1f21'});
+        $("#assist_btn").hide(1500);
+    }
+
+    $(function () {
+        $("#assist_btn").dblclick(function() {
+            switch_theme();
+        });
+    });
+
+</script>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"poetry"};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+
+</body>
+</html>
